@@ -3,41 +3,16 @@
     <div :class="className" :id="id" :style="{height:height,width:width}" ref="myEchart"></div>
     <div class="element">
       <span>EC计信息输入:{{saleingCount}}</span>
-      <el-button
-        class="filter-item"
-        style="float:right;"
-        icon="el-icon-edit"
-        @click="handleCreate"
-      >添加组件</el-button>
+      <el-button class="filter-item" style="float:right;" icon="el-icon-edit" @click="handleCreate">添加组件</el-button>
     </div>
     <hr>
     <div class="filter-container">
-      <el-button
-        style="float:right"
-        class="filter-item"
-        type="primary"
-        v-waves
-        icon="el-icon-search"
-        @click="handleFilter"
-      >搜索</el-button>
-      <el-input
-        @keyup.enter.native="handleFilter"
-        style="float:right; width:300px "
-        class="filter-item"
-        placeholder="ID/名称/编号/条码/商户名称"
-        v-model="requestList.searchString"
-      ></el-input>
+      <el-button style="float:right" class="filter-item" type="primary" v-waves icon="el-icon-search" @click="handleFilter">搜索</el-button>
+      <el-input @keyup.enter.native="handleFilter" style="float:right; width:300px " class="filter-item" placeholder="ID/名称/编号/条码/商户名称"
+        v-model="requestList.searchString"></el-input>
     </div>
-    <el-table
-      :key="tableKey"
-      :data="list"
-      v-loading="listLoading"
-      element-loading-text="给我一点时间"
-      border
-      fit
-      highlight-current-row
-      style="width: 100%"
-    >
+    <el-table :key="tableKey" :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit
+      highlight-current-row style="width: 100%">
       <el-table-column align="center" type="index" :index="tIndex" label="序号" width="60"></el-table-column>
       <el-table-column min-width="150px" label="检测时间">
         <template slot-scope="scope">
@@ -50,32 +25,18 @@
           <span>{{scope.row.shopName}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="数据" width="95">
+      <el-table-column align="center" label="茶园编号" width="95">
         <template slot-scope="scope">
           <span>{{scope.row.stock}}</span>
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="销量" width="95">
+      <el-table-column align="center" label="数据" width="95">
         <template slot-scope="scope">
           <span>{{scope.row.saleAmount}}</span>
         </template>
       </el-table-column>
-      <el-table-column class-name="status-col" label="状态" width="100">
-        <template slot-scope="scope">
-          <button
-            type="primary"
-            size="mini"
-            @click="change(scope.row)"
-          >{{scope.row.status| statusFilter}}</button>
-        </template>
-      </el-table-column>
-      <el-table-column
-        align="center"
-        :label="$t('table.actions')"
-        width="230"
-        class-name="small-padding fixed-width"
-      >
+      <el-table-column align="center" :label="$t('table.actions')" width="230" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>
           <el-button size="mini" type="danger" @click="delete1(scope.row)">删除</el-button>
@@ -84,136 +45,43 @@
     </el-table>
 
     <div class="pagination-container">
-      <el-pagination
-        background
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="request.page"
-        :page-sizes="[10,20,30,50]"
-        :page-size="request.size"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="total"
-      ></el-pagination>
+      <el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="request.page"
+        :page-sizes="[10,20,30,50]" :page-size="request.size" layout="total, sizes, prev, pager, next, jumper" :total="total"></el-pagination>
     </div>
 
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogfaVisible">
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-tabs v-model="activeName">
-          <el-tab-pane label="基本" name="first">
-            <el-form-item label="排序">
-              <el-input placeholder="数字越大，排名越靠前，如果为空，默认排序时间为创建时间" v-model="form.sortedNum"></el-input>
-            </el-form-item>
-            <el-form-item label="组件名称" prop="name">
-              <el-input v-model="form.name"></el-input>
-            </el-form-item>
-            <el-form-item label="组件价格">
-              <span>&nbsp;</span>
-              <el-col :span="6">
-                <el-input style="margin-left:9px" v-model="form.price"></el-input>
-              </el-col>
-              <el-col style="margin-left:20px" :span="2">成本</el-col>
-              <el-col :span="6">
-                <el-input v-model="form.cost"></el-input>
-              </el-col>
-              <el-col style="margin-left:8px" :span="2">原价</el-col>
-              <el-col :span="6">
-                <el-input v-model="form.primecost"></el-input>
-              </el-col>
-            </el-form-item>
-            <el-form-item label="组件图片" prop="image">
-              <el-upload
-                class="upload-demo"
-                :file-list="form.fileList"
-                action="http://eolinker.mctag.cn/server/index.php?g=Web&c=Mock&o=simple&projectID=10&uri=http://192.168.159.1:8765/uploadFile"
-                :on-preview="handlePreview"
-                :on-remove="handleRemove"
-                :on-success="handleSuccess"
-                list-type="picture"
-                :limit="1"
-                @on-change="changeImage"
-              >
-                <el-button size="small" type="primary">选择图片</el-button>
-                <!-- <div slot="tip" class="el-upload__tip">注：图片标签最多添加3个，大小为50*18</div> -->
-              </el-upload>
-            </el-form-item>
-            <el-form-item label="库存" prop="stock">
-              <el-input v-model="form.stock"></el-input>
-            </el-form-item>
-            <el-form-item label="提供商">
-              <template slot-scope="scope">
-                <el-select v-model="form.shopId" placeholder="请选择" style="width:100%;">
-                  <el-option
-                    v-for="item in options1"
-                    :key="item.shopId"
-                    :label="item.shopName"
-                    :value="item.shopId"
-                  ></el-option>
-                </el-select>
-              </template>
-            </el-form-item>
-            <el-form-item label="设置运费">
-              <span>&nbsp;</span>
-              <el-input v-model="form.postFare"></el-input>
-            </el-form-item>
-            <el-form-item label="上架">
-              <el-radio-group v-model="form.status">
-                <el-radio :label="1">是</el-radio>
-                <el-radio :label="0">否</el-radio>
-              </el-radio-group>
-            </el-form-item>
-          </el-tab-pane>
-          <el-tab-pane label="详情" name="second">
-            <span style="font-size:18px">组件详情</span>
-            <div>
-              <tinymce :value="form.detail"></tinymce>
-            </div>
-          </el-tab-pane>
-          <el-tab-pane label="关键组件" name="third">
-            <el-table
-              :key="tableKey"
-              :data="form.productVos"
-              v-loading="listLoading"
-              element-loading-text="给我一点时间"
-              border
-              fit
-              highlight-current-row
-              style="width: 100%"
-            >
-              <el-table-column min-width="150px" label="可替组件名称">
-                <template slot-scope="scope">
-                  <el-select
-                    v-model="scope.row.productIds"
-                    multiple
-                    placeholder="请选择"
-                    style="width:100%;"
-                  >
-                    <el-option
-                      v-for="item in options"
-                      :key="item.productId"
-                      :label="item.productName"
-                      :value="item.productId"
-                    ></el-option>
-                  </el-select>
-                </template>
-              </el-table-column>
-            </el-table>
-            <br>
-            <el-button style="float:left" type="mini" @click="addItem">添加</el-button>
-          </el-tab-pane>
-          <br>
-          <el-button
-            style="float:right"
-            v-if="dialogStatus=='create'"
-            type="primary"
-            @click="submitForm('form')"
-          >确认</el-button>
-          <el-button style="float:right" v-else type="primary" @click="submitForm1('form')">确认</el-button>
-        </el-tabs>
-      </el-form>
-    </el-dialog>
+<el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogfaVisible">
+  <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+    <el-tabs v-model="activeName">
+      <el-tab-pane label="EC计数据记录" name="first">
+        <el-form-item label="检测时间">
+          <span>&nbsp;</span>
+          <el-col :span="6">
+            <el-input style="margin-left:9px" v-model="form.price"></el-input>
+          </el-col>
+          <el-col style="margin-left:20px" :span="4">检测人姓名</el-col>
+          <el-col :span="6">
+            <el-input v-model="form.cost"></el-input>
+          </el-col>
+        </el-form-item>
+        <el-form-item label="茶园编号">
+          <span>&nbsp;</span>
+          <el-col :span="6">
+            <el-input style="margin-left:9px" v-model="form.price"></el-input>
+          </el-col>
+          <el-col style="margin-left:20px" :span="4">土壤数据</el-col>
+          <el-col :span="6">
+            <el-input v-model="form.cost"></el-input>
+          </el-col>
+        </el-form-item>
+      </el-tab-pane>
+      <br>
+      <el-button style="float:right" v-if="dialogStatus=='create'" type="primary" @click="submitForm('form')">确认</el-button>
+      <el-button style="float:right" v-else type="primary" @click="submitForm1('form')">确认</el-button>
+    </el-tabs>
+  </el-form>
+</el-dialog> 
   </div>
 </template>
-
 <script>
 import Dropzone from "@/components/Dropzone";
 import Tinymce from "@/components/Tinymce";
