@@ -112,43 +112,43 @@ export const asyncRouterMap = [
   //   ]
   // },
 
-  // {
-  //   path: '/program',
-  //   component: Layout,
-  //   redirect: '/program/index',
-  //   alwaysShow: true,
-  //   meta: {
-  //     title: '方案',
-  //     icon: 'documentation',
-  //     roles: ['admin']
-  //   },
-  //   children: [{
-  //     path: 'p-sell',
-  //     component: _import('program/p-sell'),
-  //     name: 'p-sell',
-  //     meta: {
-  //       title: '出售中',
-  //       roles: ['admin']
-  //     }
-  //   },
-  //   {
-  //     path: 'p-warehouse',
-  //     component: _import('program/p-warehouse'),
-  //     name: 'p-warehouse',
-  //     meta: {
-  //       title: '仓库中'
-  //     }
-  //   },
-  //   {
-  //     path: 'p-recycle',
-  //     component: _import('program/p-recycle'),
-  //     name: 'p-recycle',
-  //     meta: {
-  //       title: '回收站'
-  //     }
-  //   }
-  //   ]
-  // },
+  {
+    path: '/program',
+    component: Layout,
+    redirect: '/program/index',
+    alwaysShow: true,
+    meta: {
+      title: '日常管理',
+      icon: 'documentation',
+      roles: ['admin']
+    },
+    children: [{
+      path: 'p-sell',
+      component: _import('program/p-sell'),
+      name: 'p-sell',
+      meta: {
+        title: '浇水',
+        roles: ['admin']
+      }
+    },
+    {
+      path: 'p-warehouse',
+      component: _import('program/p-warehouse'),
+      name: 'p-warehouse',
+      meta: {
+        title: '施肥'
+      }
+    },
+    {
+      path: 'p-recycle',
+      component: _import('program/p-recycle'),
+      name: 'p-recycle',
+      meta: {
+        title: '反馈'
+      }
+    }
+    ]
+  },
   // {
   //   path: '/icon',
   //   component: Layout,
@@ -255,7 +255,7 @@ export const asyncRouterMap = [
     redirect: 'noredirect',
     name: 'order',
     meta: {
-      title: '订单管理',
+      title: '图片管理',
       icon: 'clipboard'
     },
     children: [{
@@ -464,105 +464,105 @@ export const asyncRouterMap = [
   //     }
   //   ]
   // },
-  {
-    path: '/close',
-    component: Layout,
-    redirect: 'noredirect',
-    name: 'close',
-    meta: {
-      title: '结算',
-      icon: 'money'
-    },
-    children: [
-      {
-        path: '/close/s/summary',
-        component: _import('close/s/summary'),
-        name: 's',
-        meta: {
-          title: '结算概述'
-        },
-        children: [{
-          path: 'summary',
-          component: _import('close/s/summary'),
-          name: 'summary',
-          meta: {
-            title: '结算概述'
-          }
-        }]
-      },
-      {
-        path: '/close/cl-apply',
-        component: _import('close/cl-apply/index'),
-        name: 'cl-apply',
-        meta: {
-          title: '提现'
-        },
-        children: [{
-          path: 'confirm',
-          component: _import('close/cl-apply/confirm'),
-          name: 'confirm',
-          meta: {
-            title: '待审核申请'
-          }
-        },
-        {
-          path: 'cl-pay',
-          component: _import('close/cl-apply/cl-pay'),
-          name: 'cl-pay',
-          meta: {
-            title: '待结算申请'
-          }
-        },
-        {
-          path: 'cl-paid',
-          component: _import('close/cl-apply/cl-paid'),
-          name: 'cl-paid',
-          meta: {
-            title: '已结算申请'
-          }
-        },
-        {
-          path: 'invalid',
-          component: _import('close/cl-apply/invalid'),
-          name: 'invalid',
-          meta: {
-            title: '已无效申请'
-          }
-        }
-        ]
-      },
-      {
-        path: '/close/result',
-        component: _import('close/result/resultment'),
-        hidden: true,
-        name: 'result',
-        meta: {
-          title: '申请结果'
-        },
-        children: [{
-          path: 'resultment',
-          component: _import('close/result/resultment'),
-          name: 'resultment',
-          meta: {
-            title: '申请结果列表'
-          }
-        }]
-      }
-    ]
-  },
-  {
-    path: '/set',
-    component: Layout,
-    children: [{
-      path: 'index',
-      component: _import('set/index'),
-      name: 'set',
-      meta: {
-        title: '设置',
-        icon: 'example'
-      }
-    }]
-  },
+  // {
+  //   path: '/close',
+  //   component: Layout,
+  //   redirect: 'noredirect',
+  //   name: 'close',
+  //   meta: {
+  //     title: '结算',
+  //     icon: 'money'
+  //   },
+  //   children: [
+  //     {
+  //       path: '/close/s/summary',
+  //       component: _import('close/s/summary'),
+  //       name: 's',
+  //       meta: {
+  //         title: '结算概述'
+  //       },
+  //       children: [{
+  //         path: 'summary',
+  //         component: _import('close/s/summary'),
+  //         name: 'summary',
+  //         meta: {
+  //           title: '结算概述'
+  //         }
+  //       }]
+  //     },
+  //     {
+  //       path: '/close/cl-apply',
+  //       component: _import('close/cl-apply/index'),
+  //       name: 'cl-apply',
+  //       meta: {
+  //         title: '提现'
+  //       },
+  //       children: [{
+  //         path: 'confirm',
+  //         component: _import('close/cl-apply/confirm'),
+  //         name: 'confirm',
+  //         meta: {
+  //           title: '待审核申请'
+  //         }
+  //       },
+  //       {
+  //         path: 'cl-pay',
+  //         component: _import('close/cl-apply/cl-pay'),
+  //         name: 'cl-pay',
+  //         meta: {
+  //           title: '待结算申请'
+  //         }
+  //       },
+  //       {
+  //         path: 'cl-paid',
+  //         component: _import('close/cl-apply/cl-paid'),
+  //         name: 'cl-paid',
+  //         meta: {
+  //           title: '已结算申请'
+  //         }
+  //       },
+  //       {
+  //         path: 'invalid',
+  //         component: _import('close/cl-apply/invalid'),
+  //         name: 'invalid',
+  //         meta: {
+  //           title: '已无效申请'
+  //         }
+  //       }
+  //       ]
+  //     },
+  //     {
+  //       path: '/close/result',
+  //       component: _import('close/result/resultment'),
+  //       hidden: true,
+  //       name: 'result',
+  //       meta: {
+  //         title: '申请结果'
+  //       },
+  //       children: [{
+  //         path: 'resultment',
+  //         component: _import('close/result/resultment'),
+  //         name: 'resultment',
+  //         meta: {
+  //           title: '申请结果列表'
+  //         }
+  //       }]
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/set',
+  //   component: Layout,
+  //   children: [{
+  //     path: 'index',
+  //     component: _import('set/index'),
+  //     name: 'set',
+  //     meta: {
+  //       title: '设置',
+  //       icon: 'example'
+  //     }
+  //   }]
+  // },
   {
     path: '/my',
     component: Layout,

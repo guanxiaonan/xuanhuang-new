@@ -7,7 +7,7 @@
     <hr>
     <div class="filter-container">
       <el-button style="float:right" class="filter-item" type="primary" v-waves icon="el-icon-search" @click="handleFilter">搜索</el-button>
-      <el-input @keyup.enter.native="handleFilter" style="float:right; width:300px " class="filter-item" placeholder="ID/名称/编号/条码/商户名称"
+<el-input @keyup.enter.native="handleFilter" style="float:right; width:300px " class="filter-item" placeholder="检测时间/茶园编号/传感器编号"
         v-model="requestList.searchString">
       </el-input>
     </div>

@@ -3,7 +3,7 @@
     <div :class="className" :id="id" :style="{height:height,width:width}" ref="myEchart"></div>
     <div class="element">
       <span>EC计信息输入:{{saleingCount}}</span>
-      <el-button class="filter-item" style="float:right;" icon="el-icon-edit" @click="handleCreate">添加组件</el-button>
+      <el-button class="filter-item" style="float:right;" icon="el-icon-edit" @click="handleCreate">添加记录</el-button>
     </div>
     <hr>
     <div class="filter-container">

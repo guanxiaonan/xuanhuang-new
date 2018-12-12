@@ -1,17 +1,17 @@
 <template>
   <div class="app-container calendar-list-container">
     <div class="element">
-      <span>回收站: {{deleteCount}}</span>
-      <el-button class="filter-item" style="float:right;" icon="el-icon-edit" @click="handleCreate">添加方案</el-button>
+      <span>问题记录: {{deleteCount}}</span>
+      <el-button class="filter-item" style="float:right;" icon="el-icon-edit" @click="handleCreate">添加记录</el-button>
     </div>
     <hr>
     <div class="filter-container">
       <el-button style="float:right" class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">{{$t('table.search')}}</el-button>
-      <el-input v-model="requestList.searchString" clearable style="width:300px;float:right" placeholder="请输入供应商/方案"></el-input>
+      <el-input v-model="requestList.searchString" clearable style="width:300px;float:right" placeholder="请输入时间"></el-input>
     </div>
     <el-table :key='tableKey' :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit
       highlight-current-row style="width: 100%">
-      <el-table-column float:left type="selection" align="center"></el-table-column>
+      <!-- <el-table-column float:left type="selection" align="center"></el-table-column> -->
       <!-- <el-table-column align="center" label="序号" width="65">
         <template slot-scope="scope">
           <span>{{scope.row.sampleroomId}}</span>
@@ -19,23 +19,37 @@
       </el-table-column> -->
       <el-table-column align="center" type="index" :index="sequenceNumber" label="序号" width="65">
       </el-table-column>
-      <el-table-column label="方案">
+      <el-table-column label="时间">
         <template slot-scope="scope">
           <img :src="scope.row.sampleroomImg" alt="">
           <span style="float:right">{{scope.row.sampleroomName}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="110px" align="center" label="价格">
+      <el-table-column width="110px" align="center" label="茶园编号区域">
         <template slot-scope="scope">
           <span>{{scope.row.price}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="110px" align="center" label="供应商">
+      <el-table-column width="110px" align="center" label="问题照片">
         <template slot-scope="scope">
           <span>{{scope.row.shopName}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="销量" width="95">
+      <el-table-column align="center" label="问题描述" width="95">
+        <template slot-scope="scope">
+          <span>{{scope.row.saleAmount}}</span>
+          <!-- <span v-if="scope.row.pageviews" class="link-type" @click='handleFetchPv(scope.row.pageviews)'>{{scope.row.pageviews}}</span>
+          <span v-else>0</span> -->
+        </template>
+      </el-table-column>
+      <el-table-column align="center" label="人员" width="95">
+        <template slot-scope="scope">
+          <span>{{scope.row.saleAmount}}</span>
+          <!-- <span v-if="scope.row.pageviews" class="link-type" @click='handleFetchPv(scope.row.pageviews)'>{{scope.row.pageviews}}</span>
+          <span v-else>0</span> -->
+        </template>
+      </el-table-column>
+       <el-table-column align="center" label="状态" width="95">
         <template slot-scope="scope">
           <span>{{scope.row.saleAmount}}</span>
           <!-- <span v-if="scope.row.pageviews" class="link-type" @click='handleFetchPv(scope.row.pageviews)'>{{scope.row.pageviews}}</span>
@@ -44,7 +58,7 @@
       </el-table-column>
       <el-table-column align="center" :label="$t('table.actions')" width="230" class-name="small-padding fixed-width">
         <template slot-scope="scope">
-          <el-button type="primary" size="mini" @click="recover(scope.row)">恢复</el-button>
+          <!-- <el-button type="primary" size="mini" @click="recover(scope.row)">已解决</el-button> -->
           <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>
           <el-button size="mini" type="danger" @click="delete1(scope.row)">删除</el-button>
         </template>
@@ -61,14 +75,18 @@
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-tabs v-model="activeName">
           <el-tab-pane label="基本" name="first">
-            <el-form-item label="排序">
+            <!-- <el-form-item label="排序">
               <el-input placeholder="数字越大，排名越靠前，如果为空，默认排序时间为创建时间" v-model="form.sortedNum"></el-input>
-            </el-form-item>
-            <el-form-item label="商品名称" prop="name">
+            </el-form-item> -->
+            <el-form-item label="时间" prop="name">
 
               <el-input v-model="form.name"></el-input>
             </el-form-item>
-            <el-form-item label="商品图片" prop="image">
+             <el-form-item label="茶园编号区域" prop="name">
+
+              <el-input v-model="form.name"></el-input>
+            </el-form-item>
+            <el-form-item label="问题照片" prop="image">
               <el-upload class="upload-demo" :file-list="form.image" action="http://101.132.44.253:8767/background/setSampleStatus"
                 :on-preview="handlePreview" :on-remove="handleRemove" list-type="picture" :auto-upload="autoupload"
                 :before-upload="beforeAvatarUpload" @on-change="changeImage">
@@ -79,66 +97,15 @@
                 <img width="100%" :src="dialogImageUrl" alt="">
               </el-dialog> -->
             </el-form-item>
-            <el-form-item label="提供商" prop="shopName">
+            <el-form-item label="问题描述" prop="shopName">
               <el-input v-model="form.shopName"></el-input>
             </el-form-item>
-            <el-form-item label="运费" prop="postFare">
+            <el-form-item label="人员" prop="postFare">
               <el-input v-model="form.postFare"></el-input>
             </el-form-item>
-            <el-form-item label="设计费" prop="designCost">
+            <el-form-item label="状态" prop="designCost">
               <el-input v-model="form.designCost"></el-input>
             </el-form-item>
-            <el-form-item label="安装费" prop="installCost">
-              <el-input v-model="form.installCost"></el-input>
-            </el-form-item>
-            <!-- </el-form> -->
-          </el-tab-pane>
-          <el-tab-pane label="详情" name="second">
-            <!-- <el-form ref="form" :model="form" :rules="rules" label-width="100px"> -->
-            <div>
-              <tinymce :value="form.detail"></tinymce>
-            </div>
-            <!-- </el-form> -->
-          </el-tab-pane>
-          <el-tab-pane label="关键组件" name="third">
-            <!-- <table>
-              <thead>
-                <tr>
-                  <td style="width:20%">关键组件名称</td>
-                  <td style="width:80%">组件</td>
-                </tr>
-              </thead>
-              <tbody>
-                <td>
-                  <input type="text">
-                </td>
-                <td>
-                  <el-select v-model="value5" multiple placeholder="请选择">
-                    <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-                    </el-option>
-                  </el-select>
-                </td>
-              </tbody>
-            </table> -->
-            <el-table :key='tableKey' :data="form.componentVos" v-loading="listLoading" element-loading-text="给我一点时间"
-              border fit highlight-current-row style="width: 100%">
-              <el-table-column width="110px" align="center" :label="$t('关键组件名称')">
-                <template slot-scope="scope">
-                  <el-input v-model="scope.row.componentName"></el-input>
-                </template>
-              </el-table-column>
-              <el-table-column min-width="150px" :label="$t('组件')">
-                <template slot-scope="scope">
-                  <el-select v-model="productIds" multiple placeholder="请选择" style="width:100%;">
-                    <el-option v-for="item in options" :key="item.productId" :label="item.productName" :value="item.productId">
-                    </el-option>
-                  </el-select>
-                </template>
-              </el-table-column>
-            </el-table>
-            <br>
-            <el-button style="float:left" type="mini" @click="addItem">添加</el-button>
-
             <!-- </el-form> -->
           </el-tab-pane>
           <br>
