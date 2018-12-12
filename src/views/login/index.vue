@@ -1,5 +1,4 @@
 <template>
-
   <div class="login-container">
     <div class="login-headline">
       <h3 style="color:#fff;">黄茶数据采集系统</h3>
@@ -39,10 +38,8 @@
       <br />
       <social-sign />
     </el-dialog>
-
   </div>
 </template>
-
 <script>
   // import { isvalidUsername } from '@/utils/validate'
   import LangSelect from '@/components/LangSelect'
@@ -157,11 +154,10 @@
       // window.removeEventListener('hashchange', this.afterQRScan)
     }
   }
-
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-  $bg:#bdc0bdfd;
+  $bg:#2d3a4b;
   $light_gray:#eee;
 
   /* reset element-ui css */
@@ -292,5 +288,4 @@
     }
 
   }
-
 </style>

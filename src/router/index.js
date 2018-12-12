@@ -564,6 +564,19 @@ export const asyncRouterMap = [
   //   }]
   // },
   {
+    path: '/data',
+    component: Layout,
+    children: [{
+      path: 'index',
+      component: _import('data/monitor'),
+      name: 'monitor',
+      meta: {
+        title: '监控中心',
+        icon: 'example'
+      }
+    }]
+  },
+  {
     path: '/my',
     component: Layout,
     children: [{

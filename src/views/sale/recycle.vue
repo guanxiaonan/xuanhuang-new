@@ -1,8 +1,9 @@
 <template>
   <div class="app-container calendar-list-container">
+    <div :class="className" :id="id" :style="{height:height,width:width}" ref="myEchart"></div>
     <div class="element">
-      <span>空气数据:{{deleteCount}}</span>
-      <el-button class="filter-item" style="float:right;" icon="el-icon-edit" @click="handleCreate">添加记录</el-button>
+      <span>回收站中:{{deleteCount}}</span>
+      <el-button class="filter-item" style="float:right;" icon="el-icon-edit" @click="handleCreate">添加空气数据记录</el-button>
     </div>
     <hr>
     <div class="filter-container">
@@ -51,8 +52,6 @@
         :page-sizes="[10,20,30,50]" :page-size="request.size" layout="total, sizes, prev, pager, next, jumper" :total="total">
       </el-pagination>
     </div>
-
-
 <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogfaVisible">
   <el-form ref="form" :model="form" :rules="rules" label-width="80px">
     <el-tabs v-model="activeName">
@@ -94,6 +93,7 @@
 <script>
   import Dropzone from '@/components/Dropzone'
   import Tinymce from '@/components/Tinymce'
+  import echarts from 'echarts'
   import {
     getProductInfo, // 组件-查看组件详情
     getProductList, // 组件-组件列表
@@ -107,6 +107,24 @@
   import { getToken } from '@/utils/auth'
 
   export default {
+    props: {
+    className: {
+      type: String,
+      default: "yourClassName"
+    },
+    id: {
+      type: String,
+      default: "yourID"
+    },
+    width: {
+      type: String,
+      default: "1000px"
+    },
+    height: {
+      type: String,
+      default: "800px"
+    }
+  },
     name: 'complexTable',
     components: {
       Dropzone,
@@ -213,7 +231,99 @@
       this.getList()
       this.getNumber()
     },
+    mounted() {
+    this.initChart();
+  },
     methods: {
+      initChart() {
+      this.chart = echarts.init(this.$refs.myEchart);
+      // 把配置和数据放这里
+      this.chart.setOption(
+      {
+        title: {
+        text: '未来一周气温变化',
+        subtext: '纯属虚构'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['最高气温','最低气温']
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            dataZoom: {
+                yAxisIndex: 'none'
+            },
+            dataView: {readOnly: false},
+            magicType: {type: ['line', 'bar']},
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    xAxis:  {
+        type: 'category',
+        boundaryGap: false,
+        data: ['周一','周二','周三','周四','周五','周六','周日']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} °C'
+        }
+    },
+    series: [
+        {
+            name:'最高气温',
+            type:'line',
+            data:[11, 11, 15, 13, 12, 13, 10],
+            markPoint: {
+                data: [
+                    {type: 'max', name: '最大值'},
+                    {type: 'min', name: '最小值'}
+                ]
+            },
+            markLine: {
+                data: [
+                    {type: 'average', name: '平均值'}
+                ]
+            }
+        },
+        {
+            name:'最低气温',
+            type:'line',
+            data:[1, -2, 2, 5, 3, 2, 0],
+            markPoint: {
+                data: [
+                    {name: '周最低', value: -2, xAxis: 1, yAxis: -1.5}
+                ]
+            },
+            markLine: {
+                data: [
+                    {type: 'average', name: '平均值'},
+                    [{
+                        symbol: 'none',
+                        x: '90%',
+                        yAxis: 'max'
+                    }, {
+                        symbol: 'circle',
+                        label: {
+                            normal: {
+                                position: 'start',
+                                formatter: '最大值'
+                            }
+                        },
+                        type: 'max',
+                        name: '最高点'
+                    }]
+                ]
+            }
+        }
+    ]
+      }
+      );
+    },
       recover(row) {
         this.request.productId = row.productId
         this.$confirm('你确定将此方案恢复, 是否继续?', '提示', {
