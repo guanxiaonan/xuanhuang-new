@@ -571,7 +571,7 @@ export const asyncRouterMap = [
       component: _import('data/monitor'),
       name: 'monitor',
       meta: {
-        title: '监控中心',
+        title: '分析中心',
         icon: 'example'
       }
     }]

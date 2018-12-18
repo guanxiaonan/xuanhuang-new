@@ -123,11 +123,11 @@ import { getToken } from '@/utils/auth'
     },
     width: {
       type: String,
-      default: "1000px"
+      default: "500px"
     },
     height: {
       type: String,
-      default: "800px"
+      default: "400px"
     }
   },
     name: 'complexTable',
@@ -246,14 +246,14 @@ import { getToken } from '@/utils/auth'
       this.chart.setOption(
       {
         title: {
-        text: '未来一周气温变化',
+        text: '光照变化',
         subtext: '纯属虚构'
     },
     tooltip: {
         trigger: 'axis'
     },
     legend: {
-        data:['最高气温','最低气温']
+        data:['标准光照强度','实际光照强度']
     },
     toolbox: {
         show: true,
