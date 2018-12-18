@@ -110,11 +110,11 @@ export default {
     },
     width: {
       type: String,
-      default: "1000px"
+      default: "500px"
     },
     height: {
       type: String,
-      default: "800px"
+      default: "400px"
     }
   },
   name: "complexTable",

@@ -2,7 +2,7 @@
   <div class="app-container calendar-list-container">
     <div :class="className" :id="id" :style="{height:height,width:width}" ref="myEchart"></div>
     <div class="element">
-      <span>回收站中:{{deleteCount}}</span>
+      <span>空气温湿度:{{deleteCount}}</span>
       <el-button class="filter-item" style="float:right;" icon="el-icon-edit" @click="handleCreate">添加空气数据记录</el-button>
     </div>
     <hr>
@@ -118,11 +118,11 @@
     },
     width: {
       type: String,
-      default: "1000px"
+      default: "500px"
     },
     height: {
       type: String,
-      default: "800px"
+      default: "400px"
     }
   },
     name: 'complexTable',
@@ -241,14 +241,14 @@
       this.chart.setOption(
       {
         title: {
-        text: '未来一周气温变化',
+        text: '空气温湿度变化',
         subtext: '纯属虚构'
     },
     tooltip: {
         trigger: 'axis'
     },
     legend: {
-        data:['最高气温','最低气温']
+        data:['标准温湿度','实际温湿度']
     },
     toolbox: {
         show: true,
