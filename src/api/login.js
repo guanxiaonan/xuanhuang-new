@@ -6,7 +6,13 @@ export function loginByUsername(data) {
     url: 'http://101.132.44.253:8767/background/login',
     method: 'post',
     data
-  })
+  }) // cl
+  // gyn
+  // return request({
+  //   url: 'http://localhost/user/login',
+  //   method: 'post',
+  //   data
+  // })
 }
 
 export function logout() {
