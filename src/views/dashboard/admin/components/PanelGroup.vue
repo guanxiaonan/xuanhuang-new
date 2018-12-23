@@ -1,28 +1,109 @@
 <template>
   <el-row class="panel-group" :gutter="40">
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class='card-panel'>
-
+      <div @click="chuli1" class='card-panel'>
         <div class="card-panel-description">
-          <div class="card-panel-text">已售罄商品</div>
-          <span>{{data.saleoutproducts}}</span>
+          <div class="card-panel-text">茶园1</div>
+          <!--<span>{{data.saleoutproducts}}</span>-->
         </div>
+      </div>
+      <div>
+        <el-row>
+          <el-col :span="8"><el-card shadow="always">
+            <el-popover
+              placement="top-start"
+              title="实时数据"
+              width="70"
+              trigger="hover"
+              content="显示采集点实时数据">
+              <el-button slot="reference">采集点5</el-button>
+            </el-popover>
+          </el-card></el-col>
+          <el-col :span="8"><el-card shadow="always">
+            <el-popover
+              placement="top-start"
+              title="实时数据"
+              width="70"
+              trigger="hover"
+              content="显示采集点实时数据">
+              <el-button slot="reference">采集点6</el-button>
+            </el-popover>
+          </el-card></el-col>
+          <el-col :span="8"><el-card shadow="always">
+            <el-popover
+              placement="top-start"
+              title="实时数据"
+              width="70"
+              trigger="hover"
+              content="显示采集点实时数据">
+              <el-button slot="reference" width="30">采集点7</el-button>
+            </el-popover>
+          </el-card></el-col>
+        </el-row>
+      </div>
+    </el-col>
+    <el-col  :xs="12" :sm="12" :lg="6" class="card-panel-col">
+      <div @click="chuli2" class="card-panel">
+        <div class="card-panel-description">
+          <div class="card-panel-text">茶园2</div>
+          <!--<span>{{data.deliverySO}}</span>-->
+        </div>
+      </div>
+      <div>
+        <el-row>
+          <el-col :span="12"><el-card shadow="always">
+            <el-popover
+              placement="top-start"
+              title="实时数据"
+              width="100"
+              trigger="hover"
+              content="显示采集点实时数据">
+              <el-button slot="reference">采集点3</el-button>
+            </el-popover>
+          </el-card></el-col>
+          <el-col :span="12"><el-card shadow="always">
+            <el-popover
+              placement="top-start"
+              title="实时数据"
+              width="100"
+              trigger="hover"
+              content="显示采集点实时数据">
+              <el-button slot="reference">采集点4</el-button>
+            </el-popover>
+          </el-card></el-col>
+        </el-row>
       </div>
     </el-col>
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel">
-        <div class="card-panel-description">
-          <div class="card-panel-text">待发货订单</div>
-          <span>{{data.deliverySO}}</span>
+      <div @click="chuli3" class="card-panel">
+        <div  class="card-panel-description">
+          <div class="card-panel-text">茶园3</div>
+          <!--<span>{{data.questionSO}}</span>-->
         </div>
       </div>
-    </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel">
-        <div class="card-panel-description">
-          <div class="card-panel-text">维权中订单</div>
-          <span>{{data.questionSO}}</span>
-        </div>
+      <div>
+        <el-row>
+          <el-col :span="12"><el-card shadow="always">
+            <el-popover
+              placement="top-start"
+              title="实时数据"
+              width="100"
+              trigger="hover"
+              content="显示采集点实时数据">
+              <el-button slot="reference">采集点1</el-button>
+            </el-popover>
+          </el-card></el-col>
+          <el-col :span="12"><el-card shadow="always">
+            <el-popover
+              placement="top-start"
+              title="实时数据"
+              width="100"
+              trigger="hover"
+              content="显示采集点实时数据">
+              <el-button slot="reference">采集点2</el-button>
+            </el-popover>
+          </el-card></el-col>
+        </el-row>
       </div>
     </el-col>
   </el-row>
@@ -52,8 +133,26 @@
       }
 
     },
-
-    methods: {}
+    methods: {
+      chuli1() {
+        this.$router.push({
+          name: 'chayuan1'
+        })
+        // alert('chuli1')
+      },
+      chuli2() {
+        // this.$router.push({
+        //   name: 'home_index'
+        // })
+        alert('chuli2')
+      },
+      chuli3() {
+        // this.$router.push({
+        //   name: 'home_index'
+        // })
+        alert('chuli3')
+      }
+    }
   }
 </script>
 
@@ -66,7 +165,7 @@
     }
     .card-panel {
       text-align: center;
-      height: 108px;
+      height: 80px;
       cursor: pointer;
       font-size: 12px;
       position: relative;
@@ -122,7 +221,7 @@
         height: 60px;
         font-weight: bold;
         margin-left: -50px;
-        margin-top: -30px;
+        margin-top: -15px;
         .card-panel-text {
           line-height: 18px;
           color: rgba(0, 0, 0, 0.45);
