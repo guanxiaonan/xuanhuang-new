@@ -8,38 +8,49 @@
         </div>
       </div>
       <div>
-        <el-row>
-          <el-col :span="8"><el-card shadow="always">
+        <el-collapse v-model="activeNames" @change="">
+          <el-collapse-item title="实时采集点" name="1">
+            <div>
+              <el-popover
+                placement="right"
+                width="400"
+                trigger="click">
+                <el-table :data="gridData1">
+                  <el-table-column width="150" property="date" label="日期"></el-table-column>
+                  <el-table-column width="100" property="name" label="姓名"></el-table-column>
+                  <el-table-column width="300" property="address" label="地址"></el-table-column>
+                </el-table>
+                <el-button slot="reference">采集点5实时数据</el-button>
+              </el-popover>
+            </div>
+            <div>
             <el-popover
-              placement="top-start"
-              title="实时数据"
-              width="70"
-              trigger="hover"
-              content="显示采集点实时数据">
-              <el-button slot="reference">采集点5</el-button>
+              placement="right"
+              width="400"
+              trigger="click">
+              <el-table :data="gridData1">
+                <el-table-column width="150" property="date" label="日期"></el-table-column>
+                <el-table-column width="100" property="name" label="姓名"></el-table-column>
+                <el-table-column width="300" property="address" label="地址"></el-table-column>
+              </el-table>
+              <el-button slot="reference">采集点6实时数据</el-button>
             </el-popover>
-          </el-card></el-col>
-          <el-col :span="8"><el-card shadow="always">
+            </div>
+            <div>
             <el-popover
-              placement="top-start"
-              title="实时数据"
-              width="70"
-              trigger="hover"
-              content="显示采集点实时数据">
-              <el-button slot="reference">采集点6</el-button>
+              placement="right"
+              width="400"
+              trigger="click">
+              <el-table :data="gridData1">
+                <el-table-column width="150" property="date" label="日期"></el-table-column>
+                <el-table-column width="100" property="name" label="姓名"></el-table-column>
+                <el-table-column width="300" property="address" label="地址"></el-table-column>
+              </el-table>
+              <el-button slot="reference">采集点7实时数据</el-button>
             </el-popover>
-          </el-card></el-col>
-          <el-col :span="8"><el-card shadow="always">
-            <el-popover
-              placement="top-start"
-              title="实时数据"
-              width="70"
-              trigger="hover"
-              content="显示采集点实时数据">
-              <el-button slot="reference" width="30">采集点7</el-button>
-            </el-popover>
-          </el-card></el-col>
-        </el-row>
+            </div>
+          </el-collapse-item>
+        </el-collapse>
       </div>
     </el-col>
     <el-col  :xs="12" :sm="12" :lg="6" class="card-panel-col">
@@ -50,28 +61,36 @@
         </div>
       </div>
       <div>
-        <el-row>
-          <el-col :span="12"><el-card shadow="always">
-            <el-popover
-              placement="top-start"
-              title="实时数据"
-              width="100"
-              trigger="hover"
-              content="显示采集点实时数据">
-              <el-button slot="reference">采集点3</el-button>
-            </el-popover>
-          </el-card></el-col>
-          <el-col :span="12"><el-card shadow="always">
-            <el-popover
-              placement="top-start"
-              title="实时数据"
-              width="100"
-              trigger="hover"
-              content="显示采集点实时数据">
-              <el-button slot="reference">采集点4</el-button>
-            </el-popover>
-          </el-card></el-col>
-        </el-row>
+        <el-collapse v-model="activeNames" @change="">
+          <el-collapse-item title="实时采集点" name="1">
+            <div>
+              <el-popover
+                placement="right"
+                width="400"
+                trigger="click">
+                <el-table :data="gridData1">
+                  <el-table-column width="150" property="date" label="日期"></el-table-column>
+                  <el-table-column width="100" property="name" label="姓名"></el-table-column>
+                  <el-table-column width="300" property="address" label="地址"></el-table-column>
+                </el-table>
+                <el-button slot="reference">采集点3实时数据</el-button>
+              </el-popover>
+            </div>
+            <div>
+              <el-popover
+                placement="right"
+                width="400"
+                trigger="click">
+                <el-table :data="gridData1">
+                  <el-table-column width="150" property="date" label="日期"></el-table-column>
+                  <el-table-column width="100" property="name" label="姓名"></el-table-column>
+                  <el-table-column width="300" property="address" label="地址"></el-table-column>
+                </el-table>
+                <el-button slot="reference">采集点4实时数据</el-button>
+              </el-popover>
+            </div>
+          </el-collapse-item>
+        </el-collapse>
       </div>
     </el-col>
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
@@ -82,28 +101,36 @@
         </div>
       </div>
       <div>
-        <el-row>
-          <el-col :span="12"><el-card shadow="always">
-            <el-popover
-              placement="top-start"
-              title="实时数据"
-              width="100"
-              trigger="hover"
-              content="显示采集点实时数据">
-              <el-button slot="reference">采集点1</el-button>
-            </el-popover>
-          </el-card></el-col>
-          <el-col :span="12"><el-card shadow="always">
-            <el-popover
-              placement="top-start"
-              title="实时数据"
-              width="100"
-              trigger="hover"
-              content="显示采集点实时数据">
-              <el-button slot="reference">采集点2</el-button>
-            </el-popover>
-          </el-card></el-col>
-        </el-row>
+        <el-collapse v-model="activeNames" @change="">
+          <el-collapse-item title="实时采集点" name="1">
+            <div>
+              <el-popover
+                placement="right"
+                width="400"
+                trigger="click">
+                <el-table :data="gridData1">
+                  <el-table-column width="150" property="date" label="日期"></el-table-column>
+                  <el-table-column width="100" property="name" label="姓名"></el-table-column>
+                  <el-table-column width="300" property="address" label="地址"></el-table-column>
+                </el-table>
+                <el-button slot="reference">采集点1实时数据</el-button>
+              </el-popover>
+            </div>
+            <div>
+              <el-popover
+                placement="right"
+                width="400"
+                trigger="click">
+                <el-table :data="gridData1">
+                  <el-table-column width="150" property="date" label="日期"></el-table-column>
+                  <el-table-column width="100" property="name" label="姓名"></el-table-column>
+                  <el-table-column width="300" property="address" label="地址"></el-table-column>
+                </el-table>
+                <el-button slot="reference">采集点2实时数据</el-button>
+              </el-popover>
+            </div>
+          </el-collapse-item>
+        </el-collapse>
       </div>
     </el-col>
   </el-row>
@@ -132,6 +159,27 @@
         }
       }
 
+    },
+    data() {
+      return {
+        gridData1: [{
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }],
+      }
     },
     methods: {
       chuli1() {
