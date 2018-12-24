@@ -1,6 +1,6 @@
 <template>
-  <el-row class="panel-group" :gutter="40">
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+  <el-row class="panel-group" :gutter="80">
+    <el-col :xs="24" :sm="24" :lg="6" class="card-panel-col">
       <div @click="chuli1" class='card-panel'>
         <div class="card-panel-description">
           <div class="card-panel-text">茶园1</div>
@@ -9,40 +9,23 @@
       </div>
       <div>
         <el-row>
-          <el-col :span="8"><el-card shadow="always">
-            <el-popover
-              placement="top-start"
-              title="实时数据"
-              width="70"
-              trigger="hover"
-              content="显示采集点实时数据">
-              <el-button slot="reference">采集点5</el-button>
-            </el-popover>
-          </el-card></el-col>
-          <el-col :span="8"><el-card shadow="always">
-            <el-popover
-              placement="top-start"
-              title="实时数据"
-              width="70"
-              trigger="hover"
-              content="显示采集点实时数据">
-              <el-button slot="reference">采集点6</el-button>
-            </el-popover>
-          </el-card></el-col>
-          <el-col :span="8"><el-card shadow="always">
-            <el-popover
-              placement="top-start"
-              title="实时数据"
-              width="70"
-              trigger="hover"
-              content="显示采集点实时数据">
-              <el-button slot="reference" width="30">采集点7</el-button>
-            </el-popover>
-          </el-card></el-col>
+          <el-col>
+            <el-card shadow="always">
+              <el-popover style="float:left" placement="top-start" title="实时数据" trigger="hover" content="显示采集点实时数据">
+                <el-button slot="reference">采集点5</el-button>
+              </el-popover>
+              <el-popover placement="top-start" title="实时数据" trigger="hover" content="显示采集点实时数据">
+                <el-button slot="reference">采集点6</el-button>
+              </el-popover>
+              <el-popover placement="top-start" title="实时数据" trigger="hover" content="显示采集点实时数据">
+                <el-button slot="reference" width="30">采集点7</el-button>
+              </el-popover>
+            </el-card>
+          </el-col>
         </el-row>
       </div>
     </el-col>
-    <el-col  :xs="12" :sm="12" :lg="6" class="card-panel-col">
+    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div @click="chuli2" class="card-panel">
         <div class="card-panel-description">
           <div class="card-panel-text">茶园2</div>
@@ -51,58 +34,46 @@
       </div>
       <div>
         <el-row>
-          <el-col :span="12"><el-card shadow="always">
-            <el-popover
-              placement="top-start"
-              title="实时数据"
-              width="100"
-              trigger="hover"
-              content="显示采集点实时数据">
-              <el-button slot="reference">采集点3</el-button>
-            </el-popover>
-          </el-card></el-col>
-          <el-col :span="12"><el-card shadow="always">
-            <el-popover
-              placement="top-start"
-              title="实时数据"
-              width="100"
-              trigger="hover"
-              content="显示采集点实时数据">
-              <el-button slot="reference">采集点4</el-button>
-            </el-popover>
-          </el-card></el-col>
+          <el-col :span="12">
+            <el-card shadow="always">
+              <el-popover placement="top-start" title="实时数据" trigger="hover" content="显示采集点实时数据">
+                <el-button slot="reference">采集点3</el-button>
+              </el-popover>
+            </el-card>
+          </el-col>
+          <el-col :span="12">
+            <el-card shadow="always">
+              <el-popover placement="top-start" title="实时数据" trigger="hover" content="显示采集点实时数据">
+                <el-button slot="reference">采集点4</el-button>
+              </el-popover>
+            </el-card>
+          </el-col>
         </el-row>
       </div>
     </el-col>
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div @click="chuli3" class="card-panel">
-        <div  class="card-panel-description">
+        <div class="card-panel-description">
           <div class="card-panel-text">茶园3</div>
           <!--<span>{{data.questionSO}}</span>-->
         </div>
       </div>
       <div>
         <el-row>
-          <el-col :span="12"><el-card shadow="always">
-            <el-popover
-              placement="top-start"
-              title="实时数据"
-              width="100"
-              trigger="hover"
-              content="显示采集点实时数据">
-              <el-button slot="reference">采集点1</el-button>
-            </el-popover>
-          </el-card></el-col>
-          <el-col :span="12"><el-card shadow="always">
-            <el-popover
-              placement="top-start"
-              title="实时数据"
-              width="100"
-              trigger="hover"
-              content="显示采集点实时数据">
-              <el-button slot="reference">采集点2</el-button>
-            </el-popover>
-          </el-card></el-col>
+          <el-col :span="12">
+            <el-card shadow="always" style="padding: 0px">
+              <el-popover placement="top-start" title="实时数据" trigger="hover" content="显示采集点实时数据">
+                <el-button slot="reference">采集点1</el-button>
+              </el-popover>
+            </el-card>
+          </el-col>
+          <el-col :span="12">
+              <el-card shadow="always" style="padding: 0px">
+              <el-popover placement="top-start" title="实时数据" trigger="hover" content="显示采集点实时数据">
+                <el-button slot="reference">采集点2</el-button>
+              </el-popover>
+            </el-card>
+          </el-col>
         </el-row>
       </div>
     </el-col>
@@ -154,15 +125,27 @@
       }
     }
   }
+
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+  .card {
+    margin-left: 100px;
+  }
+
+
+   .el-card__body {
+    padding: 5px;
+  }
+
   .panel-group {
     margin-top: 18px;
     text-align: center;
+
     .card-panel-col {
       margin-bottom: 32px;
     }
+
     .card-panel {
       text-align: center;
       height: 80px;
@@ -174,6 +157,8 @@
       background: #fff;
       box-shadow: 4px 4px 40px rgba(0, 0, 0, .05);
       border-color: rgba(0, 0, 0, .05); // &:hover {
+
+
       //   .card-panel-icon-wrapper {
       //     color: #fff;
       //   }
@@ -222,16 +207,25 @@
         font-weight: bold;
         margin-left: -50px;
         margin-top: -15px;
+
         .card-panel-text {
           line-height: 18px;
           color: rgba(0, 0, 0, 0.45);
           font-size: 16px;
           margin-bottom: 12px;
         }
+
         .card-panel-num {
           font-size: 20px;
         }
       }
     }
   }
+
 </style>
+<style>
+.el-card__body{
+  padding:5px;
+}
+</style>
+
