@@ -1,26 +1,48 @@
 <template>
   <div class="app-container calendar-list-container">
     <el-card class="box-card">
-      <div slot="header" class="clearfix">
-        <span>茶园1</span>
-      </div>
-      <div>
-        <span>采集点5实时数据</span>
-        <el-button @click="selectHistory_5" style="float: right" type="text">查看历史数据</el-button>
-      </div>
-      <div>
-        <span>采集点6实时数据</span>
-        <el-button @click="selectHistory_6" style="float: right" type="text">查看历史数据</el-button>
-      </div>
-      <div>
-     </div>
-      <div><span>采集点7实时数据</span>
-        <el-button @click="selectHistory_7" style="float: right" type="text">查看历史数据</el-button>
-      </div>
+      <h1>茶园1</h1>
+      <el-table
+        :data="tablechayuan"
+        border
+        style="width: 100%">
+        <el-table-column
+          fixed
+          prop="caijidian"
+          label="采集点"
+          width="150">
+        </el-table-column>
+        <el-table-column
+          fixed="right"
+          label="操作"
+          width="150"
+          >
+          <template slot-scope="scope">
+            <el-button @click="" type="text" size="small">实时数据</el-button>
+            <el-button @click="selectHistory(scope.row)" type="text" size="small">历史数据</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+      <!--<div slot="header" class="clearfix">-->
+        <!--<span>茶园1</span>-->
+      <!--</div>-->
+      <!--<div>-->
+        <!--<span>采集点5实时数据</span>-->
+        <!--<el-button @click="selectHistory_5" style="float: right" type="text">查看历史数据</el-button>-->
+      <!--</div>-->
+      <!--<div>-->
+        <!--<span>采集点6实时数据</span>-->
+        <!--<el-button @click="selectHistory_6" style="float: right" type="text">查看历史数据</el-button>-->
+      <!--</div>-->
+      <!--<div>-->
+     <!--</div>-->
+      <!--<div><span>采集点7实时数据</span>-->
+        <!--<el-button @click="selectHistory_7" style="float: right" type="text">查看历史数据</el-button>-->
+      <!--</div>-->
     </el-card>
-    <div v-if="history_show" :class="className" :id="id" :style="{height:height,width:width}" ref="myEchart"></div>
+    <div :class="className" :id="id" :style="{height:height,width:width}" ref="myEchart"></div>
     <div class="element">
-      <span>土壤数据:{{saleoutCount}}</span>
+      <!--<span>土壤数据:{{saleoutCount}}</span>-->
       <el-button class="filter-item" style="float:right;" icon="el-icon-edit" @click="handleCreate">添加记录</el-button>
     </div>
     <hr>
@@ -126,7 +148,7 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="history_5 = false">取 消</el-button>
-        <el-button type="primary" @click="history5_Submit">确 定</el-button>
+        <el-button type="primary" @click="history_Submit">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -176,6 +198,17 @@ import { getToken } from '@/utils/auth'
     },
     data() {
       return {
+        tablechayuan: [
+          {
+            caijidian: '数据采集点5'
+          },
+          {
+            caijidian: '数据采集点6'
+          },
+          {
+            caijidian: '数据采集点7'
+          }
+        ],
         form_his: {
           type: ''
         },
@@ -555,23 +588,16 @@ import { getToken } from '@/utils/auth'
           }]
         }
       },
-      selectHistory_5() {
+      selectHistory(row) {
+        console.log('点击的行数', row)
         this.history_5 = true
         this.history_show = true
       },
-      history5_Submit() {
+      history_Submit() {
         this.history_5 = false
         alert(this.form_his.type)
         // this.history_show = false
         console.log(this.history_show)
-      },
-      selectHistory_6() {
-        this.history_show = true
-        // this.history_5 = true
-      },
-      selectHistory_7() {
-        this.history_show = true
-        // this.history_5 = true
       },
       handleCreate() {
         this.resetTemp()
