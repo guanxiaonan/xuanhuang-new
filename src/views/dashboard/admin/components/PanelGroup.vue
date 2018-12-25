@@ -1,6 +1,8 @@
 <template>
-  <el-row class="panel-group" :gutter="40">
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+
+<div>
+  <el-row class="panel-group" :gutter="80">
+    <el-col :xs="24" :sm="24" :lg="6" class="card-panel-col">
       <div @click="chuli1" class='card-panel'>
         <div class="card-panel-description">
           <div class="card-panel-text">茶园1</div>
@@ -8,7 +10,7 @@
         </div>
       </div>
       <div>
-        <el-collapse v-model="activeNames" @change="">
+        <el-collapse v-model="activeNames">
           <el-collapse-item title="实时采集点" name="1">
             <div>
               <el-popover
@@ -56,7 +58,7 @@
         </el-collapse>
       </div>
     </el-col>
-    <el-col  :xs="12" :sm="12" :lg="6" class="card-panel-col">
+    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div @click="chuli2" class="card-panel">
         <div class="card-panel-description">
           <div class="card-panel-text">茶园2</div>
@@ -64,7 +66,7 @@
         </div>
       </div>
       <div>
-        <el-collapse v-model="activeNames" @change="">
+        <el-collapse v-model="activeNames">
           <el-collapse-item title="实时采集点" name="1">
             <div>
               <el-popover
@@ -100,13 +102,13 @@
     </el-col>
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div @click="chuli3" class="card-panel">
-        <div  class="card-panel-description">
+        <div class="card-panel-description">
           <div class="card-panel-text">茶园3</div>
           <!--<span>{{data.questionSO}}</span>-->
         </div>
       </div>
       <div>
-        <el-collapse v-model="activeNames" @change="">
+        <el-collapse v-model="activeNames">
           <el-collapse-item title="实时采集点" name="1">
             <div>
               <el-popover
@@ -141,6 +143,19 @@
       </div>
     </el-col>
   </el-row>
+    <img src="../../../../assets/401_images/2.jpeg" border="0" usemap="#teamap">
+    <map name="teamap" id="teamap">
+      <area shape="rectangle" coords="234,97,257,129" target="_blank" href="">
+      <area shape="rectangle" coords="261,146,290,174" target="_blank" href="">
+      <area shape="rectangle" coords="304,321,331,352" target="_blank" href="">
+      <area shape="rectangle" coords="241,351,278,369" target="_blank" href="">
+      <area shape="rectangle" coords="201,374,234,405" target="_blank" href="">
+      <area shape="rectangle" coords="163,460,194,490" target="_blank" href="">
+      <area shape="rectangle" coords="215,458,249,489" target="_blank" href="">
+    </map>
+<!-- <a href=""><img src="../../../../assets/401_images/位置.png" style="width:32px;height:32px;position:absolute;margin-top:60px;margin-left:-80px;"></a> -->
+
+</div>
 </template>
 
 <script>
@@ -212,15 +227,27 @@
       }
     }
   }
+
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+  .card {
+    margin-left: 100px;
+  }
+
+
+   .el-card__body {
+    padding: 5px;
+  }
+
   .panel-group {
     margin-top: 18px;
     text-align: center;
+
     .card-panel-col {
       margin-bottom: 32px;
     }
+
     .card-panel {
       text-align: center;
       height: 80px;
@@ -232,6 +259,8 @@
       background: #fff;
       box-shadow: 4px 4px 40px rgba(0, 0, 0, .05);
       border-color: rgba(0, 0, 0, .05); // &:hover {
+
+
       //   .card-panel-icon-wrapper {
       //     color: #fff;
       //   }
@@ -280,16 +309,25 @@
         font-weight: bold;
         margin-left: -50px;
         margin-top: -15px;
+
         .card-panel-text {
           line-height: 18px;
           color: rgba(0, 0, 0, 0.45);
           font-size: 16px;
           margin-bottom: 12px;
         }
+
         .card-panel-num {
           font-size: 20px;
         }
       }
     }
   }
+
 </style>
+<style>
+.el-card__body{
+  padding:5px;
+}
+</style>
+
