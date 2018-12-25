@@ -23,24 +23,10 @@
           </template>
         </el-table-column>
       </el-table>
-      <!--<div slot="header" class="clearfix">-->
-        <!--<span>茶园1</span>-->
-      <!--</div>-->
-      <!--<div>-->
-        <!--<span>采集点5实时数据</span>-->
-        <!--<el-button @click="selectHistory_5" style="float: right" type="text">查看历史数据</el-button>-->
-      <!--</div>-->
-      <!--<div>-->
-        <!--<span>采集点6实时数据</span>-->
-        <!--<el-button @click="selectHistory_6" style="float: right" type="text">查看历史数据</el-button>-->
-      <!--</div>-->
-      <!--<div>-->
-     <!--</div>-->
-      <!--<div><span>采集点7实时数据</span>-->
-        <!--<el-button @click="selectHistory_7" style="float: right" type="text">查看历史数据</el-button>-->
-      <!--</div>-->
     </el-card>
-    <div :class="className" :id="id" :style="{height:height,width:width}" ref="myEchart"></div>
+    <div>
+      <div :class="className" :id="id" :style="{height:height,width:width}" ref="myEchart"></div>
+    </div>
     <div class="element">
       <!--<span>土壤数据:{{saleoutCount}}</span>-->
       <el-button class="filter-item" style="float:right;" icon="el-icon-edit" @click="handleCreate">添加记录</el-button>
@@ -314,11 +300,12 @@ import { getToken } from '@/utils/auth'
     },
     mounted() {
       this.initChart()
+      this.history_Submit()
     },
     methods: {
-      init() {
-        this.history_5 = false
-      },
+      // init() {
+      //   this.history_5 = false
+      // },
       initChart() {
         this.chart = echarts.init(this.$refs.myEchart)
         // 把配置和数据放这里
@@ -591,13 +578,13 @@ import { getToken } from '@/utils/auth'
       selectHistory(row) {
         console.log('点击的行数', row)
         this.history_5 = true
-        this.history_show = true
+        // this.history_show = true
       },
       history_Submit() {
         this.history_5 = false
         alert(this.form_his.type)
-        // this.history_show = false
-        console.log(this.history_show)
+        this.history_show = true
+        console.log('history_show:', this.history_show)
       },
       handleCreate() {
         this.resetTemp()
@@ -649,6 +636,12 @@ import { getToken } from '@/utils/auth'
           })
         }
         return arr
+      }
+    },
+    watch: {
+      history_show(val) {
+        console.log(val)
+        this.history_show = val
       }
     }
   }

@@ -13,12 +13,13 @@
             <div>
               <el-popover
                 placement="right"
-                width="400"
+                width="500"
                 trigger="click">
                 <el-table :data="gridData1">
                   <el-table-column width="150" property="date" label="日期"></el-table-column>
-                  <el-table-column width="100" property="name" label="姓名"></el-table-column>
-                  <el-table-column width="300" property="address" label="地址"></el-table-column>
+                  <el-table-column width="100" property="name" label="传感器类型"></el-table-column>
+                  <el-table-column width="100" property="address" label="数据"></el-table-column>
+                  <el-table-column width="300" property="state" label="状态"></el-table-column>
                 </el-table>
                 <el-button slot="reference">采集点5实时数据</el-button>
               </el-popover>
@@ -26,12 +27,13 @@
             <div>
             <el-popover
               placement="right"
-              width="400"
+              width="500"
               trigger="click">
               <el-table :data="gridData1">
                 <el-table-column width="150" property="date" label="日期"></el-table-column>
-                <el-table-column width="100" property="name" label="姓名"></el-table-column>
-                <el-table-column width="300" property="address" label="地址"></el-table-column>
+                <el-table-column width="100" property="name" label="传感器类型"></el-table-column>
+                <el-table-column width="100" property="address" label="数据"></el-table-column>
+                <el-table-column width="300" property="state" label="状态"></el-table-column>
               </el-table>
               <el-button slot="reference">采集点6实时数据</el-button>
             </el-popover>
@@ -39,12 +41,13 @@
             <div>
             <el-popover
               placement="right"
-              width="400"
+              width="500"
               trigger="click">
               <el-table :data="gridData1">
                 <el-table-column width="150" property="date" label="日期"></el-table-column>
-                <el-table-column width="100" property="name" label="姓名"></el-table-column>
-                <el-table-column width="300" property="address" label="地址"></el-table-column>
+                <el-table-column width="100" property="name" label="传感器类型"></el-table-column>
+                <el-table-column width="100" property="address" label="数据"></el-table-column>
+                <el-table-column width="300" property="state" label="状态"></el-table-column>
               </el-table>
               <el-button slot="reference">采集点7实时数据</el-button>
             </el-popover>
@@ -66,12 +69,13 @@
             <div>
               <el-popover
                 placement="right"
-                width="400"
+                width="500"
                 trigger="click">
                 <el-table :data="gridData1">
                   <el-table-column width="150" property="date" label="日期"></el-table-column>
-                  <el-table-column width="100" property="name" label="姓名"></el-table-column>
-                  <el-table-column width="300" property="address" label="地址"></el-table-column>
+                  <el-table-column width="100" property="name" label="传感器类型"></el-table-column>
+                  <el-table-column width="100" property="address" label="数据"></el-table-column>
+                  <el-table-column width="300" property="state" label="状态"></el-table-column>
                 </el-table>
                 <el-button slot="reference">采集点3实时数据</el-button>
               </el-popover>
@@ -79,12 +83,13 @@
             <div>
               <el-popover
                 placement="right"
-                width="400"
+                width="500"
                 trigger="click">
                 <el-table :data="gridData1">
                   <el-table-column width="150" property="date" label="日期"></el-table-column>
-                  <el-table-column width="100" property="name" label="姓名"></el-table-column>
-                  <el-table-column width="300" property="address" label="地址"></el-table-column>
+                  <el-table-column width="100" property="name" label="传感器类型"></el-table-column>
+                  <el-table-column width="100" property="address" label="数据"></el-table-column>
+                  <el-table-column width="300" property="state" label="状态"></el-table-column>
                 </el-table>
                 <el-button slot="reference">采集点4实时数据</el-button>
               </el-popover>
@@ -106,12 +111,13 @@
             <div>
               <el-popover
                 placement="right"
-                width="400"
+                width="500"
                 trigger="click">
                 <el-table :data="gridData1">
                   <el-table-column width="150" property="date" label="日期"></el-table-column>
-                  <el-table-column width="100" property="name" label="姓名"></el-table-column>
-                  <el-table-column width="300" property="address" label="地址"></el-table-column>
+                  <el-table-column width="100" property="name" label="传感器类型"></el-table-column>
+                  <el-table-column width="100" property="address" label="数据"></el-table-column>
+                  <el-table-column width="300" property="state" label="状态"></el-table-column>
                 </el-table>
                 <el-button slot="reference">采集点1实时数据</el-button>
               </el-popover>
@@ -119,12 +125,13 @@
             <div>
               <el-popover
                 placement="right"
-                width="400"
+                width="500"
                 trigger="click">
                 <el-table :data="gridData1">
                   <el-table-column width="150" property="date" label="日期"></el-table-column>
-                  <el-table-column width="100" property="name" label="姓名"></el-table-column>
-                  <el-table-column width="300" property="address" label="地址"></el-table-column>
+                  <el-table-column width="100" property="name" label="传感器类型"></el-table-column>
+                  <el-table-column width="100" property="address" label="数据"></el-table-column>
+                  <el-table-column width="300" property="state" label="状态"></el-table-column>
                 </el-table>
                 <el-button slot="reference">采集点2实时数据</el-button>
               </el-popover>
@@ -164,21 +171,24 @@
       return {
         gridData1: [{
           date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
+          name: '土壤温湿度',
+          address: '',
+          state: '开启'
         }, {
           date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
+          name: '光照度',
+          address: ''
         }, {
           date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
+          name: '空气温湿度',
+          address: '',
+          state: '开启'
         }, {
           date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }],
+          name: '离子浓度',
+          address: '',
+          state: '开启'
+        }]
       }
     },
     methods: {
