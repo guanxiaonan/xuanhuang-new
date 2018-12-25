@@ -1,4 +1,6 @@
 <template>
+  
+<div>
   <el-row class="panel-group" :gutter="80">
     <el-col :xs="24" :sm="24" :lg="6" class="card-panel-col">
       <div @click="chuli1" class='card-panel'>
@@ -8,13 +10,10 @@
         </div>
       </div>
       <div>
-        <el-collapse v-model="activeNames" @change="">
+        <el-collapse v-model="activeNames">
           <el-collapse-item title="实时采集点" name="1">
             <div>
-              <el-popover
-                placement="right"
-                width="400"
-                trigger="click">
+              <el-popover placement="right" width="400" trigger="click">
                 <el-table :data="gridData1">
                   <el-table-column width="150" property="date" label="日期"></el-table-column>
                   <el-table-column width="100" property="name" label="姓名"></el-table-column>
@@ -24,30 +23,24 @@
               </el-popover>
             </div>
             <div>
-            <el-popover
-              placement="right"
-              width="400"
-              trigger="click">
-              <el-table :data="gridData1">
-                <el-table-column width="150" property="date" label="日期"></el-table-column>
-                <el-table-column width="100" property="name" label="姓名"></el-table-column>
-                <el-table-column width="300" property="address" label="地址"></el-table-column>
-              </el-table>
-              <el-button slot="reference">采集点6实时数据</el-button>
-            </el-popover>
+              <el-popover placement="right" width="400" trigger="click">
+                <el-table :data="gridData1">
+                  <el-table-column width="150" property="date" label="日期"></el-table-column>
+                  <el-table-column width="100" property="name" label="姓名"></el-table-column>
+                  <el-table-column width="300" property="address" label="地址"></el-table-column>
+                </el-table>
+                <el-button slot="reference">采集点6实时数据</el-button>
+              </el-popover>
             </div>
             <div>
-            <el-popover
-              placement="right"
-              width="400"
-              trigger="click">
-              <el-table :data="gridData1">
-                <el-table-column width="150" property="date" label="日期"></el-table-column>
-                <el-table-column width="100" property="name" label="姓名"></el-table-column>
-                <el-table-column width="300" property="address" label="地址"></el-table-column>
-              </el-table>
-              <el-button slot="reference">采集点7实时数据</el-button>
-            </el-popover>
+              <el-popover placement="right" width="400" trigger="click">
+                <el-table :data="gridData1">
+                  <el-table-column width="150" property="date" label="日期"></el-table-column>
+                  <el-table-column width="100" property="name" label="姓名"></el-table-column>
+                  <el-table-column width="300" property="address" label="地址"></el-table-column>
+                </el-table>
+                <el-button slot="reference">采集点7实时数据</el-button>
+              </el-popover>
             </div>
           </el-collapse-item>
         </el-collapse>
@@ -61,13 +54,10 @@
         </div>
       </div>
       <div>
-        <el-collapse v-model="activeNames" @change="">
+        <el-collapse v-model="activeNames">
           <el-collapse-item title="实时采集点" name="1">
             <div>
-              <el-popover
-                placement="right"
-                width="400"
-                trigger="click">
+              <el-popover placement="right" width="400" trigger="click">
                 <el-table :data="gridData1">
                   <el-table-column width="150" property="date" label="日期"></el-table-column>
                   <el-table-column width="100" property="name" label="姓名"></el-table-column>
@@ -77,10 +67,7 @@
               </el-popover>
             </div>
             <div>
-              <el-popover
-                placement="right"
-                width="400"
-                trigger="click">
+              <el-popover placement="right" width="400" trigger="click">
                 <el-table :data="gridData1">
                   <el-table-column width="150" property="date" label="日期"></el-table-column>
                   <el-table-column width="100" property="name" label="姓名"></el-table-column>
@@ -101,13 +88,10 @@
         </div>
       </div>
       <div>
-        <el-collapse v-model="activeNames" @change="">
+        <el-collapse v-model="activeNames">
           <el-collapse-item title="实时采集点" name="1">
             <div>
-              <el-popover
-                placement="right"
-                width="400"
-                trigger="click">
+              <el-popover placement="right" width="400" trigger="click">
                 <el-table :data="gridData1">
                   <el-table-column width="150" property="date" label="日期"></el-table-column>
                   <el-table-column width="100" property="name" label="姓名"></el-table-column>
@@ -117,10 +101,7 @@
               </el-popover>
             </div>
             <div>
-              <el-popover
-                placement="right"
-                width="400"
-                trigger="click">
+              <el-popover placement="right" width="400" trigger="click">
                 <el-table :data="gridData1">
                   <el-table-column width="150" property="date" label="日期"></el-table-column>
                   <el-table-column width="100" property="name" label="姓名"></el-table-column>
@@ -134,6 +115,19 @@
       </div>
     </el-col>
   </el-row>
+    <img src="../../../../assets/401_images/2.jpeg" border="0" usemap="#teamap">
+    <map name="teamap" id="teamap">
+      <area shape="rectangle" coords="234,97,257,129" target="_blank" href="">
+      <area shape="rectangle" coords="261,146,290,174" target="_blank" href="">
+      <area shape="rectangle" coords="304,321,331,352" target="_blank" href="">
+      <area shape="rectangle" coords="241,351,278,369" target="_blank" href="">
+      <area shape="rectangle" coords="201,374,234,405" target="_blank" href="">
+      <area shape="rectangle" coords="163,460,194,490" target="_blank" href="">
+      <area shape="rectangle" coords="215,458,249,489" target="_blank" href="">
+    </map>
+<!-- <a href=""><img src="../../../../assets/401_images/位置.png" style="width:32px;height:32px;position:absolute;margin-top:60px;margin-left:-80px;"></a> -->
+    
+</div>
 </template>
 
 <script>
