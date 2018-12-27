@@ -240,6 +240,22 @@ export const asyncRouterMap = [
       }
     },
     {
+      path: 'shayuan2',
+      component: _import('sale/chayuan2'),
+      name: 'chayuan2',
+      meta: {
+        title: '茶园2信息'
+      }
+    },
+    {
+      path: 'shayuan3',
+      component: _import('sale/chayuan3'),
+      name: 'chayuan3',
+      meta: {
+        title: '茶园3信息'
+      }
+    },
+    {
       path: 'warehouse',
       component: _import('sale/warehouse'),
       name: 'warehouse',

@@ -1,11 +1,12 @@
 <template>
   <div class="dashboard-editor-container">
     <github-corner></github-corner>
-     <panel-group :data="data"></panel-group>
+     <!--<panel-group :data="data"></panel-group>-->
 <iframe width="600" scrolling="no" height="100" frameborder="0" allowtransparency="true" src="//i.tianqi.com/index.php?c=code&id=12&icon=1&py=jinyun&num=3&site=12"></iframe>
+    <panel-group :data="data"></panel-group>
      <!--<d-chart></d-chart> -->
-    <div :class="className" :id="id" :style="{height:height,width:width}" ref="myEchart">
-    </div>
+    <!--<div :class="className" :id="id" :style="{height:height,width:width}" ref="myEchart">-->
+    <!--</div>-->
   </div>
 </template>
 <script>

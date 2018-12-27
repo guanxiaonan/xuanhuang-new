@@ -154,7 +154,6 @@
       <area shape="rectangle" coords="215,458,249,489" target="_blank" href="">
     </map>
 <!-- <a href=""><img src="../../../../assets/401_images/位置.png" style="width:32px;height:32px;position:absolute;margin-top:60px;margin-left:-80px;"></a> -->
-
 </div>
 </template>
 
