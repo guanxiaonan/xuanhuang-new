@@ -24,15 +24,25 @@
         </el-table-column>
       </el-table>
     </el-card>
-    <div>
-      <div :class="className" :id="id" :style="{height:height,width:width}" ref="myEchart"></div>
-    </div>
-    <div class="element">
-      <!--<span>土壤数据:{{saleoutCount}}</span>-->
-      <el-button class="filter-item" style="float:right;" icon="el-icon-edit" @click="handleCreate">添加记录</el-button>
+    <div id="main">
+      <div id="left">
+        <div :class="className" :id="id" :style="{height:height,width:width}" ref="myEchart"></div>
+      </div>
+      <div id="right">
+        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
+        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
+        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
+        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
+        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
+        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
+        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
+        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
+        <el-button class="filter-item" style="margin-top:2%;margin-left:38%;" @click="handleCreate">查看更多</el-button>
+      </div>
     </div>
     <hr>
     <div class="filter-container">
+      <el-button class="filter-item" style="float:left;" icon="el-icon-edit" @click="handleCreate">添加记录</el-button>
       <el-button style="float:right" class="filter-item" type="primary" v-waves icon="el-icon-search" @click="handleFilter">搜索</el-button>
       <el-input @keyup.enter.native="handleFilter" style="float:right; width:300px " class="filter-item" placeholder="检测时间/茶园编号/传感器编号"
         v-model="requestList.searchString">
@@ -299,8 +309,8 @@ import { getToken } from '@/utils/auth'
       this.getNumber()
     },
     mounted() {
-      this.initChart()
-      this.history_Submit()
+      // this.initChart()
+      // this.history_Submit()
     },
     methods: {
       // init() {
@@ -581,10 +591,13 @@ import { getToken } from '@/utils/auth'
         // this.history_show = true
       },
       history_Submit() {
+        this.initChart()
         this.history_5 = false
-        alert(this.form_his.type)
+        // alert(this.form_his.type)
         this.history_show = true
         console.log('history_show:', this.history_show)
+        let div1 = document.getElementById('right');
+        div1.style.visibility='visible';
       },
       handleCreate() {
         this.resetTemp()
@@ -679,5 +692,19 @@ import { getToken } from '@/utils/auth'
 
   .box-card {
     width: 480px;
+  }
+  #main{
+    height: 500px;
+    margin-top:30px;
+  }
+  #left{
+    position: absolute;
+    width: 500px;
+    height:400px;
+  }
+  #right{
+    margin-left: 520px;
+    visibility: hidden;
+    height:400px;
   }
 </style>

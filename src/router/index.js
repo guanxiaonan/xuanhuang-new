@@ -240,7 +240,7 @@ export const asyncRouterMap = [
       }
     },
     {
-      path: 'shayuan2',
+      path: 'chayuan2',
       component: _import('sale/chayuan2'),
       name: 'chayuan2',
       meta: {
@@ -248,7 +248,7 @@ export const asyncRouterMap = [
       }
     },
     {
-      path: 'shayuan3',
+      path: 'chayuan3',
       component: _import('sale/chayuan3'),
       name: 'chayuan3',
       meta: {
