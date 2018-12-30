@@ -1,7 +1,7 @@
 <template>
   <div class="app-container calendar-list-container">
     <el-card class="box-card">
-      <h1>茶园1</h1>
+      <h1>茶园2</h1>
       <el-table
         :data="tablechayuan"
         border
@@ -27,12 +27,9 @@
     <div>
       <div :class="className" :id="id" :style="{height:height,width:width}" ref="myEchart"></div>
     </div>
-    <div class="element">
-      <!--<span>土壤数据:{{saleoutCount}}</span>-->
-      <el-button class="filter-item" style="float:right;" icon="el-icon-edit" @click="handleCreate">添加记录</el-button>
-    </div>
     <hr>
     <div class="filter-container">
+      <el-button class="filter-item" style="float:left;" icon="el-icon-edit" @click="handleCreate">添加记录</el-button>  
       <el-button style="float:right" class="filter-item" type="primary" v-waves icon="el-icon-search" @click="handleFilter">搜索</el-button>
       <el-input @keyup.enter.native="handleFilter" style="float:right; width:300px " class="filter-item" placeholder="检测时间/茶园编号/传感器编号"
         v-model="requestList.searchString">
@@ -299,8 +296,8 @@ import { getToken } from '@/utils/auth'
       this.getNumber()
     },
     mounted() {
-      this.initChart()
-      this.history_Submit()
+      // this.initChart()
+      // this.history_Submit()
     },
     methods: {
       // init() {
@@ -581,8 +578,9 @@ import { getToken } from '@/utils/auth'
         // this.history_show = true
       },
       history_Submit() {
+        this.initChart()
         this.history_5 = false
-        alert(this.form_his.type)
+        // alert(this.form_his.type)
         this.history_show = true
         console.log('history_show:', this.history_show)
       },

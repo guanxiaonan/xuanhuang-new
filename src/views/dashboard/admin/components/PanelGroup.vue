@@ -143,16 +143,30 @@
       </div>
     </el-col>
   </el-row>
-    <img src="../../../../assets/401_images/2.jpeg" border="0" usemap="#teamap">
-    <map name="teamap" id="teamap">
-      <area shape="rectangle" coords="234,97,257,129" target="_blank" href="">
-      <area shape="rectangle" coords="261,146,290,174" target="_blank" href="">
-      <area shape="rectangle" coords="304,321,331,352" target="_blank" href="">
-      <area shape="rectangle" coords="241,351,278,369" target="_blank" href="">
-      <area shape="rectangle" coords="201,374,234,405" target="_blank" href="">
-      <area shape="rectangle" coords="163,460,194,490" target="_blank" href="">
-      <area shape="rectangle" coords="215,458,249,489" target="_blank" href="">
-    </map>
+  <el-row class="panel-group" :gutter="80">
+    <el-col :xs="24" :sm="24" :lg="6" class="card-panel-col">
+      <img src="../../../../assets/401_images/2.jpeg" border="0" usemap="#teamap">
+      <map name="teamap" id="teamap">
+      <area shape="rectangle" coords="234,97,257,129" target="_blank" @click="chuli(3)" @mouseover="displayms()" @mouseout="hidems()">
+      <area shape="rectangle" coords="261,146,290,174" target="_blank" @click="chuli(3)" @mouseover="displayms()" @mouseout="hidems()">
+      <area shape="rectangle" coords="304,321,331,352" target="_blank" @click="chuli(2)" @mouseover=" displayms()" @mouseout="hidems()">
+      <area shape="rectangle" coords="241,351,278,369" target="_blank" @click="chuli(2)" @mouseover=" displayms()" @mouseout="hidems()">
+      <area shape="rectangle" coords="201,374,234,405" target="_blank" @click="chuli(1)" @mouseover=" displayms()" @mouseout="hidems()">
+      <area shape="rectangle" coords="163,460,194,490" target="_blank" @click="chuli(1)" @mouseover=" displayms()" @mouseout="hidems()">
+      <area shape="rectangle" coords="215,458,249,489" target="_blank" @click="chuli(1)" @mouseover=" displayms()" @mouseout="hidems()">
+      </map>
+    </el-col>
+    <el-col :xs="24" :sm="24" :lg="4" class="card-panel-col" id="message">
+        <div @click="chuli(1)" class='card-panel'>
+          <div class="card-panel-description">
+            <div class="card-panel-text">茶园1</div>
+            <!--<span>{{data.saleoutproducts}}</span>-->
+          </div>
+        </div>
+        <div>
+        </div>
+    </el-col>
+  </el-row> 
 <!-- <a href=""><img src="../../../../assets/401_images/位置.png" style="width:32px;height:32px;position:absolute;margin-top:60px;margin-left:-80px;"></a> -->
 </div>
 </template>
@@ -206,10 +220,22 @@
       }
     },
     methods: {
-      chuli1() {
+      chuli(i) {
+        if(i==1){
         this.$router.push({
           name: 'chayuan1'
         })
+        }
+        if(i==2){
+        this.$router.push({
+        name: 'chayuan2'
+        })
+        }
+        if(i==3){
+        this.$router.push({
+        name: 'chayuan3'
+        })
+        }
         // alert('chuli1')
       },
       chuli2() {
@@ -223,6 +249,15 @@
         //   name: 'home_index'
         // })
         alert('chuli3')
+      },
+      displayms() {
+        var e = window.event;
+        let div1 = document.getElementById('message');
+        div1.style.visibility='visible';
+      },
+      hidems() {
+      let div1 = document.getElementById('message');
+      div1.style.visibility='hidden';
       }
     }
   }
@@ -327,6 +362,12 @@
 <style>
 .el-card__body{
   padding:5px;
+}
+#message{
+  margin-left:20%;
+  width:400px;
+  height:100px;
+  visibility: hidden;
 }
 </style>
 
