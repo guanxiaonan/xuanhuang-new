@@ -3,7 +3,7 @@
 <div>
   <el-row class="panel-group" :gutter="80">
     <el-col :xs="24" :sm="24" :lg="6" class="card-panel-col">
-      <div @click="chuli1" class='card-panel'>
+      <div @click="chuli(1)" class='card-panel'>
         <div class="card-panel-description">
           <div class="card-panel-text">茶园1</div>
           <!--<span>{{data.saleoutproducts}}</span>-->
@@ -147,26 +147,56 @@
     <el-col :xs="24" :sm="24" :lg="6" class="card-panel-col">
       <img src="../../../../assets/401_images/2.jpeg" border="0" usemap="#teamap">
       <map name="teamap" id="teamap">
-      <area shape="rectangle" coords="234,97,257,129" target="_blank" @click="chuli(3)" @mouseover="displayms()" @mouseout="hidems()">
-      <area shape="rectangle" coords="261,146,290,174" target="_blank" @click="chuli(3)" @mouseover="displayms()" @mouseout="hidems()">
-      <area shape="rectangle" coords="304,321,331,352" target="_blank" @click="chuli(2)" @mouseover=" displayms()" @mouseout="hidems()">
-      <area shape="rectangle" coords="241,351,278,369" target="_blank" @click="chuli(2)" @mouseover=" displayms()" @mouseout="hidems()">
-      <area shape="rectangle" coords="201,374,234,405" target="_blank" @click="chuli(1)" @mouseover=" displayms()" @mouseout="hidems()">
-      <area shape="rectangle" coords="163,460,194,490" target="_blank" @click="chuli(1)" @mouseover=" displayms()" @mouseout="hidems()">
-      <area shape="rectangle" coords="215,458,249,489" target="_blank" @click="chuli(1)" @mouseover=" displayms()" @mouseout="hidems()">
+      <area shape="rectangle" coords="234,97,257,129" target="_blank" @click="chuli(3)" @mouseover="displayms(1)" @mouseout="hidems()">
+      <area shape="rectangle" coords="261,146,290,174" target="_blank" @click="chuli(3)" @mouseover="displayms(2)" @mouseout="hidems()">
+      <area shape="rectangle" coords="304,321,331,352" target="_blank" @click="chuli(2)" @mouseover=" displayms(3)" @mouseout="hidems()">
+      <area shape="rectangle" coords="241,351,278,369" target="_blank" @click="chuli(2)" @mouseover=" displayms(4)" @mouseout="hidems()">
+      <area shape="rectangle" coords="201,374,234,405" target="_blank" @click="chuli(1)" @mouseover=" displayms(5)" @mouseout="hidems()">
+      <area shape="rectangle" coords="163,460,194,490" target="_blank" @click="chuli(1)" @mouseover=" displayms(6)" @mouseout="hidems()">
+      <area shape="rectangle" coords="215,458,249,489" target="_blank" @click="chuli(1)" @mouseover=" displayms(7)" @mouseout="hidems()">
       </map>
     </el-col>
-    <el-col :xs="24" :sm="24" :lg="4" class="card-panel-col" id="message">
-        <div @click="chuli(1)" class='card-panel'>
-          <div class="card-panel-description">
-            <div class="card-panel-text">茶园1</div>
+    <el-col :xs="24" :sm="24" :lg="4" id="message">
+        <!--<div class='card-panel'>-->
+          <!--<div class="card-panel-description">-->
+            <!--<Form v-if="operMessage === 'caijidian1'" :model="formjs" :label-width="80" style="width:50%;dispaly:block;">-->
+              <!---->
+            <!--</Form>-->
+            <el-form v-if="operMessage === 'caijidian1'" :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+              <el-form-item label="土壤温度">
+                <el-input v-model="formLabelAlign.name"></el-input>
+              </el-form-item>
+              <el-form-item label="土壤湿度">
+                <el-input v-model="formLabelAlign.region"></el-input>
+              </el-form-item>
+              <el-form-item label="空气温度">
+                <el-input v-model="formLabelAlign.type"></el-input>
+              </el-form-item>
+              <el-form-item label="空气湿度">
+                <el-input v-model="formLabelAlign.type"></el-input>
+              </el-form-item>
+              <el-form-item label="离子浓度">
+                <el-input v-model="formLabelAlign.type"></el-input>
+              </el-form-item>
+            </el-form>
+            <!--<div v-if="caijidian1" class="card-panel-text">茶园2</div>-->
             <!--<span>{{data.saleoutproducts}}</span>-->
-          </div>
-        </div>
-        <div>
+          <!--</div>-->
+        <!--</div>-->
+          <div>
         </div>
     </el-col>
-  </el-row> 
+    <!--<el-col :xs="24" :sm="24" :lg="4" class="card-panel-col" id="caijidian2">-->
+      <!--<div class='card-panel'>-->
+        <!--<div class="card-panel-description">-->
+          <!--<div class="card-panel-text">caijidian2</div>-->
+          <!--&lt;!&ndash;<span>{{data.saleoutproducts}}</span>&ndash;&gt;-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div>-->
+      <!--</div>-->
+    <!--</el-col>-->
+  </el-row>
 <!-- <a href=""><img src="../../../../assets/401_images/位置.png" style="width:32px;height:32px;position:absolute;margin-top:60px;margin-left:-80px;"></a> -->
 </div>
 </template>
@@ -216,25 +246,31 @@
           name: '离子浓度',
           address: '',
           state: '开启'
-        }]
+        }],
+        formLabelAlign: {
+          name: 34,
+          region: 45,
+          type: 21
+        },
+        operMessage: ''
       }
     },
     methods: {
       chuli(i) {
-        if(i==1){
-        this.$router.push({
-          name: 'chayuan1'
-        })
+        if (i === 1) {
+          this.$router.push({
+            name: 'chayuan1'
+          })
         }
-        if(i==2){
-        this.$router.push({
-        name: 'chayuan2'
-        })
+        if (i === 2) {
+          this.$router.push({
+            name: 'chayuan2'
+          })
         }
-        if(i==3){
-        this.$router.push({
-        name: 'chayuan3'
-        })
+        if (i === 3) {
+          this.$router.push({
+            name: 'chayuan3'
+          })
         }
         // alert('chuli1')
       },
@@ -250,14 +286,15 @@
         // })
         alert('chuli3')
       },
-      displayms() {
-        var e = window.event;
-        let div1 = document.getElementById('message');
-        div1.style.visibility='visible';
+      displayms(i) {
+        this.operMessage = 'caijidian1'
+        var e = window.event
+        const div1 = document.getElementById('message')
+        div1.style.visibility = 'visible'
       },
       hidems() {
-      let div1 = document.getElementById('message');
-      div1.style.visibility='hidden';
+        const div1 = document.getElementById('message')
+        div1.style.visibility = 'hidden'
       }
     }
   }
@@ -366,7 +403,7 @@
 #message{
   margin-left:20%;
   width:400px;
-  height:100px;
+  /*height:1000px;*/
   visibility: hidden;
 }
 </style>
