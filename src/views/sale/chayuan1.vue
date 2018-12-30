@@ -129,6 +129,7 @@
             <el-option label="土壤温湿度" value="turang"></el-option>
             <el-option label="空气温湿度" value="kongqi"></el-option>
             <el-option label="光照强度" value="gaungzhao"></el-option>
+            <el-option label="离子浓度" value="lizi"></el-option>
           </el-select>
         </el-form-item>
       </el-form>
