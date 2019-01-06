@@ -182,7 +182,7 @@ import { getToken } from '@/utils/auth'
         type: String,
         default: '400px'
       }
-  },
+    },
     name: 'complexTable',
     components: {
       Dropzone,
@@ -649,7 +649,7 @@ import { getToken } from '@/utils/auth'
         }
         return arr
       },
-      viewMore(){
+      viewMore() {
         this.$router.push({
           name: 'image'
         })

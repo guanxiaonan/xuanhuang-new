@@ -274,11 +274,11 @@ export const asyncRouterMap = [
     ]
   },
   {
-    path: '/order',
+    path: '/image-manage',
     component: Layout,
     children: [{
-      path: 'index',
-      component: _import('order/image'),
+      path: 'image',
+      component: _import('image-manage/image'),
       name: 'image',
       meta: {
         title: '图片管理',

@@ -344,7 +344,7 @@
       //   .icon-money {
       //     background: #f4516c;
       //   }
-      //   .icon-shoppingCard {
+      //   .icon-shoppingCard {f
       //     background: #34bfa3
       //   }
       // }

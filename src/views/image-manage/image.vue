@@ -1,39 +1,31 @@
 <template>
   <div class="app-container calendar-list-container">
     <div class="element">
-      <span>修改密码</span>
+      <span>图片管理</span>
     </div>
     <hr>
-    <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
-      <el-form-item label="原密码" prop="oldPassword">
-        <el-input style="width:500px;" v-model="ruleForm2.oldPassword"></el-input>
-      </el-form-item>
-      <el-form-item label="新密码" prop="newPassword">
-        <el-input style="width:500px;" type="password" v-model="ruleForm2.newPassword" auto-complete="off"></el-input>
-      </el-form-item>
-      <el-form-item label="确认密码" prop="checkPass">
-        <el-input style="width:500px;" type="password" v-model="ruleForm2.checkPass" auto-complete="off"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm2')">提交</el-button>
-        <el-button @click="resetForm('ruleForm2')">重置</el-button>
-      </el-form-item>
-    </el-form>
-    <div id="main">
-      <div id="left">
-        <!--<div :class="className" :id="id" :style="{height:height,width:width}" ref="myEchart"></div>-->
-      </div>
-      <div id="right">
-        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
-        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
-        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
-        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
-        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
-        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">ß
-        <!--<el-button class="filter-item" style="margin-top:2%;margin-left:38%;" @click="viewMore">查看更多</el-button>-->
-      </div>
+    <div>
+      <img
+        src="../../assets/401_images/1.png"
+        style="width:150px;height:150px;"
+        @click="clickImg($event)">
+      <img
+        src="../../assets/401_images/1.png"
+        style="width:150px;height:150px;"
+        @click="clickImg($event)">
+      <img
+        src="../../assets/401_images/1.png"
+        style="width:150px;height:150px;"
+        @click="clickImg($event)">
+      <img
+        src="../../assets/401_images/1.png"
+        style="width:150px;height:150px;"
+        @click="clickImg($event)">
+      <!-- 放大图片 -->
+      <big-img v-if="showImg" @clickit="viewImg" :imgSrc="imgSrc"></big-img>
     </div>
   </div>
+
 </template>
 <script>
   import {
@@ -42,7 +34,12 @@
   import {
     getToken
   } from '@/utils/auth'
+  import bigImage from './bigImage.vue'
   export default {
+    components: {
+      'big-img': bigImage
+    },
+    // props: ['../../assets/401_images/1.png'],
     name: 'complexTable',
     data() {
       var validatePass = (rule, value, callback) => {
@@ -65,6 +62,8 @@
         }
       }
       return {
+        showImg: false,
+        imgSrc: '',
         ruleForm2: {
           authorization: '',
           oldPassword: '',
@@ -108,6 +107,18 @@
       },
       resetForm(formName) {
         this.$refs[formName].resetFields()
+      },
+      // bigImg() {
+      //   // 发送事件
+      //   this.$emit('clickit')
+      // }
+      clickImg(e) {
+        this.showImg = true
+        // 获取当前图片地址
+        this.imgSrc = e.currentTarget.src
+      },
+      viewImg() {
+        this.showImg = false
       }
     }
   }
@@ -116,5 +127,62 @@
   .label {
     width: 200px;
     text-align: left
+  }
+  #main{
+    height: 500px;
+    margin-top:30px;
+  }
+  #left{
+    position: absolute;
+    width: 500px;
+    height:400px;
+  }
+  #right{
+    margin-left: 520px;
+    visibility: hidden;
+    height:400px;
+  }
+  /*动画*/
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: all .2s linear;
+    transform: translate3D(0, 0, 0);
+  }
+
+  .fade-enter,
+  .fade-leave-active {
+    transform: translate3D(100%, 0, 0);
+  }
+
+
+  /* bigimg */
+
+  .img-view {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  /*遮罩层样式*/
+  .img-view .img-layer {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  /*不限制图片大小，实现居中*/
+  .img-view .img img {
+    max-width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 1000;
   }
 </style>
