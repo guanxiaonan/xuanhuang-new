@@ -34,10 +34,8 @@
         <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
         <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
         <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
-        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
-        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
-        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
-        <el-button class="filter-item" style="margin-top:2%;margin-left:38%;" @click="handleCreate">查看更多</el-button>
+        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">ß
+        <el-button class="filter-item" style="margin-top:2%;margin-left:38%;" @click="viewMore">查看更多</el-button>
       </div>
     </div>
     <hr>
@@ -650,6 +648,11 @@ import { getToken } from '@/utils/auth'
           })
         }
         return arr
+      },
+      viewMore(){
+        this.$router.push({
+          name: 'image'
+        })
       }
     },
     watch: {

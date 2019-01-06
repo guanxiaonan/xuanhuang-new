@@ -276,113 +276,126 @@ export const asyncRouterMap = [
   {
     path: '/order',
     component: Layout,
-    redirect: 'noredirect',
-    name: 'order',
-    meta: {
-      title: '图片管理',
-      icon: 'clipboard'
-    },
     children: [{
-      path: '/order/dingdan',
-      component: _import('order/dingdan/index'),
-      name: 'o-order',
+      path: 'index',
+      component: _import('order/image'),
+      name: 'image',
       meta: {
-        title: '订单'
-      },
-      children: [{
-        path: 'send',
-        component: _import('order/dingdan/send'),
-        name: 'send',
-        meta: {
-          title: '待发货'
-        }
-      },
-      {
-        path: 'take',
-        component: _import('order/dingdan/take'),
-        name: 'take',
-        meta: {
-          title: '待收货'
-        }
-      },
-      {
-        path: 'pay',
-        component: _import('order/dingdan/pay'),
-        name: 'pay',
-        meta: {
-          title: '待付款'
-        }
-      },
-      {
-        path: 'complete',
-        component: _import('order/dingdan/complete'),
-        name: 'complete',
-        meta: {
-          title: '已完成'
-        }
-      },
-      {
-        path: 'shutdown',
-        component: _import('order/dingdan/shutdown'),
-        name: 'shutdown',
-        meta: {
-          title: '已关闭'
-        }
-      },
-      {
-        path: 'all',
-        component: _import('order/dingdan/all'),
-        name: 'all',
-        meta: {
-          title: '全部订单'
-        }
-      },
-      {
-        path: 'more',
-        component: _import('order/dingdan/more'),
-        name: 'more',
-        meta: {
-          title: '订单详情'
-        }
+        title: '图片管理',
+        icon: 'clipboard'
       }
-      ]
-    },
-    {
-      path: '/order/rights',
-      component: _import('order/rights/index'),
-      name: 'rights',
-      meta: {
-        title: '维权'
-      },
-      children: [{
-        path: 'r-apply',
-        component: _import('order/rights/r-apply'),
-        name: 'send',
-        meta: {
-          title: '维权申请'
-        }
-      },
-      {
-        path: 'r-complete',
-        component: _import('order/rights/r-complete'),
-        name: 'r-complete',
-        meta: {
-          title: '维权完成'
-        }
-      },
-      {
-        path: 'detial',
-        component: _import('order/rights/detial'),
-        name: 'detial',
-        // hidden: true,
-        meta: {
-          title: '维权处理'
-        }
-      }
-      ]
-    }
-    ]
+    }]
   },
+  // {
+  //   path: '/order',
+  //   component: Layout,
+  //   redirect: 'noredirect',
+  //   name: 'order',
+  //   meta: {
+  //     title: '图片管理',
+  //     icon: 'clipboard'
+  //   },
+  //   children: [{
+  //     path: '/order/dingdan',
+  //     component: _import('order/dingdan/index'),
+  //     name: 'o-order',
+  //     meta: {
+  //       title: '订单'
+  //     },
+  //     children: [{
+  //       path: 'send',
+  //       component: _import('order/dingdan/send'),
+  //       name: 'send',
+  //       meta: {
+  //         title: '待发货'
+  //       }
+  //     },
+  //     {
+  //       path: 'take',
+  //       component: _import('order/dingdan/take'),
+  //       name: 'take',
+  //       meta: {
+  //         title: '待收货'
+  //       }
+  //     },
+  //     {
+  //       path: 'pay',
+  //       component: _import('order/dingdan/pay'),
+  //       name: 'pay',
+  //       meta: {
+  //         title: '待付款'
+  //       }
+  //     },
+  //     {
+  //       path: 'complete',
+  //       component: _import('order/dingdan/complete'),
+  //       name: 'complete',
+  //       meta: {
+  //         title: '已完成'
+  //       }
+  //     },
+  //     {
+  //       path: 'shutdown',
+  //       component: _import('order/dingdan/shutdown'),
+  //       name: 'shutdown',
+  //       meta: {
+  //         title: '已关闭'
+  //       }
+  //     },
+  //     {
+  //       path: 'all',
+  //       component: _import('order/dingdan/all'),
+  //       name: 'all',
+  //       meta: {
+  //         title: '全部订单'
+  //       }
+  //     },
+  //     {
+  //       path: 'more',
+  //       component: _import('order/dingdan/more'),
+  //       name: 'more',
+  //       meta: {
+  //         title: '订单详情'
+  //       }
+  //     }
+  //     ]
+  //   },
+  //   {
+  //     path: '/order/rights',
+  //     component: _import('order/rights/index'),
+  //     name: 'rights',
+  //     meta: {
+  //       title: '维权'
+  //     },
+  //     children: [{
+  //       path: 'r-apply',
+  //       component: _import('order/rights/r-apply'),
+  //       name: 'send',
+  //       meta: {
+  //         title: '维权申请'
+  //       }
+  //     },
+  //     {
+  //       path: 'r-complete',
+  //       component: _import('order/rights/r-complete'),
+  //       name: 'r-complete',
+  //       meta: {
+  //         title: '维权完成'
+  //       }
+  //     },
+  //     {
+  //       path: 'detial',
+  //       component: _import('order/rights/detial'),
+  //       name: 'detial',
+  //       // hidden: true,
+  //       meta: {
+  //         title: '维权处理'
+  //       }
+  //     }
+  //     ]
+  //   }
+  //   ]
+  // },
   // {
   //   path: '/finance',
   //   component: Layout,

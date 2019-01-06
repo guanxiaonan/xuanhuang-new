@@ -144,25 +144,25 @@
     </el-col>
   </el-row>
   <el-row class="panel-group" :gutter="80">
-    <el-col :xs="24" :sm="24" :lg="6" class="card-panel-col">
-      <img src="../../../../assets/401_images/2.jpeg" border="0" usemap="#teamap">
+    <el-col :xs="24" :sm="24" :lg="11" class="card-panel-col">
+      <img src="../../../../assets/401_images/dashboard.jpeg" border="0" usemap="#teamap">
       <map name="teamap" id="teamap">
-      <area shape="rectangle" coords="234,97,257,129" target="_blank" @click="chuli(3)" @mouseover="displayms(1)" @mouseout="hidems()">
-      <area shape="rectangle" coords="261,146,290,174" target="_blank" @click="chuli(3)" @mouseover="displayms(2)" @mouseout="hidems()">
-      <area shape="rectangle" coords="304,321,331,352" target="_blank" @click="chuli(2)" @mouseover=" displayms(3)" @mouseout="hidems()">
-      <area shape="rectangle" coords="241,351,278,369" target="_blank" @click="chuli(2)" @mouseover=" displayms(4)" @mouseout="hidems()">
-      <area shape="rectangle" coords="201,374,234,405" target="_blank" @click="chuli(1)" @mouseover=" displayms(5)" @mouseout="hidems()">
-      <area shape="rectangle" coords="163,460,194,490" target="_blank" @click="chuli(1)" @mouseover=" displayms(6)" @mouseout="hidems()">
-      <area shape="rectangle" coords="215,458,249,489" target="_blank" @click="chuli(1)" @mouseover=" displayms(7)" @mouseout="hidems()">
+<area shape="rectangle" coords="368,60,387,80" target="_blank" @click="chuli(3)" @mouseover="displayms(1)" @mouseout="hidems()">
+<area shape="rectangle" coords="386,94,406,114" target="_blank" @click="chuli(3)" @mouseover="displayms(2)" @mouseout="hidems()">
+      <area shape="rectangle" coords="414,210,433,230" target="_blank" @click="chuli(2)" @mouseover=" displayms(3)" @mouseout="hidems()">
+      <area shape="rectangle" coords="378,221,397,242" target="_blank" @click="chuli(2)" @mouseover=" displayms(4)" @mouseout="hidems()">
+      <area shape="rectangle" coords="349,244,370,265" target="_blank" @click="chuli(1)" @mouseover=" displayms(5)" @mouseout="hidems()">
+      <area shape="rectangle" coords="314,304,334,325" target="_blank" @click="chuli(1)" @mouseover=" displayms(6)" @mouseout="hidems()">
+      <area shape="rectangle" coords="358,303,378,323" target="_blank" @click="chuli(1)" @mouseover=" displayms(7)" @mouseout="hidems()">
       </map>
     </el-col>
-    <el-col :xs="24" :sm="24" :lg="4" id="message">
+<el-col :xs="24" :sm="24" :lg="11" id="message">
         <!--<div class='card-panel'>-->
           <!--<div class="card-panel-description">-->
             <!--<Form v-if="operMessage === 'caijidian1'" :model="formjs" :label-width="80" style="width:50%;dispaly:block;">-->
               <!---->
             <!--</Form>-->
-            <el-form v-if="operMessage === 'caijidian1'" :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+            <el-form v-if="operMessage === 'caijidian1'" :label-position="labelPosition" label-width="100px" :model="formLabelAlign">
               <el-form-item label="土壤温度">
                 <el-input v-model="formLabelAlign.name"></el-input>
               </el-form-item>
