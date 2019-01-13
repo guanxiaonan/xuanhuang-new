@@ -16,7 +16,7 @@
           fixed="right"
           label="操作"
           width="150"
-          >
+        >
           <template slot-scope="scope">
             <el-button @click="" type="text" size="small">实时数据</el-button>
             <el-button @click="selectHistory(scope.row)" type="text" size="small">历史数据</el-button>
@@ -24,19 +24,30 @@
         </el-table-column>
       </el-table>
     </el-card>
-    <div>
-      <div :class="className" :id="id" :style="{height:height,width:width}" ref="myEchart"></div>
+    <div id="main">
+      <div id="left">
+        <div :class="className" :id="id" :style="{height:height,width:width}" ref="myEchart"></div>
+      </div>
+      <div id="right">
+        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
+        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
+        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
+        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
+        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
+        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">ß
+        <el-button class="filter-item" style="margin-top:2%;margin-left:38%;" @click="viewMore">查看更多</el-button>
+      </div>
     </div>
     <hr>
     <div class="filter-container">
       <el-button class="filter-item" style="float:left;" icon="el-icon-edit" @click="handleCreate">添加记录</el-button>
       <el-button style="float:right" class="filter-item" type="primary" v-waves icon="el-icon-search" @click="handleFilter">搜索</el-button>
       <el-input @keyup.enter.native="handleFilter" style="float:right; width:300px " class="filter-item" placeholder="检测时间/茶园编号/传感器编号"
-        v-model="requestList.searchString">
+                v-model="requestList.searchString">
       </el-input>
     </div>
     <el-table :key='tableKey' :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row
-      style="width: 100%">
+              style="width: 100%">
       <el-table-column align="center" type="index" :index="tIndex" label="序号" width="60">
       </el-table-column>
       <el-table-column min-width="150px" label="检测时间">
@@ -75,7 +86,7 @@
 
     <div class="pagination-container">
       <el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="request.page"
-        :page-sizes="[10,20,30,50]" :page-size="request.size" layout="total, sizes, prev, pager, next, jumper" :total="total">
+                     :page-sizes="[10,20,30,50]" :page-size="request.size" layout="total, sizes, prev, pager, next, jumper" :total="total">
       </el-pagination>
     </div>
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogfaVisible">
@@ -119,13 +130,14 @@
     <el-dialog title="数据查询" :visible.sync="history_5">
       <el-form :model="form_his">
         <!--<el-form-item label="活动名称" :label-width="formLabelWidth">-->
-          <!--<el-input v-model="form.name" autocomplete="off"></el-input>-->
+        <!--<el-input v-model="form.name" autocomplete="off"></el-input>-->
         <!--</el-form-item>-->
         <el-form-item label="查询数据" :label-width="formLabelWidth">
           <el-select v-model="form_his.type" placeholder="选择查询的数据">
             <el-option label="土壤温湿度" value="turang"></el-option>
             <el-option label="空气温湿度" value="kongqi"></el-option>
             <el-option label="光照强度" value="gaungzhao"></el-option>
+            <el-option label="离子浓度" value="lizi"></el-option>
           </el-select>
         </el-form-item>
       </el-form>
@@ -134,9 +146,7 @@
         <el-button type="primary" @click="history_Submit">确 定</el-button>
       </div>
     </el-dialog>
-
   </div>
-
 </template>
 
 <script>
@@ -153,7 +163,7 @@
     getAllShopList // 组件方案 - 商家列表
   } from '@/api/article'
   import waves from '@/directive/waves' // 水波纹指令
-import { getToken } from '@/utils/auth'
+  import { getToken } from '@/utils/auth'
   export default {
     props: {
       className: {
@@ -172,7 +182,7 @@ import { getToken } from '@/utils/auth'
         type: String,
         default: '400px'
       }
-  },
+    },
     name: 'complexTable',
     components: {
       Dropzone,
@@ -585,6 +595,8 @@ import { getToken } from '@/utils/auth'
         // alert(this.form_his.type)
         this.history_show = true
         console.log('history_show:', this.history_show)
+        let div1 = document.getElementById('right');
+        div1.style.visibility='visible';
       },
       handleCreate() {
         this.resetTemp()
@@ -636,6 +648,11 @@ import { getToken } from '@/utils/auth'
           })
         }
         return arr
+      },
+      viewMore() {
+        this.$router.push({
+          name: 'image'
+        })
       }
     },
     watch: {
@@ -679,5 +696,19 @@ import { getToken } from '@/utils/auth'
 
   .box-card {
     width: 480px;
+  }
+  #main{
+    height: 500px;
+    margin-top:30px;
+  }
+  #left{
+    position: absolute;
+    width: 500px;
+    height:400px;
+  }
+  #right{
+    margin-left: 520px;
+    visibility: hidden;
+    height:400px;
   }
 </style>
