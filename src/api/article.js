@@ -279,6 +279,17 @@ export function getProductList(data) {
     data
   })
 }
+
+// 获取real_time_data的数据
+export function getRealData() {
+  return request({
+    url: 'http://192.168.1.113:9002/data_get',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'get'
+  })
+}
 // 组件-查看组件详情
 export function getProductInfo(data) {
   return request({

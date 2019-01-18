@@ -1,8 +1,8 @@
 <template>
   <div class="app-container calendar-list-container">
-    <div :class="className" :id="id" :style="{height:height,width:width}" ref="myEchart"></div>
+    <!--<div :class="className" :id="id" :style="{height:height,width:width}" ref="myEchart"></div>-->
     <div class="element">
-      <span>土壤数据:{{saleoutCount}}</span>
+      <span>传感器采集数据:{{saleoutCount}}</span>
       <el-button class="filter-item" style="float:right;" icon="el-icon-edit" @click="handleCreate">添加记录</el-button>
     </div>
     <hr>
@@ -16,7 +16,7 @@
       style="width: 100%">
       <el-table-column align="center" type="index" :index="tIndex" label="序号" width="60">
       </el-table-column>
-      <el-table-column min-width="150px" label="检测时间">
+      <el-table-column min-width="150px" label="传感器类型">
         <template slot-scope="scope">
           <img src="scope.row.productImg" border="1" alt="">
           <span style="float:right">{{scope.row.productName}}</span>
@@ -99,7 +99,7 @@
   import echarts from 'echarts'
   import {
     getProductInfo, // 组件-查看组件详情
-    getProductList, // 组件-组件列表
+    getRealData, // 组件-组件列表
     getSelectProductList,
     setProductInfo, // 组件保存组件
     getProductDetail, // 组件-统计信息
@@ -110,22 +110,22 @@
 import { getToken } from '@/utils/auth'
   export default {
     props: {
-    className: {
-      type: String,
-      default: "yourClassName"
-    },
-    id: {
-      type: String,
-      default: "yourID"
-    },
-    width: {
-      type: String,
-      default: "500px"
-    },
-    height: {
-      type: String,
-      default: "400px"
-    }
+      className: {
+        type: String,
+        default: 'yourClassName'
+      },
+      id: {
+        type: String,
+        default: 'yourID'
+      },
+      width: {
+        type: String,
+        default: '500px'
+      },
+      height: {
+        type: String,
+        default: '400px'
+      }
   },
     name: 'complexTable',
     components: {
@@ -234,99 +234,99 @@ import { getToken } from '@/utils/auth'
       this.getList()
       this.getNumber()
     },
-    mounted(){
-      this.initChart();
-    },
+    mounted() {
+      this.initChart()
+  },
     methods: {
       initChart() {
-      this.chart = echarts.init(this.$refs.myEchart);
-      // 把配置和数据放这里
-      this.chart.setOption(
-      {
-        title: {
-        text: '土壤温湿度变化',
-        subtext: '纯属虚构'
-    },
-    tooltip: {
-        trigger: 'axis'
-    },
-    legend: {
-        data:['标准温湿度','实际温湿度']
-    },
-    toolbox: {
-        show: true,
-        feature: {
-            dataZoom: {
-                yAxisIndex: 'none'
+        this.chart = echarts.init(this.$refs.myEchart)
+        // 把配置和数据放这里
+        this.chart.setOption(
+          {
+            title: {
+              text: '土壤温湿度变化',
+              subtext: '纯属虚构'
             },
-            dataView: {readOnly: false},
-            magicType: {type: ['line', 'bar']},
-            restore: {},
-            saveAsImage: {}
-        }
-    },
-    xAxis:  {
-        type: 'category',
-        boundaryGap: false,
-        data: ['周一','周二','周三','周四','周五','周六','周日']
-    },
-    yAxis: {
-        type: 'value',
-        axisLabel: {
-            formatter: '{value} °C'
-        }
-    },
-    series: [
-        {
-            name:'最高气温',
-            type:'line',
-            data:[11, 11, 15, 13, 12, 13, 10],
-            markPoint: {
-                data: [
-                    {type: 'max', name: '最大值'},
-                    {type: 'min', name: '最小值'}
-                ]
+            tooltip: {
+              trigger: 'axis'
             },
-            markLine: {
-                data: [
-                    {type: 'average', name: '平均值'}
-                ]
-            }
-        },
-        {
-            name:'最低气温',
-            type:'line',
-            data:[1, -2, 2, 5, 3, 2, 0],
-            markPoint: {
-                data: [
-                    {name: '周最低', value: -2, xAxis: 1, yAxis: -1.5}
-                ]
+            legend: {
+              data: ['标准温湿度', '实际温湿度']
             },
-            markLine: {
-                data: [
-                    {type: 'average', name: '平均值'},
+            toolbox: {
+              show: true,
+              feature: {
+                dataZoom: {
+                  yAxisIndex: 'none'
+                },
+                dataView: { readOnly: false },
+                magicType: { type: ['line', 'bar'] },
+                restore: {},
+                saveAsImage: {}
+              }
+            },
+            xAxis: {
+              type: 'category',
+              boundaryGap: false,
+              data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+            },
+            yAxis: {
+              type: 'value',
+              axisLabel: {
+                formatter: '{value} °C'
+              }
+            },
+            series: [
+              {
+                name: '最高气温',
+                type: 'line',
+                data: [11, 11, 15, 13, 12, 13, 10],
+                markPoint: {
+                  data: [
+                    { type: 'max', name: '最大值' },
+                    { type: 'min', name: '最小值' }
+                  ]
+                },
+                markLine: {
+                  data: [
+                    { type: 'average', name: '平均值' }
+                  ]
+                }
+              },
+              {
+                name: '最低气温',
+                type: 'line',
+                data: [1, -2, 2, 5, 3, 2, 0],
+                markPoint: {
+                  data: [
+                    { name: '周最低', value: -2, xAxis: 1, yAxis: -1.5 }
+                  ]
+                },
+                markLine: {
+                  data: [
+                    { type: 'average', name: '平均值' },
                     [{
-                        symbol: 'none',
-                        x: '90%',
-                        yAxis: 'max'
+                      symbol: 'none',
+                      x: '90%',
+                      yAxis: 'max'
                     }, {
-                        symbol: 'circle',
-                        label: {
-                            normal: {
-                                position: 'start',
-                                formatter: '最大值'
-                            }
-                        },
-                        type: 'max',
-                        name: '最高点'
+                      symbol: 'circle',
+                      label: {
+                        normal: {
+                          position: 'start',
+                          formatter: '最大值'
+                        }
+                      },
+                      type: 'max',
+                      name: '最高点'
                     }]
-                ]
-            }
-        }
-    ]
-      }
-      );
-    },
+                  ]
+                }
+              }
+            ]
+          }
+        )
+      },
       change(row) {
         this.request.authorization = getToken('Admin-Token')
         this.request.productId = row.productId
@@ -433,13 +433,14 @@ import { getToken } from '@/utils/auth'
       onSubmit() {
         console.log('submit!')
       },
+      // 获取real_time_data
       getList() {
         this.listLoading = true
         this.requestList.authorization = getToken('Admin-Token')
-        getProductList(this.requestList).then(response => {
+        getRealData().then(response => {
           console.log('list', response)
-          this.list = response.data.data.productList
-          this.total = response.data.data.total
+          this.list = response.data.data
+          // this.total = response.data.data.total
           this.listLoading = false
         })
         getSelectProductList(this.requestList.authorization).then(res => {
