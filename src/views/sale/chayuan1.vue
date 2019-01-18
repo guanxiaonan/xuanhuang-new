@@ -143,7 +143,7 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="history_5 = false">取 消</el-button>
-        <el-button type="primary" @click="history_Submit">确 定</el-button>
+        <el-button type="primary" @click="history_Submit()">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -204,6 +204,7 @@ import { getToken } from '@/utils/auth'
             caijidian: '数据采集点7'
           }
         ],
+        caiji: '', // 采集点确定
         form_his: {
           type: ''
         },
@@ -587,18 +588,28 @@ import { getToken } from '@/utils/auth'
       },
       selectHistory(row) {
         console.log('点击的行数', row)
+        if (row.caijidian === '数据采集点5') {
+          this.caiji = '采集点5'
+        } else if (row.caijidian === '数据采集点6') {
+          this.caiji = '采集点6'
+        } else if (row.caijidian === '数据采集点6') {
+          this.caiji = '采集点7'
+        }
+        console.log('初步点击', this.caiji)
         this.history_5 = true
         // this.history_show = true
       },
       history_Submit() {
+        // console.log(row)
+        console.log('采集点', this.caiji)
         if (this.form_his.type === 'turang') {
-          this.biaoti = '茶园1-土壤温湿度表'
-        }else if (this.form_his.type === 'kongqi') {
-          this.biaoti = '茶园1-空气温湿度表'
-        }else if (this.form_his.type === 'gaungzhao') {
-          this.biaoti = '茶园1-光照度表'
-        }else if (this.form_his.type === 'lizi') {
-          this.biaoti = '茶园1-离子浓度表'
+          this.biaoti = '茶园1' + this.caiji + '-土壤温湿度表'
+        } else if (this.form_his.type === 'kongqi') {
+          this.biaoti = '茶园1' + this.caiji + '-空气温湿度表'
+        } else if (this.form_his.type === 'gaungzhao') {
+          this.biaoti = '茶园1' + this.caiji + '-光照度表'
+        } else if (this.form_his.type === 'lizi') {
+          this.biaoti = '茶园1' + this.caiji + '-离子浓度表'
         }
         this.initChart()
         this.history_5 = false
