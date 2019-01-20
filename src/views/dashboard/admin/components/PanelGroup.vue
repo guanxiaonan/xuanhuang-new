@@ -162,21 +162,21 @@
             <!--<Form v-if="operMessage === 'caijidian1'" :model="formjs" :label-width="80" style="width:50%;dispaly:block;">-->
               <!---->
             <!--</Form>-->
-            <el-form v-if="operMessage === 'caijidian1'" :label-position="labelPosition" label-width="100px" :model="formLabelAlign">
+            <el-form v-if="operMessage === 'caijidian1'" :label-position="labelPosition" label-width="100px" :model="realData">
               <el-form-item label="土壤温度">
-                <el-input v-model="formLabelAlign.name"></el-input>
+                <el-input v-model="realData.turangwendu">℃</el-input>
               </el-form-item>
               <el-form-item label="土壤湿度">
-                <el-input v-model="formLabelAlign.region"></el-input>
+                <el-input v-model="realData.turangshidu">%</el-input>
               </el-form-item>
               <el-form-item label="空气温度">
-                <el-input v-model="formLabelAlign.type"></el-input>
+                <el-input v-model="realData.kongqiwendu">℃</el-input>
               </el-form-item>
               <el-form-item label="空气湿度">
-                <el-input v-model="formLabelAlign.type"></el-input>
+                <el-input v-model="realData.kongqishidu">%</el-input>
               </el-form-item>
-              <el-form-item label="离子浓度">
-                <el-input v-model="formLabelAlign.type"></el-input>
+              <el-form-item label="CO2浓度">
+                <el-input v-model="realData.CO2">ppm</el-input>
               </el-form-item>
             </el-form>
             <!--<div v-if="caijidian1" class="card-panel-text">茶园2</div>-->
@@ -202,6 +202,7 @@
 </template>
 
 <script>
+  import { getRealData } from '@/api/article'
   export default {
     components: {},
     props: {
@@ -247,13 +248,23 @@
           address: '',
           state: '开启'
         }],
-        formLabelAlign: {
-          name: 34,
-          region: 45,
-          type: 21
+        realData: {
+          turangwendu: '17.3 ℃',
+          turangshidu: '30 %',
+          kongqiwendu: '23.1 ℃',
+          kongqishidu: '40 %',
+          CO2: '2034 ppm'
         },
+        turangwenduall: [],
+        turangshiduall: [],
+        kongqiwenduall: [],
+        kongqishiduall: [],
+        CO2all: [],
         operMessage: ''
       }
+    },
+    created() {
+      this.getList()
     },
     methods: {
       chuli(i) {
@@ -285,6 +296,52 @@
         //   name: 'home_index'
         // })
         alert('chuli3')
+      },
+      getList() {
+        console.log('============运行==========')
+        // this.listLoading = true
+        // this.requestList.authorization = getToken('Admin-Token')
+        getRealData().then(response => {
+          console.log('list', response)
+          var kqwd = 0
+          var kqsd = 0
+          var trwd = 0
+          var trsd = 0
+          var co2 = 0
+          for (var i = 0; i < response.data.data.length; i++) {
+            //湿度
+            if (response.data.data[i].types === 'SHT21/SHT25温湿度传感器' && response.data.data[i].units === '%') {
+              this.kongqishiduall[kqsd++] = response.data.data[i].datas
+            }
+            if (response.data.data[i].types === 'SHT21/SHT25温湿度传感器' && response.data.data[i].units === '℃') {
+              this.kongqiwenduall[kqwd++] = response.data.data[i].datas
+            }
+            if (response.data.data[i].types === '土壤湿度传感器' && response.data.data[i].units === '%') {
+              this.turangshiduall[trsd++] = response.data.data[i].datas
+            }
+            if (response.data.data[i].types === '土壤温度传感器' && response.data.data[i].units === '℃') {
+              this.turangwenduall[trwd++] = response.data.data[i].datas
+            }
+            if (response.data.data[i].types === 'CO2传感器' && response.data.data[i].units === 'ppm') {
+              this.CO2all[co2++] = response.data.data[i].datas / 100
+            }
+          }
+          console.log('空气湿度', this.kongqishiduall)
+          console.log('空气温度', this.kongqiwenduall)
+          console.log('土壤湿度', this.turangshiduall)
+          console.log('土壤温度', this.turangwenduall)
+          console.log('CO2', this.CO2all)
+          // this.list = response.data.data
+          // for (var i = 0; i < response.data.data.length; i++) {
+          //   if (response.data.data[i].types === 'SHT21/SHT25温湿度传感器' && response.data.data[i].units === '%') {
+          //     this.kongqishiduall[i] = response.data.data[i].datas
+          //   }
+          // }
+          // console.log('空气湿度', this.kongqishiduall)
+          // this.list = response.data.data
+          // this.total = response.data.data.total
+          // this.listLoading = false
+        })
       },
       displayms(i) {
         this.operMessage = 'caijidian1'

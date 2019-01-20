@@ -283,7 +283,7 @@ export function getProductList(data) {
 // 获取real_time_data的数据
 export function getRealData() {
   return request({
-    url: 'http://192.168.1.113:9002/data_get',
+    url: 'http://101.201.71.184:9002/data_get',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'

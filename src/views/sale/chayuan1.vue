@@ -136,8 +136,27 @@
           <el-select v-model="form_his.type" placeholder="选择查询的数据">
             <el-option label="土壤温湿度" value="turang"></el-option>
             <el-option label="空气温湿度" value="kongqi"></el-option>
-            <el-option label="光照强度" value="gaungzhao"></el-option>
+            <el-option label="光照强度" value="guanngzhao"></el-option>
             <el-option label="离子浓度" value="lizi"></el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="history_5 = false">取 消</el-button>
+        <el-button type="primary" @click="history_Submit()">确 定</el-button>
+      </div>
+    </el-dialog>
+    <el-dialog title="实时数据" :visible.sync="history_5">
+      <el-form :model="form_his">
+        <!--<el-form-item label="活动名称" :label-width="formLabelWidth">-->
+        <!--<el-input v-model="form.name" autocomplete="off"></el-input>-->
+        <!--</el-form-item>-->
+        <el-form-item label="查询数据" :label-width="formLabelWidth">
+          <el-select v-model="form_his.type" placeholder="选择查询的数据">
+            <el-option label="土壤温湿度" value="turang"></el-option>
+            <el-option label="空气温湿度" value="kongqi"></el-option>
+            <el-option label="光照强度" value="guangzhao"></el-option>
+            <el-option label="co2浓度" value="lizi"></el-option>
           </el-select>
         </el-form-item>
       </el-form>
@@ -157,6 +176,7 @@
     getProductInfo, // 组件-查看组件详情
     getProductList, // 组件-组件列表
     getSelectProductList,
+    getRealData, // 实时数据
     setProductInfo, // 组件保存组件
     getProductDetail, // 组件-统计信息
     setProductStatus, // 组件-设置方案状态
@@ -204,6 +224,13 @@ import { getToken } from '@/utils/auth'
             caijidian: '数据采集点7'
           }
         ],
+        kongqiwenduall: [],
+        kongqishiduall: [],
+        turangshiduall: [],
+        turangwenduall: [],
+        CO2all: [],
+        showallhigh: [],
+        showalllow: [],
         caiji: '', // 采集点确定
         form_his: {
           type: ''
@@ -308,6 +335,7 @@ import { getToken } from '@/utils/auth'
     created() {
       this.getList()
       this.getNumber()
+      this.getHistoryData()
     },
     mounted() {
       // this.initChart()
@@ -357,9 +385,9 @@ import { getToken } from '@/utils/auth'
             },
             series: [
               {
-                name: '最高气温',
+                name: '湿度',
                 type: 'line',
-                data: [11, 11, 15, 13, 12, 13, 10],
+                data: [this.showallhigh[0], this.showallhigh[1], this.showallhigh[2], this.showallhigh[3], this.showallhigh[4], this.showallhigh[4], this.showallhigh[5]],
                 markPoint: {
                   data: [
                     { type: 'max', name: '最大值' },
@@ -373,9 +401,9 @@ import { getToken } from '@/utils/auth'
                 }
               },
               {
-                name: '最低气温',
+                name: '温度',
                 type: 'line',
-                data: [1, -2, 2, 5, 3, 2, 0],
+                data: [this.showalllow[0], this.showalllow[1], this.showalllow[2], this.showalllow[3], this.showalllow[4], this.showalllow[4], this.showalllow[5]],
                 markPoint: {
                   data: [
                     { name: '周最低', value: -2, xAxis: 1, yAxis: -1.5 }
@@ -528,6 +556,45 @@ import { getToken } from '@/utils/auth'
           this.options1 = res.data.data
         })
       },
+      getHistoryData() {
+        console.log('============运行==========')
+        // this.listLoading = true
+        // this.requestList.authorization = getToken('Admin-Token')
+        getRealData().then(response => {
+          console.log('list', response)
+          var kqwd = 0
+          var kqsd = 0
+          var trwd = 0
+          var trsd = 0
+          var co2 = 0
+          for (var i = 0; i < response.data.data.length; i++) {
+            //湿度
+            if (response.data.data[i].types === 'SHT21/SHT25温湿度传感器' && response.data.data[i].units === '%') {
+              this.kongqishiduall[kqsd++] = response.data.data[i].datas
+            }
+            if (response.data.data[i].types === 'SHT21/SHT25温湿度传感器' && response.data.data[i].units === '℃') {
+              this.kongqiwenduall[kqwd++] = response.data.data[i].datas
+            }
+            if (response.data.data[i].types === '土壤湿度传感器' && response.data.data[i].units === '%') {
+              this.turangshiduall[trsd++] = response.data.data[i].datas
+            }
+            if (response.data.data[i].types === '土壤温度传感器' && response.data.data[i].units === '℃') {
+              this.turangwenduall[trwd++] = response.data.data[i].datas
+            }
+            if (response.data.data[i].types === 'CO2传感器' && response.data.data[i].units === 'ppm') {
+              this.CO2all[co2++] = response.data.data[i].datas / 100
+            }
+          }
+          console.log('空气湿度', this.kongqishiduall)
+          console.log('空气温度', this.kongqiwenduall)
+          console.log('土壤湿度', this.turangshiduall)
+          console.log('土壤温度', this.turangwenduall)
+          console.log('CO2', this.CO2all)
+          this.list = response.data.data
+          // this.total = response.data.data.total
+          // this.listLoading = false
+        })
+      },
       beforeAvatarUpload(file) {
         console.log('length', file)
         const isJPG = file.type === 'image/jpeg/png/jpg'
@@ -607,12 +674,20 @@ import { getToken } from '@/utils/auth'
         console.log('采集点', this.caiji)
         if (this.form_his.type === 'turang') {
           this.biaoti = '茶园1' + this.caiji + '-土壤温湿度表'
+          this.showallhigh = this.turangshiduall
+          this.showalllow = this.turangwenduall
         } else if (this.form_his.type === 'kongqi') {
           this.biaoti = '茶园1' + this.caiji + '-空气温湿度表'
+          this.showallhigh = this.kongqishiduall
+          this.showalllow = this.kongqiwenduall
         } else if (this.form_his.type === 'gaungzhao') {
           this.biaoti = '茶园1' + this.caiji + '-光照度表'
+          this.showallhigh = this.kongqishiduall
+          this.showalllow = 0
         } else if (this.form_his.type === 'lizi') {
           this.biaoti = '茶园1' + this.caiji + '-离子浓度表'
+          this.showallhigh = this.CO2all
+          this.showalllow = 0
         }
         this.initChart()
         this.history_5 = false
