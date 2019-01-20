@@ -228,7 +228,7 @@ export const asyncRouterMap = [
       component: _import('sale/sold'),
       name: 'sold',
       meta: {
-        title: '土壤数据'
+        title: '传感器采集数据'
       }
     },
     {

@@ -18,7 +18,7 @@
           width="150"
           >
           <template slot-scope="scope">
-            <el-button @click="" type="text" size="small">实时数据</el-button>
+            <el-button @click="selectRealTimedata(scope.row)" type="text" size="small">实时数据</el-button>
             <el-button @click="selectHistory(scope.row)" type="text" size="small">历史数据</el-button>
           </template>
         </el-table-column>
@@ -599,6 +599,9 @@ import { getToken } from '@/utils/auth'
         this.history_5 = true
         // this.history_show = true
       },
+      selectRealTimedata(row) {
+        console.log('实时数据方法', row)
+      },
       history_Submit() {
         // console.log(row)
         console.log('采集点', this.caiji)
@@ -616,7 +619,7 @@ import { getToken } from '@/utils/auth'
         // alert(this.form_his.type)
         this.history_show = true
         console.log('history_show:', this.history_show)
-        let div1 = document.getElementById('right')
+        const div1 = document.getElementById('right')
         div1.style.visibility = 'visible'
       },
       handleCreate() {

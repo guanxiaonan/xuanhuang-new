@@ -16,25 +16,25 @@
       style="width: 100%">
       <el-table-column align="center" type="index" :index="tIndex" label="序号" width="60">
       </el-table-column>
-      <el-table-column min-width="150px" label="传感器类型">
+      <el-table-column width="60px" label="传感器类型">
         <template slot-scope="scope">
           <img src="scope.row.productImg" border="1" alt="">
-          <span style="float:right">{{scope.row.productName}}</span>
+          <span style="float:right">{{scope.row.types}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="110px" align="center" label="茶园编号">
+      <el-table-column width="110px" align="center" label="采集时间">
         <template slot-scope="scope">
-          <span>{{scope.row.shopName}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="传感器编号" width="95">
-        <template slot-scope="scope">
-          <span>{{scope.row.stock}}</span>
+          <span>{{scope.row.data_time}}</span>
         </template>
       </el-table-column>
       <el-table-column align="center" label="数据" width="95">
         <template slot-scope="scope">
-          <span>{{scope.row.saleAmount}}</span>
+          <span>{{scope.row.datas}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column align="center" label="单位" width="95">
+        <template slot-scope="scope">
+          <span>{{scope.row.units}}</span>
         </template>
       </el-table-column>
       <!-- <el-table-column class-name="status-col" label="数据" width="100">
@@ -439,6 +439,11 @@ import { getToken } from '@/utils/auth'
         this.requestList.authorization = getToken('Admin-Token')
         getRealData().then(response => {
           console.log('list', response)
+          for (var i = 0; i < response.data.data.length; i++) {
+            if (response.data.data[i].units === '') {
+              response.data.data[i].units = '电池电量'
+            }
+          }
           this.list = response.data.data
           // this.total = response.data.data.total
           this.listLoading = false
