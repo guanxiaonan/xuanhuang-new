@@ -3,7 +3,6 @@
     <!--<div :class="className" :id="id" :style="{height:height,width:width}" ref="myEchart"></div>-->
     <div class="element">
       <span>传感器采集数据:{{saleoutCount}}</span>
-      <el-button class="filter-item" style="float:right;" icon="el-icon-edit" @click="handleCreate">添加记录</el-button>
     </div>
     <hr>
     <div class="filter-container">
@@ -16,13 +15,12 @@
       style="width: 100%">
       <el-table-column align="center" type="index" :index="tIndex" label="序号" width="60">
       </el-table-column>
-      <el-table-column width="60px" label="传感器类型">
+      <el-table-column min-width="80px" label="传感器类型">
         <template slot-scope="scope">
-          <img src="scope.row.productImg" border="1" alt="">
-          <span style="float:right">{{scope.row.types}}</span>
+          <span style="text-align:center;float:left">{{scope.row.types}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="110px" align="center" label="采集时间">
+      <el-table-column width="160px" align="center" label="采集时间">
         <template slot-scope="scope">
           <span>{{scope.row.data_time}}</span>
         </template>
@@ -44,7 +42,6 @@
       </el-table-column> -->
       <el-table-column align="center" :label="$t('table.actions')" width="230" class-name="small-padding fixed-width">
         <template slot-scope="scope">
-          <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>
           <el-button size="mini" type="danger" @click="delete1(scope.row)">删除</el-button>
         </template>
       </el-table-column>
