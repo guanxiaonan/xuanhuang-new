@@ -285,6 +285,7 @@ export function getRealData() {
   return request({
     url: 'http://192.168.1.113:9002/data_get',
     headers: {
+      'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
     method: 'get'

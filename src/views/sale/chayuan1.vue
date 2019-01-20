@@ -18,7 +18,7 @@
           width="150"
           >
           <template slot-scope="scope">
-            <el-button @click="" type="text" size="small">实时数据</el-button>
+            <el-button @click="selectRealTimedata(scope.row)" type="text" size="small">实时数据</el-button>
             <el-button @click="selectHistory(scope.row)" type="text" size="small">历史数据</el-button>
           </template>
         </el-table-column>
@@ -143,7 +143,7 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="history_5 = false">取 消</el-button>
-        <el-button type="primary" @click="history_Submit">确 定</el-button>
+        <el-button type="primary" @click="history_Submit()">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -204,6 +204,7 @@ import { getToken } from '@/utils/auth'
             caijidian: '数据采集点7'
           }
         ],
+        caiji: '', // 采集点确定
         form_his: {
           type: ''
         },
@@ -587,25 +588,38 @@ import { getToken } from '@/utils/auth'
       },
       selectHistory(row) {
         console.log('点击的行数', row)
+        if (row.caijidian === '数据采集点5') {
+          this.caiji = '采集点5'
+        } else if (row.caijidian === '数据采集点6') {
+          this.caiji = '采集点6'
+        } else if (row.caijidian === '数据采集点6') {
+          this.caiji = '采集点7'
+        }
+        console.log('初步点击', this.caiji)
         this.history_5 = true
         // this.history_show = true
       },
+      selectRealTimedata(row) {
+        console.log('实时数据方法', row)
+      },
       history_Submit() {
+        // console.log(row)
+        console.log('采集点', this.caiji)
         if (this.form_his.type === 'turang') {
-          this.biaoti = '茶园1采集点5-土壤温湿度表'
-        }else if (this.form_his.type === 'kongqi') {
-          this.biaoti = '茶园1采集点5-空气温湿度表'
-        }else if (this.form_his.type === 'gaungzhao') {
-          this.biaoti = '茶园1采集点5-光照度表'
-        }else if (this.form_his.type === 'lizi') {
-          this.biaoti = '茶园1采集点5-离子浓度表'
+          this.biaoti = '茶园1' + this.caiji + '-土壤温湿度表'
+        } else if (this.form_his.type === 'kongqi') {
+          this.biaoti = '茶园1' + this.caiji + '-空气温湿度表'
+        } else if (this.form_his.type === 'gaungzhao') {
+          this.biaoti = '茶园1' + this.caiji + '-光照度表'
+        } else if (this.form_his.type === 'lizi') {
+          this.biaoti = '茶园1' + this.caiji + '-离子浓度表'
         }
         this.initChart()
         this.history_5 = false
         // alert(this.form_his.type)
         this.history_show = true
         console.log('history_show:', this.history_show)
-        let div1 = document.getElementById('right')
+        const div1 = document.getElementById('right')
         div1.style.visibility = 'visible'
       },
       handleCreate() {

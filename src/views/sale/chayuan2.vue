@@ -201,6 +201,8 @@
             caijidian: '数据采集点4'
           }
         ],
+        caiji: '',
+        biaoti: '',
         form_his: {
           type: ''
         },
@@ -318,7 +320,7 @@
         this.chart.setOption(
           {
             title: {
-              text: '土壤温湿度变化',
+              text: this.biaoti,
               subtext: '纯属虚构'
             },
             tooltip: {
@@ -583,10 +585,24 @@
       },
       selectHistory(row) {
         console.log('点击的行数', row)
+        if (row.caijidian === '数据采集点3') {
+          this.caiji = '采集点3'
+        } else if (row.caijidian === '数据采集点4') {
+          this.caiji = '采集点4'
+        }
         this.history_5 = true
         // this.history_show = true
       },
       history_Submit() {
+        if (this.form_his.type === 'turang') {
+          this.biaoti = '茶园2' + this.caiji + '-土壤温湿度表'
+        } else if (this.form_his.type === 'kongqi') {
+          this.biaoti = '茶园2' + this.caiji + '-空气温湿度表'
+        } else if (this.form_his.type === 'gaungzhao') {
+          this.biaoti = '茶园2' + this.caiji + '-光照度表'
+        } else if (this.form_his.type === 'lizi') {
+          this.biaoti = '茶园3' + this.caiji + '-离子浓度表'
+        }
         this.initChart()
         this.history_5 = false
         // alert(this.form_his.type)
