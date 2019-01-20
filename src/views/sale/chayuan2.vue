@@ -195,13 +195,10 @@
       return {
         tablechayuan: [
           {
-            caijidian: '数据采集点5'
+            caijidian: '数据采集点3'
           },
           {
-            caijidian: '数据采集点6'
-          },
-          {
-            caijidian: '数据采集点7'
+            caijidian: '数据采集点4'
           }
         ],
         form_his: {

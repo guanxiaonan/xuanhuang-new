@@ -592,13 +592,13 @@ import { getToken } from '@/utils/auth'
       },
       history_Submit() {
         if (this.form_his.type === 'turang') {
-          this.biaoti = '茶园1-土壤温湿度表'
+          this.biaoti = '茶园1采集点5-土壤温湿度表'
         }else if (this.form_his.type === 'kongqi') {
-          this.biaoti = '茶园1-空气温湿度表'
+          this.biaoti = '茶园1采集点5-空气温湿度表'
         }else if (this.form_his.type === 'gaungzhao') {
-          this.biaoti = '茶园1-光照度表'
+          this.biaoti = '茶园1采集点5-光照度表'
         }else if (this.form_his.type === 'lizi') {
-          this.biaoti = '茶园1-离子浓度表'
+          this.biaoti = '茶园1采集点5-离子浓度表'
         }
         this.initChart()
         this.history_5 = false
