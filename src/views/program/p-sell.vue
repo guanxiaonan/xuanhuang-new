@@ -1,7 +1,7 @@
 <template>
   <div class="app-container calendar-list-container">
     <div class="element">
-      <span>浇水情况: {{saleingCount}}</span>
+      <span>农事管理: {{saleingCount}}</span>
       <el-button class="filter-item" style="float:right;" icon="el-icon-edit" @click="handleCreate">添加记录</el-button>
     </div>
     <hr>
@@ -23,17 +23,28 @@
           <span style="float:right">{{scope.row.sampleroomName}}</span>
         </template>
       </el-table-column>
+      <el-table-column label="施肥时间">
+        <template slot-scope="scope">
+          <img :src="scope.row.sampleroomImg" alt="">
+          <span style="float:right">{{scope.row.sampleroomName}}</span>
+        </template>
+      </el-table-column>
       <el-table-column width="110px" align="center" label="浇水区域（茶园编号等）">
         <template slot-scope="scope">
           <span>{{scope.row.price}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="110px" align="center" label="浇水量">
+      <el-table-column width="110px" align="center" label="施肥区域（茶园编号等）">
+        <template slot-scope="scope">
+          <span>{{scope.row.price}}</span>
+        </template>
+      </el-table-column>
+      <!-- <el-table-column width="110px" align="center" label="反馈">
         <template slot-scope="scope">
           <span>{{scope.row.shopName}}</span>
         </template>
-      </el-table-column>
-      <el-table-column align="center" label="浇水人员" width="95">
+      </el-table-column> -->
+      <el-table-column align="center" label="操作人员" width="95">
         <template slot-scope="scope">
           <span>{{scope.row.saleAmount}}</span>
           <!-- <span v-if="scope.row.pageviews" class="link-type" @click='handleFetchPv(scope.row.pageviews)'>{{scope.row.pageviews}}</span>
@@ -62,30 +73,79 @@
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogfaVisible">
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-tabs v-model="activeName">
-          <el-tab-pane label="基本" name="first">
-            <el-form-item label="浇水时间" prop="name">
+          <el-tab-pane label="浇水" name="first">
+            <el-form-item label="浇水时间">
+              <el-input v-model="form.name"></el-input>
+            </el-form-item>
+             <el-form-item label="浇水区域" prop="stock">
+              <el-input v-model="form.stock"></el-input>
+            </el-form-item>
+            <el-form-item label="浇水量" prop="stock">
+              <el-input v-model="form.stock"></el-input>
+            </el-form-item>
+            <el-form-item label="浇水人员">
+              <span>&nbsp;</span>
+              <el-input v-model="form.postFare"></el-input>
+            </el-form-item>
+            <el-form-item label="备注">
+              <span>&nbsp;</span>
+              <el-input v-model="form.note"></el-input>
+            </el-form-item>
+          </el-tab-pane>
+         <el-tab-pane label="施肥" name="second">
+            <el-form-item label="施肥时间" >
+              <el-input v-model="form.name"></el-input>
+            </el-form-item>
+            <el-form-item label="施肥区域" prop="stock">
+              <el-input v-model="form.stock"></el-input>
+            </el-form-item>
+            <el-form-item label="施肥种类及用量">
+              <span>&nbsp;</span>
+              <el-input v-model="form.postFare"></el-input>
+            </el-form-item>
+            <el-form-item label="施肥人员">
+              <span>&nbsp;</span>
+              <el-input v-model="form.note"></el-input>
+            </el-form-item>
+          </el-tab-pane>
+          <el-tab-pane label="反馈" name="third">
+            <!-- <el-form-item label="排序">
+              <el-input placeholder="数字越大，排名越靠前，如果为空，默认排序时间为创建时间" v-model="form.sortedNum"></el-input>
+            </el-form-item> -->
+            <el-form-item label="时间" prop="name">
 
               <el-input v-model="form.name"></el-input>
             </el-form-item>
-            <el-form-item label="浇水区域" prop="shopName">
+             <el-form-item label="问题区域" prop="name">
+
+              <el-input v-model="form.name"></el-input>
+            </el-form-item>
+            <el-form-item label="问题照片" prop="image">
+              <el-upload class="upload-demo" :file-list="form.image" action="http://101.132.44.253:8767/background/setSampleStatus"
+                :on-preview="handlePreview" :on-remove="handleRemove" list-type="picture" :auto-upload="autoupload"
+                :before-upload="beforeAvatarUpload" @on-change="changeImage">
+                <el-button size="small" type="primary">选择图片</el-button>
+                <!-- <div slot="tip" class="el-upload__tip">注：图片标签最多添加3个，大小为50*18</div> -->
+              </el-upload>
+              <!-- <el-dialog :visible.sync="dialogVisible">
+                <img width="100%" :src="dialogImageUrl" alt="">
+              </el-dialog> -->
+            </el-form-item>
+            <el-form-item label="问题描述" prop="shopName">
               <el-input v-model="form.shopName"></el-input>
             </el-form-item>
-            <el-form-item label="浇水量" prop="postFare">
+            <el-form-item label="人员" prop="postFare">
               <el-input v-model="form.postFare"></el-input>
             </el-form-item>
-            <el-form-item label="浇水人" prop="designCost">
+            <el-form-item label="状态" prop="designCost">
               <el-input v-model="form.designCost"></el-input>
-            </el-form-item>
-            <el-form-item label="备注">
-              <el-input v-model="form.installCost"></el-input>
             </el-form-item>
             <!-- </el-form> -->
           </el-tab-pane>
           <br>
           <el-button style="float:right" v-if="dialogStatus=='create'" type="primary" @click="submitForm('form')">确认</el-button>
-          <el-button style="float:right" v-else type="primary" @click="submitForm('form')">确认</el-button>
+          <el-button style="float:right" v-else type="primary" @click="submitForm1('form')">确认</el-button>
         </el-tabs>
-
       </el-form>
     </el-dialog>
   </div>
@@ -153,7 +213,7 @@
         },
         textMap: {
           update: '编辑',
-          create: '添加方案'
+          create: '添加记录'
         },
         rules: {
           name: [{
