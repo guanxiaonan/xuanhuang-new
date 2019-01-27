@@ -215,14 +215,15 @@ export const asyncRouterMap = [
       title: '数据中心',
       icon: 'component'
     },
-    children: [{
-      path: 'sell',
-      component: _import('sale/sell'),
-      name: 'sell',
-      meta: {
-        title: 'EC计数据输入'
-      }
-    },
+    children: [
+    //   {
+    //   path: 'sell',
+    //   component: _import('sale/sell'),
+    //   name: 'sell',
+    //   meta: {
+    //     title: 'EC计数据输入'
+    //   }
+    // },
     {
       path: 'sold',
       component: _import('sale/sold'),
@@ -255,22 +256,22 @@ export const asyncRouterMap = [
         title: '茶园3信息'
       }
     },
-    {
-      path: 'warehouse',
-      component: _import('sale/warehouse'),
-      name: 'warehouse',
-      meta: {
-        title: '光照数据'
-      }
-    },
-    {
-      path: 'recycle',
-      component: _import('sale/recycle'),
-      name: 'recycle',
-      meta: {
-        title: '空气数据'
-      }
-    }
+    // {
+    //   path: 'warehouse',
+    //   component: _import('sale/warehouse'),
+    //   name: 'warehouse',
+    //   meta: {
+    //     title: '光照数据'
+    //   }
+    // },
+    // {
+    //   path: 'recycle',
+    //   component: _import('sale/recycle'),
+    //   name: 'recycle',
+    //   meta: {
+    //     title: '空气数据'
+    //   }
+    // }
     ]
   },
   {

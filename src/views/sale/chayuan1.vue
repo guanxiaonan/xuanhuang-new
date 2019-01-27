@@ -18,7 +18,7 @@
           width="150"
           >
           <template slot-scope="scope">
-            <el-button @click="selectRealTimedata(scope.row)" type="text" size="small">实时数据</el-button>
+            <!--<el-button @click="selectRealTimedata(scope.row)" type="text" size="small">实时数据</el-button>-->
             <el-button @click="selectHistory(scope.row)" type="text" size="small">历史数据</el-button>
           </template>
         </el-table-column>

@@ -108,7 +108,25 @@
               <el-input v-model="form.note"></el-input>
             </el-form-item>
           </el-tab-pane>
-          <el-tab-pane label="反馈" name="third">
+          <!--EC计输入-->
+          <el-tab-pane label="EC计数据输入" name="third">
+            <el-form-item label="测量时间" >
+              <el-input v-model="form.name"></el-input>
+            </el-form-item>
+            <el-form-item label="测量区域" prop="stock">
+              <el-input v-model="form.stock"></el-input>
+            </el-form-item>
+            <el-form-item label="测量值">
+              <span>&nbsp;</span>
+              <el-input v-model="form.postFare"></el-input>
+            </el-form-item>
+            <el-form-item label="测量人员">
+              <span>&nbsp;</span>
+              <el-input v-model="form.note"></el-input>
+            </el-form-item>
+          </el-tab-pane>
+
+          <el-tab-pane label="反馈" name="forth">
             <!-- <el-form-item label="排序">
               <el-input placeholder="数字越大，排名越靠前，如果为空，默认排序时间为创建时间" v-model="form.sortedNum"></el-input>
             </el-form-item> -->
