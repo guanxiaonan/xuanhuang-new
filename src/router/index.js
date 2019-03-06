@@ -118,7 +118,7 @@ export const asyncRouterMap = [
     redirect: '/program/index',
     alwaysShow: true,
     meta: {
-      title: '日常管理',
+      title: '农事管理',
       icon: 'documentation',
       roles: ['admin']
     },
@@ -127,26 +127,26 @@ export const asyncRouterMap = [
       component: _import('program/p-sell'),
       name: 'p-sell',
       meta: {
-        title: '浇水',
+        title: '农事管理',
         roles: ['admin']
       }
-    },
-    {
-      path: 'p-warehouse',
-      component: _import('program/p-warehouse'),
-      name: 'p-warehouse',
-      meta: {
-        title: '施肥'
-      }
-    },
-    {
-      path: 'p-recycle',
-      component: _import('program/p-recycle'),
-      name: 'p-recycle',
-      meta: {
-        title: '反馈'
-      }
     }
+    // {
+    //   path: 'p-warehouse',
+    //   component: _import('program/p-warehouse'),
+    //   name: 'p-warehouse',
+    //   meta: {
+    //     title: '施肥'
+    //   }
+    // },
+    // {
+    //   path: 'p-recycle',
+    //   component: _import('program/p-recycle'),
+    //   name: 'p-recycle',
+    //   meta: {
+    //     title: '反馈'
+    //   }
+    // }
     ]
   },
   // {
@@ -215,14 +215,15 @@ export const asyncRouterMap = [
       title: '数据中心',
       icon: 'component'
     },
-    children: [{
-      path: 'sell',
-      component: _import('sale/sell'),
-      name: 'sell',
-      meta: {
-        title: 'EC计数据输入'
-      }
-    },
+    children: [
+    //   {
+    //   path: 'sell',
+    //   component: _import('sale/sell'),
+    //   name: 'sell',
+    //   meta: {
+    //     title: 'EC计数据输入'
+    //   }
+    // },
     {
       path: 'sold',
       component: _import('sale/sold'),
@@ -255,22 +256,22 @@ export const asyncRouterMap = [
         title: '茶园3信息'
       }
     },
-    {
-      path: 'warehouse',
-      component: _import('sale/warehouse'),
-      name: 'warehouse',
-      meta: {
-        title: '光照数据'
-      }
-    },
-    {
-      path: 'recycle',
-      component: _import('sale/recycle'),
-      name: 'recycle',
-      meta: {
-        title: '空气数据'
-      }
-    }
+    // {
+    //   path: 'warehouse',
+    //   component: _import('sale/warehouse'),
+    //   name: 'warehouse',
+    //   meta: {
+    //     title: '光照数据'
+    //   }
+    // },
+    // {
+    //   path: 'recycle',
+    //   component: _import('sale/recycle'),
+    //   name: 'recycle',
+    //   meta: {
+    //     title: '空气数据'
+    //   }
+    // }
     ]
   },
   {

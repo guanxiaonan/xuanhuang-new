@@ -1,12 +1,12 @@
 <template>
 
 <div>
-  <el-row class="panel-group" :gutter="80">
+  <!-- <el-row class="panel-group" :gutter="80">
     <el-col :xs="24" :sm="24" :lg="6" class="card-panel-col">
       <div @click="chuli(1)" class='card-panel'>
         <div class="card-panel-description">
           <div class="card-panel-text">茶园1</div>
-          <!--<span>{{data.saleoutproducts}}</span>-->
+          <span>{{data.saleoutproducts}}</span>
         </div>
       </div>
       <div>
@@ -62,7 +62,7 @@
       <div @click="chuli2" class="card-panel">
         <div class="card-panel-description">
           <div class="card-panel-text">茶园2</div>
-          <!--<span>{{data.deliverySO}}</span>-->
+          <span>{{data.deliverySO}}</span>
         </div>
       </div>
       <div>
@@ -104,7 +104,7 @@
       <div @click="chuli3" class="card-panel">
         <div class="card-panel-description">
           <div class="card-panel-text">茶园3</div>
-          <!--<span>{{data.questionSO}}</span>-->
+          <span>{{data.questionSO}}</span>
         </div>
       </div>
       <div>
@@ -142,13 +142,13 @@
         </el-collapse>
       </div>
     </el-col>
-  </el-row>
+  </el-row> -->
   <el-row class="panel-group" :gutter="80">
-    <el-col :xs="24" :sm="24" :lg="11" class="card-panel-col">
+    <el-col :xs="24" :sm="24" :lg="10" class="card-panel-col">
       <img src="../../../../assets/401_images/dashboard.jpeg" border="0" usemap="#teamap">
       <map name="teamap" id="teamap">
-<area shape="rectangle" coords="368,60,387,80" target="_blank" @click="chuli(3)" @mouseover="displayms(1)" @mouseout="hidems()">
-<area shape="rectangle" coords="386,94,406,114" target="_blank" @click="chuli(3)" @mouseover="displayms(2)" @mouseout="hidems()">
+      <area shape="rectangle" coords="368,60,387,80" target="_blank" @click="chuli(3)" @mouseover="displayms(1)" @mouseout="hidems()">
+      <area shape="rectangle" coords="386,94,406,114" target="_blank" @click="chuli(3)" @mouseover="displayms(2)" @mouseout="hidems()">
       <area shape="rectangle" coords="414,210,433,230" target="_blank" @click="chuli(2)" @mouseover=" displayms(3)" @mouseout="hidems()">
       <area shape="rectangle" coords="378,221,397,242" target="_blank" @click="chuli(2)" @mouseover=" displayms(4)" @mouseout="hidems()">
       <area shape="rectangle" coords="349,244,370,265" target="_blank" @click="chuli(1)" @mouseover=" displayms(5)" @mouseout="hidems()">
@@ -163,19 +163,19 @@
               <!---->
             <!--</Form>-->
             <el-form v-if="operMessage === 'caijidian1'" :label-position="labelPosition" label-width="100px" :model="realData">
-              <el-form-item label="土壤温度">
+              <el-form-item label="土壤温度" class="redItem">
                 <el-input v-model="realData.turangwendu">℃</el-input>
               </el-form-item>
-              <el-form-item label="土壤湿度">
+              <el-form-item label="土壤湿度" class="redItem">
                 <el-input v-model="realData.turangshidu">%</el-input>
               </el-form-item>
-              <el-form-item label="空气温度">
+              <el-form-item label="空气温度" class="redItem">
                 <el-input v-model="realData.kongqiwendu">℃</el-input>
               </el-form-item>
-              <el-form-item label="空气湿度">
+              <el-form-item label="空气湿度" class="redItem">
                 <el-input v-model="realData.kongqishidu">%</el-input>
               </el-form-item>
-              <el-form-item label="CO2浓度">
+              <el-form-item label="CO2浓度" class="redItem">
                 <el-input v-model="realData.CO2">ppm</el-input>
               </el-form-item>
             </el-form>
@@ -462,6 +462,9 @@
   width:400px;
   /*height:1000px;*/
   visibility: hidden;
+}
+.redItem .el-form-item__label{
+color:goldenrod;
 }
 </style>
 
