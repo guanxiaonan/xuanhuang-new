@@ -3,13 +3,13 @@ import request from '@/utils/request'
 export function loginByUsername(data) {
   // const data = JSON.stringify(query)
   return request({
-    url: 'http://101.132.44.253:8767/background/login',
+    url: 'http://localhost:9102/user/login',
     method: 'post',
     data
   }) // cl
   // gyn
   // return request({
-  //   url: 'http://localhost/user/login',
+  //   url: 'http://101.132.44.253/user/login',
   //   method: 'post',
   //   data
   // })
