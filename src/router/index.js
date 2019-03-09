@@ -224,38 +224,38 @@ export const asyncRouterMap = [
     //     title: 'EC计数据输入'
     //   }
     // },
-    {
-      path: 'sold',
-      component: _import('sale/sold'),
-      name: 'sold',
-      meta: {
-        title: '传感器采集数据'
+      {
+        path: 'sold',
+        component: _import('sale/sold'),
+        name: 'sold',
+        meta: {
+          title: '传感器采集数据'
+        }
+      },
+      {
+        path: 'chayuan1',
+        component: _import('sale/chayuan1'),
+        name: 'chayuan1',
+        meta: {
+          title: '茶园1信息'
+        }
+      },
+      {
+        path: 'chayuan2',
+        component: _import('sale/chayuan2'),
+        name: 'chayuan2',
+        meta: {
+          title: '茶园2信息'
+        }
+      },
+      {
+        path: 'chayuan3',
+        component: _import('sale/chayuan3'),
+        name: 'chayuan3',
+        meta: {
+          title: '茶园3信息'
+        }
       }
-    },
-    {
-      path: 'chayuan1',
-      component: _import('sale/chayuan1'),
-      name: 'chayuan1',
-      meta: {
-        title: '茶园1信息'
-      }
-    },
-    {
-      path: 'chayuan2',
-      component: _import('sale/chayuan2'),
-      name: 'chayuan2',
-      meta: {
-        title: '茶园2信息'
-      }
-    },
-    {
-      path: 'chayuan3',
-      component: _import('sale/chayuan3'),
-      name: 'chayuan3',
-      meta: {
-        title: '茶园3信息'
-      }
-    },
     // {
     //   path: 'warehouse',
     //   component: _import('sale/warehouse'),

@@ -83,6 +83,7 @@
       </el-table-column>
     </el-table>
 
+
     <div class="pagination-container">
       <el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="request.page"
         :page-sizes="[10,20,30,50]" :page-size="request.size" layout="total, sizes, prev, pager, next, jumper" :total="total">
@@ -574,7 +575,7 @@ import { getToken } from '@/utils/auth'
           var co2 = 0
 
           for (var i = 0; i < response.data.data.length; i++) {
-            //湿度
+            // 湿度
             if (response.data.data[i].types === 'SHT21/SHT25温湿度传感器' && response.data.data[i].units === '%') {
               this.kongqishiduall[kqsd++] = response.data.data[i].datas
             }

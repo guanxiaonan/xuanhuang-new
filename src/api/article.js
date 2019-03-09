@@ -280,10 +280,23 @@ export function getProductList(data) {
   })
 }
 
+export function differentData(data) {
+
+  return request(
+    {
+      url: 'http://localhost:9102/all_data-get',
+      method: 'post',
+      data
+    }
+  )
+
+}
+
 // 获取real_time_data的数据
 export function getRealData() {
   return request({
-    url: 'http://101.201.71.184:9002/data_get',
+    // url: 'http://101.201.71.184:9002/data_get',
+    url: 'http://localhost:9102/real_data-get',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'

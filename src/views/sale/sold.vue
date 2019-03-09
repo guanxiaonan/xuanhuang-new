@@ -4,6 +4,18 @@
     <div class="element">
       <span>传感器采集数据:{{saleoutCount}}</span>
     </div>
+
+    <el-dropdown @command="typesClick">
+      <el-button type="primary">
+        传感器类型<i class="el-icon-arrow-down el-icon--right"></i>
+      </el-button>
+      <el-dropdown-menu  slot="dropdown">
+        <el-dropdown-item command="土壤湿度">土壤湿度</el-dropdown-item>
+        <el-dropdown-item command="空气温度">空气温度</el-dropdown-item>
+        <el-dropdown-item command="空气湿度">空气湿度</el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
+
     <hr>
     <div class="filter-container">
       <el-button style="float:right" class="filter-item" type="primary" v-waves icon="el-icon-search" @click="handleFilter">搜索</el-button>
@@ -47,46 +59,20 @@
       </el-table-column>
     </el-table>
 
-    <div class="pagination-container">
-      <el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="request.page"
-        :page-sizes="[10,20,30,50]" :page-size="request.size" layout="total, sizes, prev, pager, next, jumper" :total="total">
-      </el-pagination>
-    </div>
-<el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogfaVisible">
-  <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-    <el-tabs v-model="activeName">
-      <el-tab-pane label="土壤数据记录" name="first">
-        <el-form-item label="检测时间">
-          <span>&nbsp;</span>
-          <el-col :span="6">
-            <el-input style="margin-left:9px" v-model="form.price"></el-input>
-          </el-col>
-          <el-col style="margin-left:20px" :span="4">检测人姓名</el-col>
-          <el-col :span="6">
-            <el-input v-model="form.cost"></el-input>
-          </el-col>
-        </el-form-item>
-        <el-form-item label="茶园编号">
-          <span>&nbsp;</span>
-          <el-col :span="6">
-            <el-input style="margin-left:9px" v-model="form.price"></el-input>
-          </el-col>
-          <el-col style="margin-left:20px" :span="4">传感器编号</el-col>
-          <el-col :span="6">
-            <el-input v-model="form.cost"></el-input>
-          </el-col>
-        </el-form-item>
-        <el-form-item label="土壤数据">
-          <span>&nbsp;</span>
-          <el-input style="width:150px" v-model="form.postFare"></el-input>
-        </el-form-item>
-      </el-tab-pane>
-      <br>
-      <el-button style="float:right" v-if="dialogStatus=='create'" type="primary" @click="submitForm('form')">确认</el-button>
-      <el-button style="float:right" v-else type="primary" @click="submitForm1('form')">确认</el-button>
-    </el-tabs>
-  </el-form>
-</el-dialog>
+    <!--<el-form :model="">-->
+      <!--&lt;!&ndash;<el-form-item label="活动名称" :label-width="formLabelWidth">&ndash;&gt;-->
+      <!--&lt;!&ndash;<el-input v-model="form.name" autocomplete="off"></el-input>&ndash;&gt;-->
+      <!--&lt;!&ndash;</el-form-item>&ndash;&gt;-->
+      <!--<el-form-item label="查询数据" :label-width="formLabelWidth">-->
+        <!--<el-select v-model="" placeholder="选择查询的数据">-->
+          <!--<el-option label="土壤温湿度" value="turang"></el-option>-->
+          <!--<el-option label="空气温湿度" value="kongqi"></el-option>-->
+          <!--<el-option label="光照强度" value="guanngzhao"></el-option>-->
+          <!--<el-option label="离子浓度" value="lizi"></el-option>-->
+        <!--</el-select>-->
+      <!--</el-form-item>-->
+    <!--</el-form>-->
+
   </div>
 </template>
 
@@ -134,6 +120,9 @@ import { getToken } from '@/utils/auth'
     },
     data() {
       return {
+        differentData: {
+          types: ''
+        }, // 表示获取不同的传感器的值
         request: {
           authorization: '',
           productId: '',
@@ -147,43 +136,9 @@ import { getToken } from '@/utils/auth'
           productId: '',
           page: 1,
           size: 5,
-          searchString: '',
+          searchString: '', // 存在
           status: 3
         },
-        saleingCount: 0,
-        stockCount: 0,
-        saleoutCount: 0,
-        form: {
-          categoryId: '',
-          productNo: '',
-          id: '',
-          name: '',
-          shopId: '',
-          shopName: '',
-          price: '',
-          detail: '',
-          image: [],
-          sortedNum: '',
-          status: '',
-          postFare: '',
-          cost: '',
-          primecost: '',
-          stock: '',
-          isvalid: '',
-          fileList: [],
-          shopIds: [],
-          replaceProductVos: [{
-            id: '',
-            productId: '',
-            productName: ''
-          }]
-          // newcomponentVos: []
-        },
-        form1: {
-          content: ''
-        },
-        activeName: 'first',
-        tableKey: 0,
         list: [],
         total: null,
         listLoading: true,
@@ -210,21 +165,7 @@ import { getToken } from '@/utils/auth'
             message: 'stock is required',
             trigger: 'change'
           }]
-        },
-        options: [],
-        options1: [],
-        downloadLoading: false,
-        productIds: []
-      }
-    },
-    filters: {
-      statusFilter(type) {
-        const typeMap = {
-
-          '0': '下架',
-          '1': '上架'
         }
-        return typeMap[type]
       }
     },
     created() {
@@ -233,7 +174,7 @@ import { getToken } from '@/utils/auth'
     },
     mounted() {
       this.initChart()
-  },
+    },
     methods: {
       initChart() {
         this.chart = echarts.init(this.$refs.myEchart)
@@ -323,6 +264,14 @@ import { getToken } from '@/utils/auth'
             ]
           }
         )
+      },
+
+      // 选择传感器类型
+      typesClick(command) {
+        // this.$message('click on item ' + command)
+        this.differentData.types = command
+        console.log(this.differentData.types)
+        alert('传感器值', this.differentData.types)
       },
       change(row) {
         this.request.authorization = getToken('Admin-Token')
@@ -484,32 +433,6 @@ import { getToken } from '@/utils/auth'
         })
         row.status = status
       },
-      resetTemp() {
-        this.form = {
-          categoryId: '',
-          productNo: '',
-          id: '',
-          name: '',
-          shopId: '',
-          shopName: '',
-          price: '',
-          detail: '',
-          image: [],
-          sortedNum: '',
-          status: '',
-          postFare: '',
-          cost: '',
-          primecost: '',
-          stock: '',
-          isvalid: '',
-          productVos: [{
-            productIds: ''
-          }],
-          replaceProductVos: [{
-            productName: ''
-          }]
-        }
-      },
       handleCreate() {
         this.resetTemp()
         this.dialogStatus = 'create'
@@ -569,6 +492,15 @@ import { getToken } from '@/utils/auth'
     .el-input {
       width: 98%;
     }
+  }
+  .el-dropdown {
+    vertical-align: top;
+  }
+  .el-dropdown + .el-dropdown {
+    margin-left: 15px;
+  }
+  .el-icon-arrow-down {
+    font-size: 12px;
   }
 </style>
 
