@@ -271,7 +271,6 @@ import { getToken } from '@/utils/auth'
         // this.$message('click on item ' + command)
         this.differentData.types = command
         console.log(this.differentData.types)
-        alert('传感器值', this.differentData.types)
       },
       change(row) {
         this.request.authorization = getToken('Admin-Token')

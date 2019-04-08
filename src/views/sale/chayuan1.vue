@@ -13,8 +13,14 @@
           width="150">
         </el-table-column>
         <el-table-column
+          fixed
+          label="节点状态"
+          width="150">
+          <template slot-scope="scope">开启</template>
+        </el-table-column>
+        <el-table-column
           fixed="right"
-          label="操作"
+          label="查看"
           width="150"
           >
           <template slot-scope="scope">
@@ -24,71 +30,84 @@
         </el-table-column>
       </el-table>
     </el-card>
+    <div class="block">
+      <span class="demonstration">选择日期</span>
+      <el-date-picker
+        v-model="value4"
+        type="datetimerange"
+        range-separator="至"
+        start-placeholder="开始日期"
+        end-placeholder="结束日期">
+      </el-date-picker>
+    </div>
     <div id="main">
-      <div id="left">
-        <div :class="className" :id="id" :style="{height:height,width:width}" ref="myEchart"></div>
-      </div>
-      <div id="right">
-        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
-        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
-        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
-        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
-        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">
-        <img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">ß
-        <el-button class="filter-item" style="margin-top:2%;margin-left:38%;" @click="viewMore">查看更多</el-button>
-      </div>
+      <!--<div id="left">-->
+        <!--<div :class="className" :id="id" :style="{height:height,width:width}" ref="myEchart"></div>-->
+      <!--</div>-->
+      <!--<div id="right">-->
+        <!--<img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">-->
+        <!--<img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">-->
+        <!--<img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">-->
+        <!--<img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">-->
+        <!--<img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">-->
+        <!--<img src="../../assets/401_images/1.png" alt="" style="width:150px;height:150px;">ß-->
+        <!--<el-button class="filter-item" style="margin-top:2%;margin-left:38%;" @click="viewMore">查看更多</el-button>-->
+      <!--</div>-->
+      <!--<div id="right">-->
+        <div :class="className1" :id="id1" :style="{height:height1,width:width1}" ref="myEchart"></div>
+      <!--</div>-->
     </div>
     <hr>
-    <div class="filter-container">
-      <el-button class="filter-item" style="float:left;" icon="el-icon-edit" @click="handleCreate">添加记录</el-button>
-      <el-button style="float:right" class="filter-item" type="primary" v-waves icon="el-icon-search" @click="handleFilter">搜索</el-button>
-      <el-input @keyup.enter.native="handleFilter" style="float:right; width:300px " class="filter-item" placeholder="检测时间/茶园编号/传感器编号"
-        v-model="requestList.searchString">
-      </el-input>
-    </div>
-    <el-table :key='tableKey' :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row
-      style="width: 100%">
-      <el-table-column align="center" type="index" :index="tIndex" label="序号" width="60">
-      </el-table-column>
-      <el-table-column min-width="80px" label="传感器类型">
-        <template slot-scope="scope">
-          <span style="text-align:center;float:left">{{scope.row.types}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column width="160px" align="center" label="采集时间">
-        <template slot-scope="scope">
-          <span>{{scope.row.data_time}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="数据" width="95">
-        <template slot-scope="scope">
-          <span>{{scope.row.datas}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="单位" width="95">
-        <template slot-scope="scope">
-          <span>{{scope.row.units}}</span>
-        </template>
-      </el-table-column>
-      <!-- <el-table-column class-name="status-col" label="数据" width="100">
-        <template slot-scope="scope">
-          <button type="primary" size="mini" @click="change(scope.row)">{{scope.row.status| statusFilter}}</button>
-        </template>
-      </el-table-column> -->
-      <el-table-column align="center" :label="$t('table.actions')" width="230" class-name="small-padding fixed-width">
-        <template slot-scope="scope">
-          <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>
-          <el-button size="mini" type="danger" @click="delete1(scope.row)">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+    <!--<div class="filter-container">-->
+      <!--<el-button class="filter-item" style="float:left;" icon="el-icon-edit" @click="handleCreate">添加记录</el-button>-->
+      <!--<el-button style="float:right" class="filter-item" type="primary" v-waves icon="el-icon-search" @click="handleFilter">搜索</el-button>-->
+      <!--<el-input @keyup.enter.native="handleFilter" style="float:right; width:300px " class="filter-item" placeholder="检测时间/茶园编号/传感器编号"-->
+        <!--v-model="requestList.searchString">-->
+      <!--</el-input>-->
+    <!--</div>-->
+    <!--<el-table :key='tableKey' :data="listbiaoge" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row-->
+      <!--style="width: 100%">-->
+      <!--<el-table-column align="center" type="index" :index="tIndex" label="序号" width="60">-->
+      <!--</el-table-column>-->
+      <!--<el-table-column min-width="80px" label="传感器类型">-->
+        <!--<template slot-scope="scope">-->
+          <!--<span style="text-align:center;float:left">{{scope.row.types}}</span>-->
+        <!--</template>-->
+      <!--</el-table-column>-->
+      <!--<el-table-column width="160px" align="center" label="采集时间">-->
+        <!--<template slot-scope="scope">-->
+          <!--<span>{{scope.row.data_time}}</span>-->
+        <!--</template>-->
+      <!--</el-table-column>-->
+      <!--<el-table-column align="center" label="数据" width="95">-->
+        <!--<template slot-scope="scope">-->
+          <!--<span>{{scope.row.datas}}</span>-->
+        <!--</template>-->
+      <!--</el-table-column>-->
+      <!--<el-table-column align="center" label="单位" width="95">-->
+        <!--<template slot-scope="scope">-->
+          <!--<span>{{scope.row.units}}</span>-->
+        <!--</template>-->
+      <!--</el-table-column>-->
+      <!--&lt;!&ndash; <el-table-column class-name="status-col" label="数据" width="100">-->
+        <!--<template slot-scope="scope">-->
+          <!--<button type="primary" size="mini" @click="change(scope.row)">{{scope.row.status| statusFilter}}</button>-->
+        <!--</template>-->
+      <!--</el-table-column> &ndash;&gt;-->
+      <!--<el-table-column align="center" :label="$t('table.actions')" width="230" class-name="small-padding fixed-width">-->
+        <!--<template slot-scope="scope">-->
+          <!--<el-button type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>-->
+          <!--<el-button size="mini" type="danger" @click="delete1(scope.row)">删除</el-button>-->
+        <!--</template>-->
+      <!--</el-table-column>-->
+    <!--</el-table>-->
 
 
-    <div class="pagination-container">
-      <el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="request.page"
-        :page-sizes="[10,20,30,50]" :page-size="request.size" layout="total, sizes, prev, pager, next, jumper" :total="total">
-      </el-pagination>
-    </div>
+    <!--<div class="pagination-container">-->
+      <!--<el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="request.page"-->
+        <!--:page-sizes="[10,20,30,50]" :page-size="request.size" layout="total, sizes, prev, pager, next, jumper" :total="total">-->
+      <!--</el-pagination>-->
+    <!--</div>-->
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogfaVisible">
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-tabs v-model="activeName">
@@ -136,27 +155,9 @@
           <el-select v-model="form_his.type" placeholder="选择查询的数据">
             <el-option label="土壤温湿度" value="turang"></el-option>
             <el-option label="空气温湿度" value="kongqi"></el-option>
-            <el-option label="光照强度" value="guanngzhao"></el-option>
-            <el-option label="离子浓度" value="lizi"></el-option>
-          </el-select>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="history_5 = false">取 消</el-button>
-        <el-button type="primary" @click="history_Submit()">确 定</el-button>
-      </div>
-    </el-dialog>
-    <el-dialog title="实时数据" :visible.sync="history_5">
-      <el-form :model="form_his">
-        <!--<el-form-item label="活动名称" :label-width="formLabelWidth">-->
-        <!--<el-input v-model="form.name" autocomplete="off"></el-input>-->
-        <!--</el-form-item>-->
-        <el-form-item label="查询数据" :label-width="formLabelWidth">
-          <el-select v-model="form_his.type" placeholder="选择查询的数据">
-            <el-option label="土壤温湿度" value="turang"></el-option>
-            <el-option label="空气温湿度" value="kongqi"></el-option>
             <el-option label="光照强度" value="guangzhao"></el-option>
-            <el-option label="co2浓度" value="lizi"></el-option>
+            <el-option label="CO2浓度" value="CO2"></el-option>
+            <el-option label="离子浓度" value="lizi"></el-option>
           </el-select>
         </el-form-item>
       </el-form>
@@ -190,7 +191,15 @@ import { getToken } from '@/utils/auth'
         type: String,
         default: 'yourClassName'
       },
+      className1: {
+        type: String,
+        default: 'yourClassName1'
+      },
       id: {
+        type: String,
+        default: 'yourID'
+      },
+      id1: {
         type: String,
         default: 'yourID'
       },
@@ -198,9 +207,17 @@ import { getToken } from '@/utils/auth'
         type: String,
         default: '500px'
       },
+      width1: {
+        type: String,
+        default: '850px'
+      },
       height: {
         type: String,
-        default: '400px'
+        default: '450px'
+      },
+      height1: {
+        type: String,
+        default: '500px'
       }
     },
     name: 'complexTable',
@@ -224,11 +241,13 @@ import { getToken } from '@/utils/auth'
             caijidian: '数据采集点7'
           }
         ],
+        value4: [new Date(2019, 2, 7, 15, 43), new Date(2019, 2, 7, 16, 32)],
         kongqiwenduall: [],
         kongqishiduall: [],
         turangshiduall: [],
         turangwenduall: [],
         CO2all: [],
+        lightall: [],
         showallhigh: [],
         showalllow: [],
         caiji: '', // 采集点确定
@@ -287,6 +306,7 @@ import { getToken } from '@/utils/auth'
         activeName: 'first',
         tableKey: 0,
         list: [],
+        listbiaoge: [],
         total: null,
         listLoading: true,
         dialogfaVisible: false,
@@ -318,6 +338,8 @@ import { getToken } from '@/utils/auth'
         options: [],
         options1: [],
         biaoti: '',
+        unitshigh: '',
+        unitslow: '',
         downloadLoading: false,
         productIds: []
       }
@@ -352,7 +374,7 @@ import { getToken } from '@/utils/auth'
           {
             title: {
               text: this.biaoti,
-              subtext: '纯属虚构'
+              subtext: '红色温度，深绿湿度'
             },
             tooltip: {
               trigger: 'axis'
@@ -375,19 +397,27 @@ import { getToken } from '@/utils/auth'
             xAxis: {
               type: 'category',
               boundaryGap: false,
-              data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+              data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+                '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
+                '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31',
+                '32', '33', '34', '35']
             },
             yAxis: {
               type: 'value',
               axisLabel: {
-                formatter: '{value} °C'
+                formatter: '{value}'
               }
             },
             series: [
               {
-                name: '湿度',
+                name: this.unitshigh,
                 type: 'line',
-                data: [this.showallhigh[0], this.showallhigh[1], this.showallhigh[2], this.showallhigh[3], this.showallhigh[4], this.showallhigh[4], this.showallhigh[5]],
+                data: [this.showallhigh[0], this.showallhigh[1], this.showallhigh[2], this.showallhigh[3], this.showallhigh[4], this.showallhigh[5], this.showallhigh[6],
+                  this.showallhigh[7], this.showallhigh[8], this.showallhigh[9], this.showallhigh[10], this.showallhigh[11], this.showallhigh[12], this.showallhigh[13],
+                  this.showallhigh[14], this.showallhigh[15], this.showallhigh[16], this.showallhigh[17], this.showallhigh[18], this.showallhigh[19], this.showallhigh[20],
+                  this.showallhigh[21], this.showallhigh[22], this.showallhigh[23], this.showallhigh[24], this.showallhigh[25], this.showallhigh[26], this.showallhigh[27],
+                  this.showallhigh[28], this.showallhigh[29], this.showallhigh[30], this.showallhigh[31], this.showallhigh[32], this.showallhigh[33], this.showallhigh[34],
+                  this.showallhigh[35]],
                 markPoint: {
                   data: [
                     { type: 'max', name: '最大值' },
@@ -401,9 +431,14 @@ import { getToken } from '@/utils/auth'
                 }
               },
               {
-                name: '温度',
+                name: this.unitslow,
                 type: 'line',
-                data: [this.showalllow[0], this.showalllow[1], this.showalllow[2], this.showalllow[3], this.showalllow[4], this.showalllow[4], this.showalllow[5]],
+                data: [this.showalllow[0], this.showalllow[1], this.showalllow[2], this.showalllow[3], this.showalllow[4], this.showalllow[5], this.showalllow[6],
+                  this.showalllow[7], this.showalllow[8], this.showalllow[9], this.showalllow[10], this.showalllow[11], this.showalllow[12], this.showalllow[13],
+                  this.showalllow[14], this.showalllow[15], this.showalllow[16], this.showalllow[17], this.showalllow[18], this.showalllow[19], this.showalllow[20],
+                  this.showalllow[21], this.showalllow[22], this.showalllow[23], this.showalllow[24], this.showalllow[25], this.showalllow[26], this.showalllow[27],
+                  this.showalllow[28], this.showalllow[29], this.showalllow[30], this.showalllow[31], this.showalllow[32], this.showalllow[33], this.showalllow[34],
+                  this.showalllow[35]],
                 markPoint: {
                   data: [
                     { name: '周最低', value: -2, xAxis: 1, yAxis: -1.5 }
@@ -573,13 +608,16 @@ import { getToken } from '@/utils/auth'
           var trwd = 0
           var trsd = 0
           var co2 = 0
+          var gzqd = 0
 
           for (var i = 0; i < response.data.data.length; i++) {
             // 湿度
-            if (response.data.data[i].types === 'SHT21/SHT25温湿度传感器' && response.data.data[i].units === '%') {
+            if (response.data.data[i].types === 'SHT21/SHT25温湿度传感器' && response.data.data[i].units === '%' &&
+            response.data.data[i].dev_addr === '4004') {
               this.kongqishiduall[kqsd++] = response.data.data[i].datas
             }
-            if (response.data.data[i].types === 'SHT21/SHT25温湿度传感器' && response.data.data[i].units === '℃') {
+            if (response.data.data[i].types === 'SHT21/SHT25温湿度传感器' && response.data.data[i].units === '℃' &&
+              response.data.data[i].dev_addr === '4004') {
               this.kongqiwenduall[kqwd++] = response.data.data[i].datas
             }
             if (response.data.data[i].types === '土壤湿度传感器' && response.data.data[i].units === '%') {
@@ -589,7 +627,10 @@ import { getToken } from '@/utils/auth'
               this.turangwenduall[trwd++] = response.data.data[i].datas
             }
             if (response.data.data[i].types === 'CO2传感器' && response.data.data[i].units === 'ppm') {
-              this.CO2all[co2++] = response.data.data[i].datas / 100
+              this.CO2all[co2++] = response.data.data[i].datas / 10
+            }
+            if (response.data.data[i].types === '光照探测器' && response.data.data[i].units === 'Lx') {
+              this.lightall[gzqd++] = response.data.data[i].datas
             }
           }
           console.log('空气湿度', this.kongqishiduall)
@@ -597,6 +638,7 @@ import { getToken } from '@/utils/auth'
           console.log('土壤湿度', this.turangshiduall)
           console.log('土壤温度', this.turangwenduall)
           console.log('CO2', this.CO2all)
+          console.log('光照强度', this.lightall)
           this.list = response.data.data
           // this.total = response.data.data.total
           // this.listLoading = false
@@ -680,20 +722,26 @@ import { getToken } from '@/utils/auth'
         // console.log(row)
         console.log('采集点', this.caiji)
         if (this.form_his.type === 'turang') {
-          this.biaoti = '茶园1' + this.caiji + '-土壤温湿度表'
-          this.showallhigh = this.turangshiduall
-          this.showalllow = this.turangwenduall
+          this.biaoti = '茶园1' + this.caiji + '-土壤温湿度表' + '     ' + '2019-03-07 15:43:02 ~  2019-03-07 16:32:11'
+          this.showallhigh = this.turangwenduall
+          this.unitshigh = '温度℃'
+          this.showalllow = this.turangshiduall
+          this.unitslow = '湿度%'
         } else if (this.form_his.type === 'kongqi') {
-          this.biaoti = '茶园1' + this.caiji + '-空气温湿度表'
-          this.showallhigh = this.kongqishiduall
-          this.showalllow = this.kongqiwenduall
-        } else if (this.form_his.type === 'gaungzhao') {
-          this.biaoti = '茶园1' + this.caiji + '-光照度表'
-          this.showallhigh = this.kongqishiduall
+          this.biaoti = '茶园1' + this.caiji + '-空气温湿度表' + '     ' + '2019-03-07 15:43:02 ~  2019-03-07 16:32:11'
+          this.showallhigh = this.kongqiwenduall
+          this.unitshigh = '温度℃'
+          this.showalllow = this.kongqishiduall
+          this.unitslow = '湿度%'
+        } else if (this.form_his.type === 'guangzhao') {
+          this.biaoti = '茶园1' + this.caiji + '-光照度表' + '     ' + '2019-03-08 07:20:58 ~  2019-03-08 07:54:28'
+          this.showallhigh = this.lightall
+          this.unitshigh = '光照LX'
           this.showalllow = 0
-        } else if (this.form_his.type === 'lizi') {
-          this.biaoti = '茶园1' + this.caiji + '-离子浓度表'
+        } else if (this.form_his.type === 'CO2') {
+          this.biaoti = '茶园1' + this.caiji + '-CO2浓度表' + '     ' + '2019-03-07 15:43:02 ~  2019-03-07 16:32:11'
           this.showallhigh = this.CO2all
+          this.unitshigh = 'CO2 ppm'
           this.showalllow = 0
         }
         this.initChart()

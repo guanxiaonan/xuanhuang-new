@@ -1,6 +1,7 @@
 <template>
   <div class="dashboard-editor-container">
     <github-corner></github-corner>
+    <div><h1 style="color:#000000;">黄茶生长大数据管理系统</h1></div>
      <!--<panel-group :data="data"></panel-group>-->
 <iframe width="600" scrolling="no" height="50" frameborder="0" allowtransparency="true" src="//i.tianqi.com/index.php?c=code&id=12&icon=1&py=jinyun&num=3&site=12"></iframe>
     <panel-group :data="data"></panel-group>

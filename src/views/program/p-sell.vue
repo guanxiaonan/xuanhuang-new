@@ -9,36 +9,43 @@
       <el-button style="float:right" class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">{{$t('table.search')}}</el-button>
       <el-input v-model="requestList.searchString" clearable style="width:300px;float:right" placeholder="请输入时间"></el-input>
     </div>
-    <el-table :key='tableKey' :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit
+    <el-table :key='tableKey' :data="agricultural_data" v-loading="listLoading" element-loading-text="给我一点时间" border fit
       highlight-current-row style="width: 100%">
       <!-- <el-table-column float:left type="selection" align="center"></el-table-column> -->
       <el-table-column align="center" label="序号" width="65">
         <template slot-scope="scope">
-          <span>{{scope.row.sampleroomId}}</span>
+          <span>{{scope.row.taskId}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="浇水时间">
+      <el-table-column label="时间">
         <template slot-scope="scope">
-          <img :src="scope.row.sampleroomImg" alt="">
-          <span style="float:right">{{scope.row.sampleroomName}}</span>
+          <!--<img :src="scope.row.sampleroomImg" alt="">-->
+          <span style="float:right">{{scope.row.task_time}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="施肥时间">
+      <el-table-column label="操作事项">
         <template slot-scope="scope">
-          <img :src="scope.row.sampleroomImg" alt="">
-          <span style="float:right">{{scope.row.sampleroomName}}</span>
+          <!--<img :src="scope.row.sampleroomImg" alt="">-->
+          <span style="float:right">{{scope.row.task_type}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="110px" align="center" label="浇水区域（茶园编号等）">
+      <el-table-column width="110px" align="center" label="区域（茶园编号等）">
         <template slot-scope="scope">
-          <span>{{scope.row.price}}</span>
+          <span>{{scope.row.garden}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="110px" align="center" label="施肥区域（茶园编号等）">
+      <el-table-column label="操作量">
         <template slot-scope="scope">
-          <span>{{scope.row.price}}</span>
+          <!--<img :src="scope.row.sampleroomImg" alt="">-->
+          <span style="float:right">{{scope.row.task_data}}</span>
         </template>
       </el-table-column>
+      <el-table-column width="110px" align="center" label="计量单位">
+        <template slot-scope="scope">
+          <span>{{scope.row.task_units}}</span>
+        </template>
+      </el-table-column>
+
       <!-- <el-table-column width="110px" align="center" label="反馈">
         <template slot-scope="scope">
           <span>{{scope.row.shopName}}</span>
@@ -46,14 +53,15 @@
       </el-table-column> -->
       <el-table-column align="center" label="操作人员" width="95">
         <template slot-scope="scope">
-          <span>{{scope.row.saleAmount}}</span>
+          <span>{{scope.row.username}}</span>
           <!-- <span v-if="scope.row.pageviews" class="link-type" @click='handleFetchPv(scope.row.pageviews)'>{{scope.row.pageviews}}</span>
           <span v-else>0</span> -->
         </template>
       </el-table-column>
-      <el-table-column class-name="status-col" label="备注" width="100">
+      <el-table-column class-name="status-col" label="备注" width="200">
         <template slot-scope="scope">
-          <button type="primary" size="mini" @click="change(scope.row)">{{scope.row.status}}</button>
+          <span>{{scope.row.beizhu}}</span>
+          <!--<button type="primary" size="mini" @click="change(scope.row)">{{scope.row.status}}</button>-->
         </template>
       </el-table-column>
       <el-table-column align="center" :label="$t('table.actions')" width="230" class-name="small-padding fixed-width">
@@ -71,97 +79,117 @@
       </el-pagination>
     </div>
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogfaVisible">
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form_task" :model="form_task" :rules="rules" label-width="80px">
         <el-tabs v-model="activeName">
-          <el-tab-pane label="浇水" name="first">
-            <el-form-item label="浇水时间">
-              <el-input v-model="form.name"></el-input>
+          <el-tab-pane label="农事管理" name="first">
+
+            <el-form-item label="操作类型">
+              <el-select v-model="form_task.task_type" placeholder="请选择">
+                <el-option
+                  v-for="item in taskTypeList"
+                  :key="item.task_type"
+                  :label="item.task_type"
+                  :value="item.id">
+                </el-option>
+              </el-select>
             </el-form-item>
-             <el-form-item label="浇水区域" prop="stock">
-              <el-input v-model="form.stock"></el-input>
+
+             <el-form-item label="计量单位" prop="stock">
+               <el-select v-model="form_task.task_units" placeholder="请选择">
+                 <el-option
+                   v-for="item in taskUnitsList"
+                   :key="item.task_units"
+                   :label="item.task_units"
+                   :value="item.id">
+                 </el-option>
+               </el-select>
             </el-form-item>
-            <el-form-item label="浇水量" prop="stock">
-              <el-input v-model="form.stock"></el-input>
+            <el-form-item label="操作的量" prop="stock">
+              <el-input v-model="form_task.task_data"></el-input>
             </el-form-item>
-            <el-form-item label="浇水人员">
+            <el-form-item label="茶园号"  prop="stock">
+              <el-input width="110px" v-model="form_task.task_data"></el-input>
+            </el-form-item>
+            <el-form-item label="工作人员">
               <span>&nbsp;</span>
-              <el-input v-model="form.postFare"></el-input>
+              <el-input v-model="form_task.username"></el-input>
             </el-form-item>
             <el-form-item label="备注">
               <span>&nbsp;</span>
-              <el-input v-model="form.note"></el-input>
+              <el-input v-model="form_task.beizhu"></el-input>
             </el-form-item>
           </el-tab-pane>
-         <el-tab-pane label="施肥" name="second">
-            <el-form-item label="施肥时间" >
-              <el-input v-model="form.name"></el-input>
-            </el-form-item>
-            <el-form-item label="施肥区域" prop="stock">
-              <el-input v-model="form.stock"></el-input>
-            </el-form-item>
-            <el-form-item label="施肥种类及用量">
-              <span>&nbsp;</span>
-              <el-input v-model="form.postFare"></el-input>
-            </el-form-item>
-            <el-form-item label="施肥人员">
-              <span>&nbsp;</span>
-              <el-input v-model="form.note"></el-input>
-            </el-form-item>
-          </el-tab-pane>
-          <!--EC计输入-->
-          <el-tab-pane label="EC计数据输入" name="third">
-            <el-form-item label="测量时间" >
-              <el-input v-model="form.name"></el-input>
-            </el-form-item>
-            <el-form-item label="测量区域" prop="stock">
-              <el-input v-model="form.stock"></el-input>
-            </el-form-item>
-            <el-form-item label="测量值">
-              <span>&nbsp;</span>
-              <el-input v-model="form.postFare"></el-input>
-            </el-form-item>
-            <el-form-item label="测量人员">
-              <span>&nbsp;</span>
-              <el-input v-model="form.note"></el-input>
-            </el-form-item>
-          </el-tab-pane>
+         <!--<el-tab-pane label="施肥" name="second">-->
+            <!--<el-form-item label="施肥时间" >-->
+              <!--<el-input v-model="form.name"></el-input>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="施肥区域" prop="stock">-->
+              <!--<el-input v-model="form.stock"></el-input>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="施肥种类及用量">-->
+              <!--<span>&nbsp;</span>-->
+              <!--<el-input v-model="form.postFare"></el-input>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="施肥人员">-->
+              <!--<span>&nbsp;</span>-->
+              <!--<el-input v-model="form.note"></el-input>-->
+            <!--</el-form-item>-->
+          <!--</el-tab-pane>-->
+          <!--&lt;!&ndash;EC计输入&ndash;&gt;-->
+          <!--<el-tab-pane label="EC计数据输入" name="third">-->
+            <!--<el-form-item label="测量时间" >-->
+              <!--<el-input v-model="form.name"></el-input>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="测量区域" prop="stock">-->
+              <!--<el-input v-model="form.stock"></el-input>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="测量值">-->
+              <!--<span>&nbsp;</span>-->
+              <!--<el-input v-model="form.postFare"></el-input>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="测量人员">-->
+              <!--<span>&nbsp;</span>-->
+              <!--<el-input v-model="form.note"></el-input>-->
+            <!--</el-form-item>-->
+          <!--</el-tab-pane>-->
 
-          <el-tab-pane label="反馈" name="forth">
-            <!-- <el-form-item label="排序">
-              <el-input placeholder="数字越大，排名越靠前，如果为空，默认排序时间为创建时间" v-model="form.sortedNum"></el-input>
-            </el-form-item> -->
-            <el-form-item label="时间" prop="name">
+          <!--<el-tab-pane label="反馈" name="forth">-->
+            <!--&lt;!&ndash; <el-form-item label="排序">-->
+              <!--<el-input placeholder="数字越大，排名越靠前，如果为空，默认排序时间为创建时间" v-model="form.sortedNum"></el-input>-->
+            <!--</el-form-item> &ndash;&gt;-->
+            <!--<el-form-item label="时间" prop="name">-->
 
-              <el-input v-model="form.name"></el-input>
-            </el-form-item>
-             <el-form-item label="问题区域" prop="name">
+              <!--<el-input v-model="form.name"></el-input>-->
+            <!--</el-form-item>-->
+             <!--<el-form-item label="问题区域" prop="name">-->
 
-              <el-input v-model="form.name"></el-input>
-            </el-form-item>
-            <el-form-item label="问题照片" prop="image">
-              <el-upload class="upload-demo" :file-list="form.image" action="http://101.132.44.253:8767/background/setSampleStatus"
-                :on-preview="handlePreview" :on-remove="handleRemove" list-type="picture" :auto-upload="autoupload"
-                :before-upload="beforeAvatarUpload" @on-change="changeImage">
-                <el-button size="small" type="primary">选择图片</el-button>
-                <!-- <div slot="tip" class="el-upload__tip">注：图片标签最多添加3个，大小为50*18</div> -->
-              </el-upload>
-              <!-- <el-dialog :visible.sync="dialogVisible">
-                <img width="100%" :src="dialogImageUrl" alt="">
-              </el-dialog> -->
-            </el-form-item>
-            <el-form-item label="问题描述" prop="shopName">
-              <el-input v-model="form.shopName"></el-input>
-            </el-form-item>
-            <el-form-item label="人员" prop="postFare">
-              <el-input v-model="form.postFare"></el-input>
-            </el-form-item>
-            <el-form-item label="状态" prop="designCost">
-              <el-input v-model="form.designCost"></el-input>
-            </el-form-item>
-            <!-- </el-form> -->
-          </el-tab-pane>
+              <!--<el-input v-model="form.name"></el-input>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="问题照片" prop="image">-->
+              <!--<el-upload class="upload-demo" :file-list="form.image" action="http://101.132.44.253:8767/background/setSampleStatus"-->
+                <!--:on-preview="handlePreview" :on-remove="handleRemove" list-type="picture" :auto-upload="autoupload"-->
+                <!--:before-upload="beforeAvatarUpload" @on-change="changeImage">-->
+                <!--<el-button size="small" type="primary">选择图片</el-button>-->
+                <!--&lt;!&ndash; <div slot="tip" class="el-upload__tip">注：图片标签最多添加3个，大小为50*18</div> &ndash;&gt;-->
+              <!--</el-upload>-->
+              <!--&lt;!&ndash; <el-dialog :visible.sync="dialogVisible">-->
+                <!--<img width="100%" :src="dialogImageUrl" alt="">-->
+              <!--</el-dialog> &ndash;&gt;-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="问题描述" prop="shopName">-->
+              <!--<el-input v-model="form.shopName"></el-input>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="人员" prop="postFare">-->
+              <!--<el-input v-model="form.postFare"></el-input>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="状态" prop="designCost">-->
+              <!--<el-input v-model="form.designCost"></el-input>-->
+            <!--</el-form-item>-->
+            <!--&lt;!&ndash; </el-form> &ndash;&gt;-->
+          <!--</el-tab-pane>-->
           <br>
-          <el-button style="float:right" v-if="dialogStatus=='create'" type="primary" @click="submitForm('form')">确认</el-button>
+          <el-button @click="dialogfaVisible = false">取 消</el-button>
+          <el-button style="float:right" v-if="dialogStatus=='create'" type="primary" @click="submitFormTask('form_task')">确认</el-button>
           <el-button style="float:right" v-else type="primary" @click="submitForm1('form')">确认</el-button>
         </el-tabs>
       </el-form>
@@ -173,12 +201,14 @@
   import Dropzone from '@/components/Dropzone'
   import Tinymce from '@/components/Tinymce'
   import {
-    saveSample,
+    getTaskUnits,
     getSampleList,
     getSample,
     getSelectProductList,
     setSampleStatus,
-    getSampleCountDetail
+    getSampleCountDetail,
+    getTaskType,
+    taskInput
   } from '@/api/article'
   import { getToken } from '@/utils/auth'
 
@@ -190,6 +220,7 @@
     },
     data() {
       return {
+        test: '',
         saleingCount: '',
         autoupload: false,
         dialogImageUrl: '',
@@ -200,6 +231,89 @@
           sampleIds: '',
           action: ''
         },
+        agricultural_data: [
+          {
+            taskId: 1,
+            task_time: '2019-03-10 10:05',
+            task_type: '种苗',
+            garden: '茶园1',
+            task_data: 500,
+            task_units: '棵',
+            username: 'admin',
+            beizhu: '茶苗质量达标'
+          },
+          {
+            taskId: 2,
+            task_time: '2019-03-10 14:25',
+            task_type: '施肥',
+            garden: '茶园1',
+            task_data: 0.5,
+            task_units: 'L',
+            username: 'admin',
+            beizhu: '部分茶叶不够厚实'
+          },
+          {
+            taskId: 3,
+            task_time: '2019-03-10 16:05',
+            task_type: '浇水',
+            garden: '茶园2',
+            task_data: 3,
+            task_units: '亩',
+            username: 'admin',
+            beizhu: '土壤水分值正常'
+          },
+          {
+            taskId: 4,
+            task_time: '2019-03-11 10:30',
+            task_type: '浇水',
+            garden: '茶园1',
+            task_data: 2,
+            task_units: '亩',
+            username: 'admin',
+            beizhu: '正常'
+          },
+          {
+            taskId: 5,
+            task_time: '2019-03-11 15:10',
+            task_type: '培土',
+            garden: '茶园1',
+            task_data: 2,
+            task_units: '亩',
+            username: 'admin',
+            beizhu: '土质紧密'
+          },
+          {
+            taskId: 6,
+            task_time: '2019-03-12 10:25',
+            task_type: '浇水',
+            garden: '茶园3',
+            task_data: 1,
+            task_units: '亩',
+            username: 'admin',
+            beizhu: '正常'
+          },
+          {
+            taskId: 7,
+            task_time: '2019-03-12 14:05',
+            task_type: '除草',
+            garden: '茶园2',
+            task_data: 3,
+            task_units: '亩',
+            username: 'admin',
+            beizhu: '杂草较多'
+          },
+          {
+            taskId: 8,
+            task_time: '2019-03-12 16:15',
+            task_type: '施肥',
+            garden: '茶园2',
+            task_data: 3,
+            task_units: 'kg',
+            username: 'admin',
+            beizhu: '正常'
+          }
+        ],
+
         requestList: {
           authorization: '',
           type: 0,
@@ -208,6 +322,16 @@
           size: 5,
           searchString: ''
         },
+        form_task: {
+          username: '',
+          task_type: '',
+          task_units: '',
+          task_data: '',
+          garden: '',
+          beizhu: ''
+        },
+        taskTypeList: [],
+        taskUnitsList: [],
         form: {
           fileList: [],
           id: '',
@@ -314,6 +438,13 @@
           this.list = response.data.data.sampleList
           this.listLoading = false
         })
+        getTaskType().then(res => {
+          this.taskTypeList = res.data.data
+          console.log('操作类型', res.data.data)
+        })
+        getTaskUnits().then(res => {
+          this.taskUnitsList = res.data.data
+        })
         getSelectProductList(this.request.authorization).then(res => {
           this.options = res.data.data
         })
@@ -368,18 +499,31 @@
       changeImage(file) {
         this.form.image.push(file)
       },
-      submitForm(form) {
-        console.log('image', this.form.image)
-        this.$refs.form.validate(valid => {
-          if (valid && this.form.image) {
-            saveSample(this.form).then(Response => {
-              this.$message('修改成功')
-            })
-          } else {
-            this.$message('还有未填选项')
-            return false
-          }
+      taskTypeCommand(command) {
+        this.$message('click on item ' + command)
+      },
+
+      submitFormTask() {
+        // /////////////////////////////////////////////////////////////////
+        console.log('+++++++++++++++++++++:' + this.form_task.task_type)
+        // console.log('image', this.form.image)
+        this.dialogStatus = 'update'
+        this.dialogfaVisible = false
+        console.log('提交的农事数据为：', this.form_task)
+        taskInput(this.form_task).then(res => {
+          // if()
+          console.log('农事管理提交成功', res.data.data)
         })
+        // this.$refs.form.validate(valid => {
+        //   if (valid && this.form.image) {
+        //     saveSample(this.form).then(Response => {
+        //       this.$message('修改成功')
+        //     })
+        //   } else {
+        //     this.$message('还有未填选项')
+        //     return false
+        //   }
+        // })
       },
       // create: function() {
       //   this.componentVos.push(this.newcomponentVos)
@@ -497,6 +641,13 @@
     .el-input {
       width: 98%;
     }
+  }
+  .el-dropdown-link {
+    cursor: pointer;
+    color: #409EFF;
+  }
+  .el-icon-arrow-down {
+    font-size: 12px;
   }
 
 </style>

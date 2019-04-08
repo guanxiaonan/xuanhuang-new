@@ -56,7 +56,7 @@ export const constantRouterMap = [{
     component: _import('dashboard/index'),
     name: 'dashboard',
     meta: {
-      title: 'dashboard',
+      title: '主页',
       icon: 'dashboard',
       noCache: true
     }
@@ -601,6 +601,19 @@ export const asyncRouterMap = [
   //     }
   //   }]
   // },
+  {
+    path: '/call_alarm',
+    component: Layout,
+    children: [{
+      path: 'call_alarm',
+      component: _import('sale/call_alarm'),
+      name: 'call_alarm',
+      meta: {
+        title: '报警',
+        icon: 'example'
+      }
+    }]
+  },
   {
     path: '/data',
     component: Layout,

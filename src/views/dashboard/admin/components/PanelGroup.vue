@@ -1,6 +1,6 @@
 <template>
-
 <div>
+  <!--<div><h3 style="color:#00ff00;">黄茶数据采集系统</h3></div>-->
   <!-- <el-row class="panel-group" :gutter="80">
     <el-col :xs="24" :sm="24" :lg="6" class="card-panel-col">
       <div @click="chuli(1)" class='card-panel'>
@@ -178,6 +178,9 @@
               <el-form-item label="CO2浓度" class="redItem">
                 <el-input v-model="realData.CO2">ppm</el-input>
               </el-form-item>
+              <el-form-item label="光照强度" class="redItem">
+                <el-input v-model="realData.guangzhao">LX</el-input>
+              </el-form-item>
             </el-form>
             <!--<div v-if="caijidian1" class="card-panel-text">茶园2</div>-->
             <!--<span>{{data.saleoutproducts}}</span>-->
@@ -249,11 +252,12 @@
           state: '开启'
         }],
         realData: {
-          turangwendu: '17.3 ℃',
+          turangwendu: '7.3 ℃',
           turangshidu: '30 %',
           kongqiwendu: '23.1 ℃',
           kongqishidu: '40 %',
-          CO2: '2034 ppm'
+          CO2: '488.3 ppm',
+          guangzhao: '3582.16 LX'
         },
         turangwenduall: [],
         turangshiduall: [],

@@ -1,12 +1,12 @@
 <template>
   <div class="login-container">
     <div class="login-headline">
-      <h3 style="color:#fff;">黄茶数据采集系统</h3>
+      <!--<h3 style="color:#fff;">黄茶数据采集系统</h3>-->
     </div>
     <div class="line"></div>
     <el-form class="login-form" autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left">
       <div class="title-container">
-        <h3 class="title">{{$t('login.title')}}</h3>
+        <h3 class="title">黄茶生长大数据管理系统</h3>
         <lang-select class="set-language"></lang-select>
       </div>
       <el-form-item prop="username">
@@ -26,7 +26,10 @@
           <svg-icon icon-class="eye" />
         </span>
       </el-form-item>
-
+      <template>
+        <el-radio v-model="radio" label="1">管理员</el-radio>
+        <el-radio v-model="radio" label="2">普通用户</el-radio>
+      </template>
       <el-button type="primary" style="width:100%;margin-bottom:30px;" :loading="loading" @click.native.prevent="handleLogin">{{$t('login.logIn')}}</el-button>
 
     </el-form>
@@ -72,6 +75,7 @@
         }
       }
       return {
+        radio: '',
         loginForm: {
           comYXKey: 'comYXValue',
           username: '',
@@ -205,7 +209,7 @@
     height: 100%;
     // width: 100%;
     // background-color: $bg;
-    background-image: url('../../assets/401_images/bg2.jpeg');
+    background-image: url('../../assets/401_images/bg3.jpeg');
     background-size: 100% 100%;
     background-position: center;
 
@@ -257,7 +261,7 @@
       .title {
         font-size: 26px;
         font-weight: 400;
-        color: $light_gray;
+        color: black;
         margin: 0px auto 40px auto;
         text-align: center;
         font-weight: bold;

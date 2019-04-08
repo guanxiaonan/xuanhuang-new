@@ -281,7 +281,6 @@ export function getProductList(data) {
 }
 
 export function differentData(data) {
-
   return request(
     {
       url: 'http://localhost:9102/all_data-get',
@@ -289,7 +288,6 @@ export function differentData(data) {
       data
     }
   )
-
 }
 
 // 获取real_time_data的数据
@@ -304,6 +302,43 @@ export function getRealData() {
     method: 'get'
   })
 }
+
+// 获取task_type数据
+export function getTaskType() {
+  return request({
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    url: 'http://localhost:9102/task_type-get',
+    method: 'get'
+  })
+}
+
+// 获取task_units数据
+export function getTaskUnits() {
+  return request({
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: 'get',
+    url: 'http://localhost:9102/task_units-get'
+  })
+}
+
+// 提交农事信息
+export function taskInput(data) {
+  return request({
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    url: 'http://localhost:9102/task-post',
+    method: 'post',
+    data
+  })
+}
+
 // 组件-查看组件详情
 export function getProductInfo(data) {
   return request({
